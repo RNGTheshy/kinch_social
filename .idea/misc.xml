@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
+        <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
+      </map>
+    </option>
+  </component>
   <component name="FindBugsConfigurable">
     <option name="make" value="true" />
     <option name="effort" value="default" />
