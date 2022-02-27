@@ -10,3 +10,4 @@ rootProject.name = "Chaoshan Culture"
 include ':app'
 include ':fishprawncrab'
 include ':app_debug'
+include ':blindbox'

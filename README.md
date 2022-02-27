@@ -4,6 +4,7 @@
 app： 主程序
 app_debug ：开发测试用 进入activity或者fragment等快速调试启动入口
 fishprawncrab：鱼虾蟹功能
+blindbox ：盲盒
 
 
 技术说明：
