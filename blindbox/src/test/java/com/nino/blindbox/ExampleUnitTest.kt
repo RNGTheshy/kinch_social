@@ -1,4 +1,4 @@
-package com.yubinma.blindbox
+package com.nino.blindbox
 
 import org.junit.Test
 

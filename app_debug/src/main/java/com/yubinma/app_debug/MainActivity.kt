@@ -14,7 +14,7 @@ import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.fishprawncrab.FishPrawnCrabMainActivity
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private var adapter = DebugAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             openFishPrawnCrabMainActivity()
         },
         DebugItem("!!!") {
+
         }
     )
 
