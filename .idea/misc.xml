@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.2046875" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/fishprawncrab/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app_debug/src/main/res/layout/activity_main.xml" value="0.26458333333333334" />
         <entry key="app_debug/src/main/res/layout/item_debug.xml" value="0.12407407407407407" />
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
