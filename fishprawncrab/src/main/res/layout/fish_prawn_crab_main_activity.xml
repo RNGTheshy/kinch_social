@@ -6,16 +6,75 @@
         android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="-16dp"
+            tools:layout_editor_absoluteX="-115dp">
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="11111"
+                android:id="@+id/button_main"
+                android:layout_centerHorizontal="true" />
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_main"
+                android:layout_marginTop="60dp"
+                android:id="@+id/button1"
+                android:text="11111" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/button1"
+                android:text="11111"
+                android:id="@+id/button2"
+                android:layout_marginLeft="39dp"
+                android:layout_alignBottom="@+id/button1"
+                android:layout_marginBottom="-1dp" />
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"
+
+                android:text="11111"
+                android:layout_marginBottom="0dp"
+                android:layout_alignBottom="@+id/button2"
+                android:layout_toEndOf="@+id/button2"
+                android:layout_marginStart="45dp" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11111"
+                android:id="@+id/button4"
+                android:layout_marginBottom="-44dp"
+                android:layout_alignBottom="@+id/button3"
+                android:layout_marginStart="36dp"
+                android:layout_marginEnd="-9dp"
+                android:layout_toEndOf="@+id/button6" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11111"
+                android:id="@+id/button5"
+                android:layout_marginBottom="-49dp"
+                android:layout_alignBottom="@+id/button2"
+                android:layout_marginEnd="-83dp"
+                android:layout_alignEnd="@+id/button2" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button6"
+                android:text="11111"
+                android:layout_marginBottom="-47dp"
+                android:layout_alignBottom="@+id/button1" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
