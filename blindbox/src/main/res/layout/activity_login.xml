@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_pic"
@@ -24,6 +25,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -44,6 +46,22 @@
             android:textSize="75dp"
             android:textStyle="bold" />
 
+    </RelativeLayout>
+
+    <com.nino.blindbox.ui.widget.ShadowLayoutTwo
+        android:id="@+id/sha_lay"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        app:shadowColor="@color/black"
+        app:shadowDx="0dp"
+        app:shadowDy="4dp"
+        app:shadowRadius="10dp"
+        app:shadowRadiusButtom="10dp"
+        app:shadowRadiusLeft="5dp"
+        app:shadowRadiusRight="5dp"
+        app:shadowRadiusTop="5dp"
+        app:shadowSide="all" >
 
         <LinearLayout
             android:id="@+id/loginMid"
@@ -140,8 +158,8 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+    </com.nino.blindbox.ui.widget.ShadowLayoutTwo>
 
-    </RelativeLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

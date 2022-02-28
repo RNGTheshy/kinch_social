@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.nino.blindbox.ui.widget.ShadowLayoutTwo
+        android:id="@+id/sha_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="10dp"
+        app:shadowColor="#1A333333"
+        app:shadowDx="0dp"
+        app:shadowDy="4dp"
+        app:shadowRadius="10dp"
+        app:shadowRadiusButtom="10dp"
+        app:shadowRadiusLeft="5dp"
+        app:shadowRadiusRight="5dp"
+        app:shadowRadiusTop="5dp"
+        app:shadowSide="all">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_white10"
+            android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingTop="25dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detail_tile_img"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
+
+                <TextView
+                    android:id="@+id/detail_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:text="dimoo"
+                    android:textColor="#333333"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </com.nino.blindbox.ui.widget.ShadowLayoutTwo>
+
+</LinearLayout>
