@@ -70,7 +70,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, LifecycleProvider<A
         super.onResume()
         mLifecycleSubject.onNext(ActivityEvent1.RESUME)
         val intentFilter = IntentFilter()
-        intentFilter.addAction("com.tool.rss.offline")
+        intentFilter.addAction("com.nino.blindbox.offline")
         receiver = ForceOfflineReceiver()
         registerReceiver(receiver, intentFilter)
     }
