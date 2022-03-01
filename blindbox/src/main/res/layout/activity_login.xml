@@ -27,7 +27,9 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/sha_lay"
+        app:layout_anchorGravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,14 +52,14 @@
 
     <com.nino.blindbox.ui.widget.ShadowLayoutTwo
         android:id="@+id/sha_lay"
-        android:layout_width="320dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="320dp"
         android:layout_gravity="center"
         app:shadowColor="@color/black"
         app:shadowDx="0dp"
         app:shadowDy="4dp"
         app:shadowRadius="10dp"
-        app:shadowRadiusButtom="10dp"
+        app:shadowRadiusButtom="5dp"
         app:shadowRadiusLeft="5dp"
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
@@ -65,7 +67,7 @@
 
         <LinearLayout
             android:id="@+id/loginMid"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="280dp"
             android:layout_centerInParent="true"
             android:background="@drawable/shape_round_rec_orage_btn_bg"
@@ -75,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="账号登录"
                 android:textSize="20dp" />
 
@@ -127,12 +129,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="60dp"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/rememberPass"
-                    android:layout_width="wrap_content"
+                    android:layout_width="31dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/pink" />
 
@@ -147,8 +149,8 @@
 
             <Button
                 android:id="@+id/login"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_round_rec_orage_btn_bg"

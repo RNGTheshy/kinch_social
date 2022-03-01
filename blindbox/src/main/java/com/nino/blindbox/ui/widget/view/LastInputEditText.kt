@@ -5,12 +5,13 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 
 class LastInputEditText : AppCompatEditText {
-    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context,
+    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(
+        context!!,
         attrs,
         defStyle)
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs)
+    constructor(context: Context?) : super(context!!)
 
     override fun onSelectionChanged(selStart: Int, selEnd: Int) {
         super.onSelectionChanged(selStart, selEnd)

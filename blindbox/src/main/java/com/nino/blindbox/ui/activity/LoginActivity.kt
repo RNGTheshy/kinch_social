@@ -1,6 +1,7 @@
 package com.nino.blindbox.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.nino.blindbox.R
+import com.nino.blindbox.base.ActivityCollector
 import com.nino.blindbox.base.BaseActivity
 import java.io.*
 
@@ -25,7 +27,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.statusBarColor = resources.getColor(R.color.pink)
+        window.statusBarColor = resources.getColor(R.color.pink2)
         supportActionBar?.hide()
         //一周内免登录功能(记住密码）
         val prefs=getPreferences(Context.MODE_PRIVATE)
@@ -80,6 +82,23 @@ class LoginActivity : BaseActivity() {
             }
         }
 
+
+    }
+
+    inner class ForceOfflineReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            android.app.AlertDialog.Builder(context).apply {
+                setTitle("警告")
+                setMessage("请重新登录")
+                setCancelable(false)
+                setPositiveButton("OK") { _, _ ->
+                    ActivityCollector.finishAll()
+                    val i = Intent(context, LoginActivity::class.java)
+                    context.startActivity(i)
+                }
+                show()
+            }
+        }
 
     }
 
