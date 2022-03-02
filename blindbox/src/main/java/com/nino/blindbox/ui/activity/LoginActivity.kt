@@ -10,14 +10,14 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import com.chaoshan.login.BaseLoginActivity
 import com.nino.blindbox.R
 import java.io.*
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseLoginActivity() {
 
-    val accountList = mutableMapOf<String, String>()
+    override val accountList = mutableMapOf<String, String>()
     private var mAccount: EditText? = null
     private var mRemember: EditText? = null
     private var mPass: CheckBox? = null
