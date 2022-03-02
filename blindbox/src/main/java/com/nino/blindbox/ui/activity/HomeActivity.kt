@@ -15,7 +15,6 @@ import com.nino.blindbox.ui.fragment.*
 class HomeActivity : AppCompatActivity() {
     //标题
     private val titles = arrayOf("首页", "市场", "展柜", "消息","我的")
-
     private val fragmentList : MutableList<Fragment> = ArrayList()
 
 

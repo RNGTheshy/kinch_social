@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/app_debug/src/main/res/layout/item_debug.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/bg_home_white10.xml" value="0.2359375" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/bg_home_white25.xml" value="0.2359375" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/bg_round_red.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/rotate.xml" value="0.1" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/shape_bggrey_roundcorner.xml" value="0.1" />
@@ -21,7 +23,7 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fragment_market.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fragment_message.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fragment_self.xml" value="0.24114583333333334" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fragment_show.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/fragment_show.xml" value="0.5" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/item_homedetail_header.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/loading_dialog.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/show_fragment_detail.xml" value="0.23072916666666668" />
