@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_lay"
+    android:layout_width="295dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_background"
+    android:minHeight="215dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/positive_btn"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d25"
+            android:layout_marginEnd="@dimen/d25"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="?te_base_two_button_dialog_title_font_color"
+            android:textSize="@dimen/d17"
+            android:textStyle="bold"
+            tools:text="您确定吗？" />
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d25"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/d25"
+            android:gravity="start"
+            android:textColor="?te_base_two_button_dialog_body_font_color"
+            android:textSize="@dimen/d15"
+            android:visibility="gone"
+            tools:text="该操作会清空已识别出的文字，是否继续？"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <ImageView
+            android:id="@+id/close_btn"
+            android:layout_width="@dimen/d32"
+            android:layout_height="@dimen/d32"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/d05"
+            android:layout_marginEnd="@dimen/d05"
+            android:src="@drawable/icon_pop_ups_closure"
+            android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/positive_btn"
+        android:layout_width="?te_base_two_button_dialog_btn_width"
+        android:layout_height="@dimen/d44"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/dialog_confirm_bg"
+        android:gravity="center"
+        android:textColor="?te_base_two_button_dialog_btn_font_color"
+        android:textSize="@dimen/d16"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/middle_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="继续" />
+
+    <TextView
+            android:id="@+id/middle_btn"
+            android:layout_width="?te_base_two_button_dialog_btn_width"
+            android:layout_height="@dimen/d44"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:textColor="?te_base_two_button_dialog_btn_font_color"
+            android:textSize="@dimen/d16"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/negative_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="middle" />
+
+    <TextView
+        android:id="@+id/negative_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/d30"
+        android:layout_marginBottom="21dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="?te_base_two_button_dialog_secondary_btn_font_color"
+        android:textSize="@dimen/d16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="取消" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
