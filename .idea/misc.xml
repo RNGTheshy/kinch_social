@@ -12,6 +12,7 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/shape_round_rec_orage_btn_bg.xml" value="0.2859375" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_home.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_welcome.xml" value="0.18" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/bb_card.xml" value="0.67" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/bb_series.xml" value="0.33" />
@@ -33,21 +34,8 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/fishprawncrab/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app_debug/src/main/res/layout/activity_main.xml" value="0.26458333333333334" />
         <entry key="app_debug/src/main/res/layout/item_debug.xml" value="0.12407407407407407" />
-        <entry key="blindbox/src/main/res/layout/item_debug.xml" value="0.12708333333333333" />
-        <entry key="fishprawncrab/src/main/res/drawable/ic_launcher_background.xml" value="0.14322916666666666" />
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
         <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
-        <entry key="ui/src/main/res/drawable/bg_btn_go_next.xml" value="0.3523076923076923" />
-        <entry key="ui/src/main/res/drawable/bg_bubble.xml" value="0.3523076923076923" />
-        <entry key="ui/src/main/res/drawable/dialog_background.xml" value="0.3523076923076923" />
-        <entry key="ui/src/main/res/drawable/dialog_confirm_red_bg.xml" value="0.3523076923076923" />
-        <entry key="ui/src/main/res/drawable/rectangle.xml" value="0.5295256063168907" />
-        <entry key="ui/src/main/res/drawable/test.xml" value="7.872323808045363" />
-        <entry key="ui/src/main/res/layout/activity_main.xml" value="0.26313405797101447" />
-        <entry key="ui/src/main/res/layout/center_toast.xml" value="0.26313405797101447" />
-        <entry key="ui/src/main/res/layout/dialog_button.xml" value="0.18795289855072464" />
-        <entry key="ui/src/main/res/layout/item_debug.xml" value="0.18795289855072464" />
-        <entry key="ui/src/main/res/layout/test.xml" value="0.47651864997784793" />
       </map>
     </option>
   </component>
