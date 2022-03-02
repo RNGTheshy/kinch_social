@@ -1,4 +1,4 @@
-package com.nino.blindbox.person
+package com.chaoshan.data_center.person
 
 import android.widget.ImageView
 
