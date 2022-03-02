@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/toolbar"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/pink2"
+    android:background="@color/gray"
     tools:ignore="PrivateResource">
 
     <TextView
@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/white"
         android:text="BlindBox Show"
+        android:textColor="@color/golden"
+        android:textStyle="bold"
         android:textSize="16sp"/>
     <ImageView
         android:id="@+id/iv_search"
