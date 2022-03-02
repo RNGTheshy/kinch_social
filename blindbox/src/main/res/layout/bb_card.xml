@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="100dp"
-    android:layout_height="150dp"
+    android:layout_height="180dp"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -12,10 +12,6 @@
         android:id="@+id/sha_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
         app:shadowColor="#1A333333"
         app:shadowDx="0dp"
         app:shadowDy="4dp"
@@ -23,19 +19,20 @@
         app:shadowRadiusButtom="10dp"
         app:shadowRadiusLeft="5dp"
         app:shadowRadiusRight="5dp"
-        app:shadowRadiusTop="5dp"
+        app:shadowRadiusTop="10dp"
         app:shadowSide="all">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_home_white25"
+            android:background="@drawable/bg_home_white10"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/card_dimoo_example" />
 
             <TextView
