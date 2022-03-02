@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="PinkButton" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="grayButton" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
-        <item name="colorButtonNormal">@color/pink2</item>
+        <item name="colorButtonNormal">@color/gray</item>
+    </style>
+    <style name="CheckBoxTheme">
+        <item name="colorAccent">@color/golden</item><!--选中颜色-->
     </style>
 </resources>

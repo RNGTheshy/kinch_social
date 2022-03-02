@@ -27,7 +27,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.statusBarColor = resources.getColor(R.color.pink2)
+        window.statusBarColor = resources.getColor(R.color.gray)
         supportActionBar?.hide()
         //一周内免登录功能(记住密码）
         val prefs=getPreferences(Context.MODE_PRIVATE)

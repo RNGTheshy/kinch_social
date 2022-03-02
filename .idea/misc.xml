@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/app_debug/src/main/res/layout/item_debug.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/bg_home_white10.xml" value="0.2359375" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/bg_home_white25.xml" value="0.2359375" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
@@ -10,7 +11,7 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/shape_bggrey_roundcorner.xml" value="0.1" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable/shape_round_rec_orage_btn_bg.xml" value="0.2859375" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_home.xml" value="0.2755208333333333" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_login.xml" value="0.35" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/activity_welcome.xml" value="0.18" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/bb_card.xml" value="0.67" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/layout/bb_series.xml" value="0.33" />

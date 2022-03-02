@@ -25,13 +25,14 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:background="@color/gray"
         app:tabGravity="fill"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorGravity="center"
         app:tabIndicatorHeight="0dp"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
-        app:tabRippleColor="@android:color/transparent"
-        app:tabSelectedTextColor="@color/pink2"
-        app:tabTextColor="@android:color/darker_gray" />
+        app:tabRippleColor="@color/light_gray"
+        app:tabSelectedTextColor="@color/golden"
+        app:tabTextColor="@color/white" />
 </LinearLayout>
