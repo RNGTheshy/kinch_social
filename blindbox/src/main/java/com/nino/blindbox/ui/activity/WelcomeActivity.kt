@@ -4,13 +4,13 @@ import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import com.nino.blindbox.R
-import com.nino.blindbox.base.BaseActivity
 import com.nino.blindbox.ui.utils.RxCountDown
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
 
-class WelcomeActivity : BaseActivity() {
+class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)

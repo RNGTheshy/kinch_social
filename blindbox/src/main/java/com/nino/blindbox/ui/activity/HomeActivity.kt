@@ -1,20 +1,20 @@
 package com.nino.blindbox.ui.activity
 
 import android.os.Bundle
-import android.os.Message
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nino.blindbox.R
-import com.nino.blindbox.base.BaseActivity
-import com.nino.blindbox.base.BaseFragment
 import com.nino.blindbox.ui.fragment.*
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : AppCompatActivity() {
     //标题
     private val titles = arrayOf("首页", "市场", "玩具柜", "消息","个人中心")
-    private val fragmentList : MutableList<BaseFragment> = ArrayList()
+    private val fragmentList : MutableList<Fragment> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +35,12 @@ class HomeActivity : BaseActivity() {
         fragmentList.add(MessageFragment())
         fragmentList.add(SelfFragment())
         //初始化viewPage
-        viewPager!!.adapter = object: FragmentStateAdapter(this){
+        viewPager.adapter = object: FragmentStateAdapter(this){
             override fun getItemCount(): Int {
                 return fragmentList.size
             }
 
-            override fun createFragment(position: Int): BaseFragment {
+            override fun createFragment(position: Int): Fragment {
                 return  fragmentList[position]
             }
         }

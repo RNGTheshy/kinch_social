@@ -10,13 +10,12 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.nino.blindbox.R
-import com.nino.blindbox.base.ActivityCollector
-import com.nino.blindbox.base.BaseActivity
 import java.io.*
 
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : AppCompatActivity() {
 
     val accountList = mutableMapOf<String, String>()
     private var mAccount: EditText? = null
@@ -30,18 +29,18 @@ class LoginActivity : BaseActivity() {
         window.statusBarColor = resources.getColor(R.color.gray)
         supportActionBar?.hide()
         //一周内免登录功能(记住密码）
-        val prefs=getPreferences(Context.MODE_PRIVATE)
-        val isRemember=prefs.getBoolean("remember_password",false)
+        val prefs = getPreferences(Context.MODE_PRIVATE)
+        val isRemember = prefs.getBoolean("remember_password", false)
         mAccount = findViewById<EditText>(R.id.accountEdit)
         mRemember = findViewById<EditText>(R.id.passwordEdit)
-        mPass=findViewById<CheckBox>(R.id.rememberPass)
-        mLogin=findViewById<Button>(R.id.login)
-        if(isRemember){
-            val account=prefs.getString("account","")
-            val password=prefs.getString("password","")
+        mPass = findViewById<CheckBox>(R.id.rememberPass)
+        mLogin = findViewById<Button>(R.id.login)
+        if (isRemember) {
+            val account = prefs.getString("account", "")
+            val password = prefs.getString("password", "")
             mAccount?.setText(account)
             mRemember?.setText(password)
-            mPass?.isChecked=true
+            mPass?.isChecked = true
         }
 
         //加入默认账号密码
@@ -56,12 +55,12 @@ class LoginActivity : BaseActivity() {
             //账号密码匹配成功
             if (accountList[account] == password) {
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
-                val editor=prefs.edit()
-                if(mPass?.isChecked == true){
-                    editor.putBoolean("remember_password",true)
-                    editor.putString("account",account)
-                    editor.putString("password",password)
-                }else{
+                val editor = prefs.edit()
+                if (mPass?.isChecked == true) {
+                    editor.putBoolean("remember_password", true)
+                    editor.putString("account", account)
+                    editor.putString("password", password)
+                } else {
                     editor.clear()
                 }
                 //进入界面
@@ -92,7 +91,7 @@ class LoginActivity : BaseActivity() {
                 setMessage("请重新登录")
                 setCancelable(false)
                 setPositiveButton("OK") { _, _ ->
-                    ActivityCollector.finishAll()
+                    finish()
                     val i = Intent(context, LoginActivity::class.java)
                     context.startActivity(i)
                 }
