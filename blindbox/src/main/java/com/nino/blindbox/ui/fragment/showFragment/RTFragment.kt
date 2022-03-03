@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.nino.blindbox.R
 
 
-class TopToyFragment: Fragment() {
+class RTFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

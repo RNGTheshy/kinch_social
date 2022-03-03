@@ -10,15 +10,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nino.blindbox.R
-import com.nino.blindbox.ui.fragment.showFragment.TopToyFragment
+import com.nino.blindbox.ui.fragment.showFragment.RTFragment
 import com.nino.blindbox.ui.fragment.showFragment.Toy52Fragment
 import com.nino.blindbox.ui.fragment.showFragment.othersFragment
 import com.nino.blindbox.ui.fragment.showFragment.ppmtFragment
 
 class ShowFragment : Fragment() {
-    private val titles = arrayOf("POP MART", "52TOYS", "TOP TOY","其他")
+    private val titles = arrayOf("POP MART", "52TOYS", "若态","其他")
     private val fragmentList: MutableList<Fragment> = ArrayList()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +35,7 @@ class ShowFragment : Fragment() {
         //初始化fragment
         fragmentList.add(ppmtFragment())
         fragmentList.add(Toy52Fragment())
-        fragmentList.add(TopToyFragment())
+        fragmentList.add(RTFragment())
         fragmentList.add(othersFragment())
         //初始化viewPage
         viewPager!!.adapter = object : FragmentStateAdapter(this) {

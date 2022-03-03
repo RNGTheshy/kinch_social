@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_show_detail">
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/seriesRecyclerView"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
