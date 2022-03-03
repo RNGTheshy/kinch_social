@@ -27,7 +27,6 @@ class ppmtFragment: Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = LayoutInflater.from(context).inflate(R.layout.show_fragment_detail, null)
-
         initView(view)
         initData()
         return view
@@ -37,8 +36,9 @@ class ppmtFragment: Fragment() {
     }
 
     fun initData(){
-        datas.add(series("Dimoo",5,false,R.drawable.card_dimoo_example))
-        datas.add(series("SkullPanda",5,false,R.drawable.card_dimoo_example))
+        initBoxes()
+        datas.add(series("Dimoo",5,false,R.drawable.card_dimoo_example,boxes))
+        datas.add(series("SkullPanda",5,false,R.drawable.card_dimoo_example,boxes))
         seriesAdapter = seriesAdapter(datas)
         seriesRecycleView?.layoutManager = GridLayoutManager(context, 1)
         seriesRecycleView?.adapter = seriesAdapter

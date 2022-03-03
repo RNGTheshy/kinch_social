@@ -9,14 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nino.blindbox.R
-import com.nino.blindbox.blindbox.box
 import com.nino.blindbox.blindbox.series
 import java.util.*
+import androidx.recyclerview.widget.LinearLayoutManager
+
+
+
 
 class seriesAdapter(var datas: LinkedList<series>) :
     RecyclerView.Adapter<seriesAdapter.ViewHolder>() {
     private var bAdapter: boxAdapter? = null
-    private var datas2= LinkedList<box>()
+    private var mContext : Context? = null
     fun add(data: series) {
         if (datas == null) datas = LinkedList()
         datas!!.add(data)
@@ -25,12 +28,14 @@ class seriesAdapter(var datas: LinkedList<series>) :
         //notifyDataSetChanged();
         notifyItemInserted(datas!!.size - 1)
     }
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val seriesImage: ImageView = view.findViewById(R.id.detail_title_img) as ImageView
         val seriesName: TextView = view.findViewById(R.id.detail_title) as TextView
         val seriesNum: TextView = view.findViewById(R.id.detail_owned_num) as TextView
-        val boxRecyclerView : RecyclerView = view.findViewById(R.id.recycler_content) as RecyclerView
+        val boxRecyclerView: RecyclerView = view.findViewById(R.id.recycler_content) as RecyclerView
     }
+
     fun remove(position: Int) {
         if (datas != null) {
             datas!!.removeAt(position)
@@ -64,18 +69,21 @@ class seriesAdapter(var datas: LinkedList<series>) :
         //加载布局创建viewholder
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.bb_series, parent, false)
-
-
+        mContext = parent.context
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //为viewholder绑定数据
-        val series=datas[position]
+        val series = datas[position]
         holder.seriesImage.setImageResource(series.photoId)
         holder.seriesName.text = series.name
-        holder.seriesNum.text = "（"+series.alreadyOwnedBoxNum.toString()+"个)"
-
+        holder.seriesNum.text = "（" + series.alreadyOwnedBoxNum.toString() + "个)"
+        bAdapter = boxAdapter(series.boxes)
+        val linearLayoutManager = LinearLayoutManager(mContext)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        holder.boxRecyclerView.layoutManager = linearLayoutManager
+        holder.boxRecyclerView.adapter = bAdapter
 
         if (mlistener != null) {
             holder.itemView.setOnClickListener {
@@ -90,7 +98,7 @@ class seriesAdapter(var datas: LinkedList<series>) :
         }
     }
 
-//    fun initData(context: Context) {
+    //    fun initData(context: Context) {
 //        datas2.add(box("Dimoo",true,R.drawable.card_dimoo_example))
 //        datas2.add(box("Dimoo",true,R.drawable.card_dimoo_example))
 //        bAdapter = boxAdapter(datas2)
