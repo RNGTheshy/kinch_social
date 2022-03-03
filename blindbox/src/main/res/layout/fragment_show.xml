@@ -66,18 +66,12 @@
 
         <ImageView
             android:id="@+id/share"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@+id/add"
-            android:layout_marginRight="20dp"/>
-
-        <ImageView
-            android:id="@+id/add"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_centerInParent="true" />
+            android:src="@mipmap/icon_share" />
+
 
     </RelativeLayout>
 
