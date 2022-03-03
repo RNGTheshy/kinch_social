@@ -79,6 +79,7 @@ class seriesAdapter(var datas: LinkedList<series>) :
         holder.seriesImage.setImageResource(series.photoId)
         holder.seriesName.text = series.name
         holder.seriesNum.text = "（" + series.alreadyOwnedBoxNum.toString() + "个)"
+
         bAdapter = boxAdapter(series.boxes)
         val linearLayoutManager = LinearLayoutManager(mContext)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -98,13 +99,6 @@ class seriesAdapter(var datas: LinkedList<series>) :
         }
     }
 
-    //    fun initData(context: Context) {
-//        datas2.add(box("Dimoo",true,R.drawable.card_dimoo_example))
-//        datas2.add(box("Dimoo",true,R.drawable.card_dimoo_example))
-//        bAdapter = boxAdapter(datas2)
-//        boxRecycleView?.layoutManager = GridLayoutManager(context, 1)
-//        boxRecycleView?.adapter = bAdapter
-//    }
     override fun getItemCount() = datas.size
 
 }
