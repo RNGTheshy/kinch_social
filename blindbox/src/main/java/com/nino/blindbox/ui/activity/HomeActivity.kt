@@ -2,6 +2,7 @@ package com.nino.blindbox.ui.activity
 
 import android.os.Bundle
 
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
@@ -15,6 +16,7 @@ import com.nino.blindbox.ui.fragment.*
 class HomeActivity : AppCompatActivity() {
     //标题
     private val titles = arrayOf("首页", "市场", "展柜", "消息","我的")
+    private val picId = arrayOf(R.mipmap.home,R.mipmap.market,R.mipmap.show,R.mipmap.message,R.mipmap.self)
     private val fragmentList : MutableList<Fragment> = ArrayList()
 
 
@@ -65,6 +67,8 @@ class HomeActivity : AppCompatActivity() {
         val tabLayoutMediator = TabLayoutMediator(
             tabLayout,viewPager, TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
                 tab.text = titles[position]
+                val icon = getResources().getDrawable(picId[position])
+                tab.icon = icon
             })
         tabLayoutMediator.attach()
     }

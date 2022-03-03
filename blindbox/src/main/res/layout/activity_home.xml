@@ -18,13 +18,13 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white" />
+        android:layout_height="3dp"
+        android:background="@color/gray" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:background="@color/gray"
         app:tabGravity="fill"
         app:tabIndicatorFullWidth="false"
@@ -35,4 +35,9 @@
         app:tabRippleColor="@color/light_gray"
         app:tabSelectedTextColor="@color/golden"
         app:tabTextColor="@color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/gray" />
 </LinearLayout>
