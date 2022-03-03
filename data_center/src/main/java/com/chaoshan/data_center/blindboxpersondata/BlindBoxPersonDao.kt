@@ -1,5 +1,6 @@
 package com.chaoshan.data_center.blindboxpersondata
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -18,5 +19,5 @@ interface BlindBoxPersonDao {
     suspend fun deleteBlindBoxPerson(blindBoxPerson: BlindBoxPerson)
 
     @Query("select * from blind_box_person")
-    suspend fun findAll(): List<BlindBoxPerson>
+    fun findAll(): LiveData<List<BlindBoxPerson>>
 }
