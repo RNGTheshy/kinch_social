@@ -4,10 +4,10 @@
     <dimen name="tag_first_end_padding">15dp</dimen>
     <dimen name="tag_right_and_left_padding">7dp</dimen>
     <dimen name="tag_center_distance_half">7.5dp</dimen>
-    <dimen name="template_card_bound_distance">15dp</dimen>
-    <dimen name="template_card_top_bound_distance">12dp</dimen>
-    <dimen name="template_card_row_distance">20dp</dimen>
-    <dimen name="template_card_col_distance">8dp</dimen>
+    <dimen name="template_card_bound_distance">5dp</dimen>
+    <dimen name="template_card_top_bound_distance">5dp</dimen>
+    <dimen name="template_card_row_distance">5dp</dimen>
+    <dimen name="template_card_col_distance">5dp</dimen>
     <dimen name="template_header_height">34dp</dimen>
     <dimen name="template_footer_exclude_padding">79dp</dimen>
     <dimen name="tag_default_width">62dp</dimen>

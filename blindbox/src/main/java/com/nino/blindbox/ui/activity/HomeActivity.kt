@@ -1,6 +1,9 @@
 package com.nino.blindbox.ui.activity
 
+import android.graphics.Outline
 import android.os.Bundle
+import android.view.View
+import android.view.ViewOutlineProvider
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +20,9 @@ import com.nino.blindbox.ui.fragment.*
 
 class HomeActivity : AppCompatActivity() {
     //标题
-    private val titles = arrayOf("首页", "市场", "展柜", "消息","我的")
-    private val picId = arrayOf(R.mipmap.home,R.mipmap.market,R.mipmap.show,R.mipmap.message,R.mipmap.self)
-    private val fragmentList : MutableList<Fragment> = ArrayList()
+    private val titles = arrayOf("首页", "市场", "展柜", "消息", "我的")
+    private val picId = arrayOf(R.mipmap.home, R.mipmap.market, R.mipmap.show, R.mipmap.message, R.mipmap.self)
+    private val fragmentList: MutableList<Fragment> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,22 +35,22 @@ class HomeActivity : AppCompatActivity() {
      * 初始化控件
      */
     private fun initViews() {
-        val viewPager :ViewPager2 =findViewById(R.id.viewPager)
-        val tabLayout :TabLayout =findViewById(R.id.tab_layout)
+        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         //初始化fragment
-        fragmentList.add(HomeFragment())
+        fragmentList.add(SocialForumMainFragment.newInstance())
         fragmentList.add(MarketFragment())
         fragmentList.add(ShowFragment())
         fragmentList.add(SocialForumMainFragment.newInstance())
-        fragmentList.add(SelfFragment())
+        fragmentList.add(SocialForumMainFragment.newInstance())
         //初始化viewPage
-        viewPager.adapter = object: FragmentStateAdapter(this){
+        viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
                 return fragmentList.size
             }
 
             override fun createFragment(position: Int): Fragment {
-                return  fragmentList[position]
+                return fragmentList[position]
             }
         }
         //取消切换动画效果
@@ -64,10 +67,10 @@ class HomeActivity : AppCompatActivity() {
 
         })
         //取消滑动切换
-        viewPager.isUserInputEnabled=false
+        viewPager.isUserInputEnabled = false
         viewPager.offscreenPageLimit = 3
         val tabLayoutMediator = TabLayoutMediator(
-            tabLayout,viewPager, TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
+            tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
                 tab.text = titles[position]
                 val icon = getResources().getDrawable(picId[position])
                 tab.icon = icon
