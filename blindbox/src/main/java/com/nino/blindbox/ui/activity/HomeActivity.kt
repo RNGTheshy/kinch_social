@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.chaoshan.socialforum.SocialForumMainFragment
+import com.chaoshan.socialforum.databinding.SocialForumMainFragmentBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nino.blindbox.R
@@ -36,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
         fragmentList.add(HomeFragment())
         fragmentList.add(MarketFragment())
         fragmentList.add(ShowFragment())
-        fragmentList.add(MessageFragment())
+        fragmentList.add(SocialForumMainFragment.newInstance())
         fragmentList.add(SelfFragment())
         //初始化viewPage
         viewPager.adapter = object: FragmentStateAdapter(this){
@@ -57,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.position?.let { viewPager?.setCurrentItem(it, false) }
+                tab?.position?.let { viewPager.setCurrentItem(it, false) }
             }
 
         })

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tag_first_start_padding">15dp</dimen>
+    <dimen name="tag_first_end_padding">15dp</dimen>
+    <dimen name="tag_right_and_left_padding">7dp</dimen>
+    <dimen name="tag_center_distance_half">7.5dp</dimen>
+    <dimen name="template_card_bound_distance">15dp</dimen>
+    <dimen name="template_card_top_bound_distance">12dp</dimen>
+    <dimen name="template_card_row_distance">20dp</dimen>
+    <dimen name="template_card_col_distance">8dp</dimen>
+    <dimen name="template_header_height">34dp</dimen>
+    <dimen name="template_footer_exclude_padding">79dp</dimen>
+    <dimen name="tag_default_width">62dp</dimen>
+    <dimen name="template_detail_content_height_9_16">272dp</dimen>
+    <dimen name="template_detail_content_height_16_9">391dp</dimen>
+    <dimen name="template_detail_content_height_loading">364dp</dimen>
+    <item name="template_detail_line_height_multi" format="float" type="dimen">1.3</item>
+    <item name="template_detail_default_unable_alpha" format="float" type="dimen">0.4</item>
+    <item name="template_detail_default_enable_alpha" format="float" type="dimen">1.0</item>
+    <item name="template_tab_density" format="float" type="dimen">400</item>
+</resources>

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.fishprawncrab.FishPrawnCrabMainActivity
@@ -46,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("BlindBox Show") {
             openBlindBoxActivity()
+        },
+        DebugItem("home Activty") {
+            openBlindBoxHomeActivity()
         }
     )
 
@@ -56,6 +60,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openBlindBoxActivity() {
         val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun openBlindBoxHomeActivity() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
 

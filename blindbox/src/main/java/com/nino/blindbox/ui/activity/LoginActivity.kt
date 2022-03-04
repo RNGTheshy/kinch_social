@@ -80,26 +80,8 @@ class LoginActivity : BaseLoginActivity() {
                 mRemember?.text = null
             }
         }
-
-
     }
 
-    inner class ForceOfflineReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            android.app.AlertDialog.Builder(context).apply {
-                setTitle("警告")
-                setMessage("请重新登录")
-                setCancelable(false)
-                setPositiveButton("OK") { _, _ ->
-                    finish()
-                    val i = Intent(context, LoginActivity::class.java)
-                    context.startActivity(i)
-                }
-                show()
-            }
-        }
-
-    }
 
     //设置正确账号map表
     private fun setAccountList() {
