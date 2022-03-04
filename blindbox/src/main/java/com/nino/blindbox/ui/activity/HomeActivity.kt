@@ -35,10 +35,10 @@ class HomeActivity : AppCompatActivity() {
         val viewPager :ViewPager2 =findViewById(R.id.viewPager)
         val tabLayout :TabLayout =findViewById(R.id.tab_layout)
         //初始化fragment
-        fragmentList.add(HomeFragment())
+        fragmentList.add(SocialForumMainFragment.newInstance())
         fragmentList.add(MarketFragment())
         fragmentList.add(ShowFragment())
-        fragmentList.add(SocialForumMainFragment.newInstance())
+        fragmentList.add(MessageFragment())
         fragmentList.add(SelfFragment())
         //初始化viewPage
         viewPager.adapter = object: FragmentStateAdapter(this){
