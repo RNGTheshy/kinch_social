@@ -21,6 +21,9 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (position == 1) {
             holder.binding.mainText.text = "11111"
         }
+        if (position == 3) {
+            holder.binding.mainImage.visibility = View.GONE
+        }
         setRadius(holder.itemView, 20.0F)
 
     }
