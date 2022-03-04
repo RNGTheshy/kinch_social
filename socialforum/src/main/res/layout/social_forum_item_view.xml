@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:background="#242A37"
         android:layout_height="wrap_content">
 
@@ -16,16 +16,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:scaleType="centerCrop"
             android:src="@drawable/image_demo"
-            android:maxHeight="100dp"
             android:layout_marginTop="15dp"
             android:id="@+id/main_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time_text"
-            android:layout_height="134dp" />
+            app:layout_constraintHeight_max="200dp"
+            android:layout_height="wrap_content" />
 
     <TextView
             android:layout_width="0dp"
@@ -66,11 +66,12 @@
             android:layout_marginEnd="10dp"
             android:id="@+id/main_text"
             android:textSize="15dp"
+            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
-            android:text="@string/appbar_scrolling_view_behavior"
+            android:text="_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png"
             app:layout_constraintTop_toBottomOf="@id/text_second"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            />
 
     <TextView
             android:layout_width="match_parent"
@@ -98,7 +99,7 @@
             android:id="@+id/icon_like" />
 
     <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="1125"
             android:id="@+id/likes_text"
             android:textSize="15dp"
@@ -120,7 +121,7 @@
             app:layout_constraintTop_toTopOf="@+id/icon_like" />
 
     <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="1125"
             android:textSize="15dp"
             android:textColor="#FFFFFF"
