@@ -1,15 +1,12 @@
 package com.chaoshan.socialforum
 
-import android.graphics.Outline
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.viewbinding.ViewBinding
 import com.chaoshan.socialforum.adapter.SocialForumItemAdapter
 import com.chaoshan.socialforum.databinding.SocialForumMainFragmentBinding
 
@@ -26,7 +23,7 @@ class SocialForumMainFragment : Fragment() {
         private const val DELAY_SHOW_MORE_DATA_DURATION = 400L
     }
 
-    val socialForumItemAdapter = SocialForumItemAdapter()
+    private val socialForumItemAdapter = SocialForumItemAdapter()
 
     private lateinit var binding: SocialForumMainFragmentBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
