@@ -68,10 +68,10 @@
             android:textSize="15dp"
             android:textAlignment="textStart"
             android:textColor="#FFFFFF"
+            android:maxLines="4"
             android:text="_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png_Icons _ 8 Like.png"
             app:layout_constraintTop_toBottomOf="@id/text_second"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
             android:layout_width="match_parent"
