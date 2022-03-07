@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "/Users/yubinma/AndroidStudioProjects/ChaoshanCulture/opencv_sdk/libcxx_helper/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/yubinma/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+      "-C",
+      "/Users/yubinma/AndroidStudioProjects/ChaoshanCulture/opencv_sdk/.cxx/Debug/2m4i1a6t/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/yubinma/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+    "-C",
+    "/Users/yubinma/AndroidStudioProjects/ChaoshanCulture/opencv_sdk/.cxx/Debug/2m4i1a6t/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "opencv_jni_shared-Debug-x86": {
+      "artifactName": "opencv_jni_shared",
+      "buildCommandComponents": [
+        "/Users/yubinma/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/Users/yubinma/AndroidStudioProjects/ChaoshanCulture/opencv_sdk/.cxx/Debug/2m4i1a6t/x86",
+        "opencv_jni_shared"
+      ],
+      "abi": "x86",
+      "output": "/Users/yubinma/AndroidStudioProjects/ChaoshanCulture/opencv_sdk/.cxx/Debug/2m4i1a6t/x86/libopencv_jni_shared.a",
+      "runtimeFiles": []
+    }
+  }
+}

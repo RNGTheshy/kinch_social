@@ -1,9 +1,6 @@
 package com.nino.blindbox.ui.activity
 
-import android.graphics.Outline
 import android.os.Bundle
-import android.view.View
-import android.view.ViewOutlineProvider
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +8,7 @@ import androidx.fragment.app.Fragment
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.chaoshan.socialforum.SocialForumMainFragment
-import com.chaoshan.socialforum.databinding.SocialForumMainFragmentBinding
+import com.chaoshan.socialforum.fragment.SocialForumMainFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nino.blindbox.R
