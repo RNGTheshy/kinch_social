@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chaoshan.login.LoginActivity
+import com.chaoshan.login.LoginComeActivity
 import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
@@ -50,11 +52,27 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("home Activty") {
             openBlindBoxHomeActivity()
+        },
+        DebugItem("login_come Activty") {
+            openLogin()
+        },
+        DebugItem("login Activty") {
+            openComeLogin()
         }
     )
 
     private fun openFishPrawnCrabMainActivity() {
         val intent = Intent(this, FishPrawnCrabMainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun openLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun openComeLogin() {
+        val intent = Intent(this, LoginComeActivity::class.java)
         startActivity(intent)
     }
 
