@@ -152,7 +152,7 @@
 
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/text22"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
