@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#242A37"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:id="@+id/GridLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="1">
+
+            <EditText
+                android:layout_height="45dp"
+                android:layout_width="250dp"
+                android:background="@drawable/translucent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="#707070"
+                >
+
+            </EditText>
+            <Button
+                android:layout_height="45dp"
+                android:layout_width="45dp"
+                android:background="@drawable/button_shape"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="搜索"
+                android:textColor="#707070"
+                >
+            </Button>
+        </GridLayout>
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="1">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:text="深圳大学(粤海校区)"
+                        android:layout_marginLeft="25dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="深圳市南山区"
+                        android:layout_marginLeft="25dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp">
+
+                    <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/a"
+                        ></Button>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="到这去"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11dp"/>
+                </LinearLayout>
+            </GridLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFF"
+                android:layout_marginTop="11dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="清空搜索列表"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp">
+
+        </TextView>
+
+    </LinearLayout>
+</ScrollView>
