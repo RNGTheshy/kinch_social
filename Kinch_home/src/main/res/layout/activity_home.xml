@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/map">
 
-
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -172,8 +171,6 @@
             android:src="@mipmap/minus" />
     </com.example.kinch_home.widget.ShadowLayoutTwo>
 
-
-
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,7 +187,6 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
-
         <ImageButton
             android:id="@+id/add"
             android:layout_width="40dp"
@@ -217,7 +213,6 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
-
         <ImageButton
             android:id="@+id/locate"
             android:layout_width="40dp"
@@ -227,4 +222,5 @@
             android:scaleType="fitXY"
             android:src="@mipmap/locate" />
     </com.example.kinch_home.widget.ShadowLayoutTwo>
+
 </RelativeLayout>
