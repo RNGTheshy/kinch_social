@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
+import com.example.kinch_home.Home_Activity
 import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
@@ -58,8 +59,16 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("login Activty") {
             openComeLogin()
+        },
+        DebugItem("Kinch_home") {
+            openKinchHome()
         }
     )
+
+    private fun openKinchHome() {
+        val intent = Intent(this, Home_Activity::class.java)
+        startActivity(intent)
+    }
 
     private fun openFishPrawnCrabMainActivity() {
         val intent = Intent(this, FishPrawnCrabMainActivity::class.java)

@@ -2,8 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/map">
+    android:layout_height="match_parent">
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
 
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
@@ -19,6 +24,7 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
+
         <TextView
             android:id="@+id/location_name"
             android:layout_width="150dp"
