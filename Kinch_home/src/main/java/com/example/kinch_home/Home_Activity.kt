@@ -22,8 +22,6 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory
 import com.baidu.mapapi.map.MapStatusUpdate
 
 
-
-
 class Home_Activity : AppCompatActivity() {
     private var mMapView: MapView? = null
     private var mBaiduMap: BaiduMap? = null
@@ -31,10 +29,11 @@ class Home_Activity : AppCompatActivity() {
     private var mTextView: TextView? = null
     private var mLatitude = 0.0
     private var mLongitude = 0.0
-    private var mLocateButton : ImageButton? = null
-    private var mAddButton : ImageButton? = null
-    private var mMinusButton : ImageButton? = null
-    private var mapStatus :MapStatus ? =null
+    private var mLocateButton: ImageButton? = null
+    private var mAddButton: ImageButton? = null
+    private var mMinusButton: ImageButton? = null
+    private var mapStatus: MapStatus? = null
+
     // 是否是第一次定位
     private var isFirstLocate = true
 
@@ -53,7 +52,7 @@ class Home_Activity : AppCompatActivity() {
         mLocateButton = findViewById(R.id.locate)
         //获取放大缩小按钮
         mAddButton = findViewById(R.id.add)
-        mMinusButton =findViewById(R.id.minus)
+        mMinusButton = findViewById(R.id.minus)
         //获取地图控件引用
         mMapView = findViewById(R.id.bmapView)
         // 得到地图
@@ -101,8 +100,8 @@ class Home_Activity : AppCompatActivity() {
                 //给地图设置状态
                 mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
             }
-            mLongitude=location.longitude
-            mLatitude=location.latitude
+            mLongitude = location.longitude
+            mLatitude = location.latitude
             val locData = MyLocationData.Builder()
                 .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
                 .direction(location.direction).latitude(location.latitude)
@@ -129,7 +128,7 @@ class Home_Activity : AppCompatActivity() {
             //设置定位按钮点击事件
             mLocateButton?.setOnClickListener {
                 getMyLocation()
-                Toast.makeText(this@Home_Activity, location.addrStr,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -157,16 +156,17 @@ class Home_Activity : AppCompatActivity() {
         val msu = MapStatusUpdateFactory.newLatLng(latLng)
         mBaiduMap!!.setMapStatus(msu)
     }
-    fun initAddMinusBtn(){
-        mMapView?.showZoomControls(false) //隐藏原有UI
 
+    fun initAddMinusBtn() {
+        mMapView?.showZoomControls(false) //隐藏原有UI
+        mMapView?.showScaleControl(false)
         mAddButton?.setOnClickListener {
-            mapStatus=mBaiduMap?.mapStatus;
+            mapStatus = mBaiduMap?.mapStatus;
             mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.plus(1)))
         }
 
         mMinusButton?.setOnClickListener {
-            mapStatus=mBaiduMap?.mapStatus;
+            mapStatus = mBaiduMap?.mapStatus;
             mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.minus(1)))
         }
 
