@@ -20,7 +20,6 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
-
         <TextView
             android:id="@+id/location_name"
             android:layout_width="150dp"
