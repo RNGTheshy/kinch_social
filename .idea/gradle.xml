@@ -16,13 +16,13 @@
             <option value="$PROJECT_DIR$/app_debug" />
             <option value="$PROJECT_DIR$/blindbox" />
             <option value="$PROJECT_DIR$/blindshow" />
-            <option value="$PROJECT_DIR$/broadcast" />
+            <option value="$PROJECT_DIR$/chat" />
             <option value="$PROJECT_DIR$/data_center" />
             <option value="$PROJECT_DIR$/fishprawncrab" />
             <option value="$PROJECT_DIR$/login" />
-            <option value="$PROJECT_DIR$/myapplication" />
             <option value="$PROJECT_DIR$/opencv_sdk" />
             <option value="$PROJECT_DIR$/register" />
+            <option value="$PROJECT_DIR$/search" />
             <option value="$PROJECT_DIR$/socialforum" />
             <option value="$PROJECT_DIR$/ui" />
           </set>

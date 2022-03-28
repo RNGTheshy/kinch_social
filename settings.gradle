@@ -8,8 +8,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Chaoshan Culture"
 include ':app'
-include ':fishprawncrab'
 include ':app_debug'
+include ':fishprawncrab'
 include ':blindbox'
 include ':login'
 include ':ui'
@@ -18,6 +18,6 @@ include ':data_center'
 include ':blindshow'
 include ':opencv_sdk'
 include ':register'
-include ':myapplication'
-include ':broadcast'
 include ':Kinch_home'
+include ':chat'
+include ':search'
