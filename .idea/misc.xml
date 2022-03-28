@@ -91,9 +91,12 @@
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
         <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
         <entry key="login/src/main/res/drawable/edit_text_bg.xml" value="0.2921875" />
+        <entry key="login/src/main/res/drawable/edit_text_bg2.xml" value="0.2953703703703704" />
         <entry key="login/src/main/res/layout/edit_text_bg.xml" value="0.20364583333333333" />
         <entry key="login/src/main/res/layout/login_come_activity.xml" value="0.20364583333333333" />
-        <entry key="login/src/main/res/layout/login_main_activity.xml" value="0.2760416666666667" />
+        <entry key="login/src/main/res/layout/login_find_password_activity.xml" value="0.2563405797101449" />
+        <entry key="login/src/main/res/layout/login_main_activity.xml" value="0.25341040931843506" />
+        <entry key="login/src/main/res/layout/login_register_activity.xml" value="0.1661600810536981" />
         <entry key="login/src/main/res/layout/social_forum_all_fragment.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_item_view.xml" value="0.2760416666666667" />
       </map>
