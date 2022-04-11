@@ -24,25 +24,19 @@
         android:textSize="@dimen/text_small_size"
         app:layout_constraintStart_toEndOf="@+id/left_pic"
         app:layout_constraintTop_toTopOf="@+id/left_pic" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="5dp"
-        android:background="@mipmap/message_left"
-        app:layout_constraintStart_toStartOf="@+id/left_name"
-        app:layout_constraintTop_toBottomOf="@+id/left_name">
-
-        <TextView
+    <TextView
             android:id="@+id/leftMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/text_normal_size"
-            android:textColor="@color/text_normal_dark" />
-
-    </LinearLayout>
+            android:gravity="left"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/message_left"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/left_name"
+            app:layout_constraintTop_toBottomOf="@+id/left_name"
+            android:textColor="@color/text_normal_dark"
+            android:textSize="@dimen/text_normal_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,5 +3,6 @@
     package="com.example.chat">
     <application>
         <activity android:name=".ChatActivity"/>
+        <activity android:name=".InforActivity"/>
     </application>
 </manifest>

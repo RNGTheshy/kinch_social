@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
+import com.example.chat.ChatActivity
+import com.example.chat.InforActivity
 import com.example.kinch_home.Home_Activity
 import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
@@ -62,9 +64,22 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("Kinch_home") {
             openKinchHome()
+        },
+        DebugItem("Infor") {
+            openInfor()
+        },
+        DebugItem("Chat") {
+            openChat()
         }
     )
-
+    private fun openChat() {
+        val intent = Intent(this, ChatActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openInfor() {
+        val intent = Intent(this, InforActivity::class.java)
+        startActivity(intent)
+    }
     private fun openKinchHome() {
         val intent = Intent(this, Home_Activity::class.java)
         startActivity(intent)

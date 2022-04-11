@@ -14,22 +14,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@mipmap/message_right"
-        app:layout_constraintEnd_toStartOf="@+id/right_pic"
-        app:layout_constraintTop_toTopOf="@+id/right_pic">
-
-        <TextView
+    <TextView
             android:id="@+id/rightMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/text_normal_size"
-            android:textColor="@color/text_normal_light" />
-
-    </LinearLayout>
-
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="1"
+            android:background="@mipmap/message_right"
+            app:layout_constraintEnd_toStartOf="@+id/right_pic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/right_pic"
+            android:textColor="@color/text_normal_light"
+            android:textSize="@dimen/text_normal_size" />
 </androidx.constraintlayout.widget.ConstraintLayout>
