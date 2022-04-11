@@ -2,18 +2,23 @@ package com.example.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 
 
 import kotlinx.android.synthetic.main.chat_room.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ChatActivity : AppCompatActivity() {
 
     private val msgList = ArrayList<Msg>()
     private var adapter: MsgAdapter? = null
-
+    private val appService = ServiceCreator.create<ChatService>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_room)
@@ -33,6 +38,22 @@ class ChatActivity : AppCompatActivity() {
                         adapter?.notifyItemInserted(msgList.size - 1) // 当有新消息时，刷新RecyclerView中的显示
                         chatRecycler.scrollToPosition(msgList.size - 1)  // 将RecyclerView定位到最后一行
                         inputText.setText("") // 清空输入框中的内容
+
+
+                        appService.getMsg(content).enqueue(object : Callback<ReturnMsg> {
+                            override fun onResponse(call: Call<ReturnMsg>, response: Response<ReturnMsg>) {
+                                val msg = response.body()
+                                msg?.let {
+                                    msgList.add(Msg(it.content,Msg.TYPE_RECEIVED))
+                                    adapter?.notifyItemInserted(msgList.size - 1) // 当有新消息时，刷新RecyclerView中的显示
+                                    chatRecycler.scrollToPosition(msgList.size - 1)  // 将RecyclerView定位到最后一行
+                                }
+                            }
+
+                            override fun onFailure(call: Call<ReturnMsg>, t: Throwable) {
+                                t.printStackTrace()
+                            }
+                        })
                     }
                 }
             }
