@@ -17,6 +17,7 @@ import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.fishprawncrab.FishPrawnCrabMainActivity
+import com.yubinma.person_center.PersonCenterActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -62,8 +63,16 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("Kinch_home") {
             openKinchHome()
+        },
+        DebugItem("openPersonCenterActivity") {
+            openPersonCenterActivity()
         }
     )
+
+    private fun openPersonCenterActivity() {
+        val intent = Intent(this, PersonCenterActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun openKinchHome() {
         val intent = Intent(this, Home_Activity::class.java)
