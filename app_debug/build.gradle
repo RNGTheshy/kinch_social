@@ -46,6 +46,7 @@ dependencies {
     implementation project(path: ':login')
     implementation project(path: ':Kinch_home')
     implementation project(path: ':person_center')
+    implementation project(path: ':socialforum')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
