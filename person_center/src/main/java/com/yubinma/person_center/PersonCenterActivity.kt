@@ -10,6 +10,11 @@ class PersonCenterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = PersonCenterActivittyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initView()
     }
-
+    private fun initView(){
+        binding.imageView.setOnClickListener {
+            finish();
+        }
+    }
 }
