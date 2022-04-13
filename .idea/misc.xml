@@ -77,6 +77,7 @@
         <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/drawable/button_shape.xml" value="0.1235" />
         <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/drawable/translucent.xml" value="0.1235" />
         <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/layout/activity_main.xml" value="0.152" />
+        <entry key="Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.26992753623188404" />
         <entry key="app_debug/src/main/res/layout/activity_main.xml" value="0.26458333333333334" />
         <entry key="app_debug/src/main/res/layout/item_debug.xml" value="0.12407407407407407" />
         <entry key="blindbox/src/main/res/layout/view_tsnackbar_big_layout.xml" value="0.2078804347826087" />
@@ -88,6 +89,7 @@
         <entry key="blindshow/src/main/res/layout/fragment_series.xml" value="0.29010416666666666" />
         <entry key="blindshow/src/main/res/layout/fragment_show.xml" value="0.31657608695652173" />
         <entry key="blindshow/src/main/res/layout/main_show_fragment.xml" value="0.13905775075987842" />
+        <entry key="broadcast/src/main/res/layout/msg_right_item.xml" value="0.26992753623188404" />
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
         <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
         <entry key="login/src/main/res/drawable/edit_text_bg.xml" value="0.2921875" />
@@ -103,7 +105,10 @@
         <entry key="person_center/src/main/res/layout/login_come_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
-        <entry key="socialforum/src/main/res/layout/social_forum_activity.xml" value="0.26992753623188404" />
+        <entry key="socialforum/src/main/res/drawable/bt_green_bg.xml" value="0.2546875" />
+        <entry key="socialforum/src/main/res/drawable/bt_red_bg.xml" value="0.28425925925925927" />
+        <entry key="socialforum/src/main/res/layout/social_add_fragment.xml" value="0.20509503186057843" />
+        <entry key="socialforum/src/main/res/layout/social_forum_activity.xml" value="0.20470552193993824" />
         <entry key="socialforum/src/main/res/layout/social_forum_all_fragment.xml" value="0.26992753623188404" />
         <entry key="socialforum/src/main/res/layout/social_forum_fllow_item_view.xml" value="0.18110435663627153" />
         <entry key="socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.18110435663627153" />
