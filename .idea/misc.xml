@@ -108,6 +108,15 @@
         <entry key="login/src/main/res/layout/login_main_activity.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_all_fragment.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_item_view.xml" value="0.2760416666666667" />
+        <entry key="person_center/src/main/res/drawable/bg.xml" value="0.30185185185185187" />
+        <entry key="person_center/src/main/res/layout/login_come_activity.xml" value="0.161231884057971" />
+        <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
+        <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
+        <entry key="socialforum/src/main/res/layout/social_forum_activity.xml" value="0.26992753623188404" />
+        <entry key="socialforum/src/main/res/layout/social_forum_all_fragment.xml" value="0.26992753623188404" />
+        <entry key="socialforum/src/main/res/layout/social_forum_fllow_item_view.xml" value="0.18110435663627153" />
+        <entry key="socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.18110435663627153" />
+        <entry key="socialforum/src/main/res/layout/social_forum_main_fragment.xml" value="0.18110435663627153" />
       </map>
     </option>
   </component>

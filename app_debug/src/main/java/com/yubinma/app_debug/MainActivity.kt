@@ -14,11 +14,13 @@ import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
 import com.example.chat.ChatActivity
 import com.example.chat.InforActivity
+import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
 import com.nino.blindbox.ui.activity.HomeActivity
 import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.fishprawncrab.FishPrawnCrabMainActivity
+import com.yubinma.person_center.PersonCenterActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -70,7 +72,14 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("Chat") {
             openChat()
+        },
+        DebugItem("openPersonCenterActivity") {
+            openPersonCenterActivity()
+        },
+        DebugItem("openPerson") {
+            openSoci()
         }
+
     )
     private fun openChat() {
         val intent = Intent(this, ChatActivity::class.java)
@@ -80,6 +89,19 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, InforActivity::class.java)
         startActivity(intent)
     }
+
+    private fun openPersonCenterActivity() {
+        val intent = Intent(this, PersonCenterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun openSoci() {
+        val intent = Intent(this, SocialForumActivity::class.java)
+        startActivity(intent)
+
+    }
+
+
     private fun openKinchHome() {
         val intent = Intent(this, Home_Activity::class.java)
         startActivity(intent)

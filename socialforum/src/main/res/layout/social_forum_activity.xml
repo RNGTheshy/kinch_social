@@ -3,11 +3,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:background="#F2F2F2"
+    <androidx.fragment.app.FragmentContainerView
             android:layout_width="match_parent"
-            android:id="@+id/main_fragment"
-            android:layout_height="match_parent" />
-
+            android:layout_height="match_parent"
+            android:id="@+id/main"
+            android:name="com.chaoshan.socialforum.fragment.SocialForumMainFragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
