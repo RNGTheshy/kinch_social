@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/top">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:text="附近"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="#A5D63F"
+                android:layout_height="wrap_content" />
+
+        <ExpandableListView
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:text="朋友"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="#51A5D63F"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:text="发布动态"
+            android:background="@drawable/bt_green_bg"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            android:textSize="15dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/top"
+            app:layout_constraintTop_toTopOf="@+id/top" />
+
+    <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bt_red_bg"
+            android:src="@drawable/social_back_cicon"
+            android:layout_marginStart="5dp"
+            android:layout_height="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/top"
+            app:layout_constraintTop_toTopOf="@+id/top"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     <androidx.fragment.app.FragmentContainerView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/main"
-            android:name="com.chaoshan.socialforum.fragment.SocialForumMainFragment" />
+            android:layout_height="0dp"
+            android:id="@+id/main_fragment"
+            android:name="com.chaoshan.socialforum.fragment.SocialForumMainFragment"
+            app:layout_constraintTop_toBottomOf="@+id/top"
+            app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
