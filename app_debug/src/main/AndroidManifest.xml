@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.yubinma.app_debug">
-
+    <!-- 基本模块（必须）START -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 基本模块 END -->
     <application
             android:allowBackup="true"
             android:name=".DebugApplication"
@@ -20,6 +23,18 @@
         </activity>
 
         <activity android:name="com.yubinma.fishprawncrab.FishPrawnCrabMainActivity" />
+        <!-- 即时通讯和推送 START -->
+        <!-- 即时通讯和推送都需要 PushService -->
+        <service android:name="cn.leancloud.push.PushService" />
+        <receiver
+                android:name="cn.leancloud.push.LCBroadcastReceiver"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
