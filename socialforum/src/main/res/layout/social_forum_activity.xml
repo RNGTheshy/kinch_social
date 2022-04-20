@@ -41,6 +41,7 @@
             android:text="发布动态"
             android:background="@drawable/bt_green_bg"
             android:textStyle="bold"
+            android:id="@+id/add_social_forum"
             android:layout_marginEnd="10dp"
             android:textSize="15dp"
             android:paddingHorizontal="10dp"
@@ -53,6 +54,7 @@
 
     <ImageView
             android:layout_width="30dp"
+            android:id="@+id/back"
             android:background="@drawable/bt_red_bg"
             android:src="@drawable/social_back_cicon"
             android:layout_marginStart="5dp"
