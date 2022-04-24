@@ -1,6 +1,5 @@
 package com.chaoshan.socialforum.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -38,6 +37,7 @@ class SocialForumAddActivity : AppCompatActivity() {
         }
         binding.sent.setOnClickListener {
             sent()
+            finish()
         }
         binding.imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -49,9 +49,9 @@ class SocialForumAddActivity : AppCompatActivity() {
     private fun sent() {
 
         val newDynamic = Dynamic(
-            0,
-            111,
+            "0",
             "111",
+            null,
             binding.mainText.text.toString()
         )
         DynamicClient.saveDate(newDynamic, mImageBytes)
