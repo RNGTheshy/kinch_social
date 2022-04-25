@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 基本模块 END -->
     <application
+            android:usesCleartextTraffic="true"
             android:allowBackup="true"
             android:name=".DebugApplication"
             android:icon="@mipmap/ic_launcher"

@@ -4,19 +4,26 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chaoshan.socialforum.R
 import com.chaoshan.socialforum.StaggeredGridSpaceDecoration
 import com.chaoshan.socialforum.adapter.SocialForumItemAdapter
 import com.chaoshan.socialforum.databinding.SocialForumMainFragmentBinding
+import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
 class SocialForumMainFragment : Fragment() {
+    private val viewModel: SocialForumActivityViewModel by activityViewModels()
+
+
     companion object {
         fun newInstance(): SocialForumMainFragment {
             return SocialForumMainFragment()
         }
+
         private const val TAG = "SocialForumMainFragment"
         const val SPAN_COUNT = 2 // 每行的个数
         private const val DELAY_SCROLL_TO_ZERO_US = 10L
@@ -41,10 +48,14 @@ class SocialForumMainFragment : Fragment() {
     private fun initView() {
 
         binding.mainFragment.adapter = socialForumItemAdapter
+        viewModel.dynamicDaoList.observe(this, Observer {
+            socialForumItemAdapter.setData(it)
+        })
         binding.mainFragment.apply {
             val staggeredGridLayoutManager = StaggeredGridLayoutManager(
                 SPAN_COUNT,
-                StaggeredGridLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager.VERTICAL
+            )
             layoutManager = staggeredGridLayoutManager
             staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //防止item 交换位置
             val boundDistance = resources.getDimensionPixelSize(R.dimen.template_card_bound_distance)
@@ -54,10 +65,17 @@ class SocialForumMainFragment : Fragment() {
                 StaggeredGridSpaceDecoration(
                     Rect(boundDistance, topBoundDistance, boundDistance, bottomDistance),
                     resources.getDimensionPixelSize(R.dimen.template_card_row_distance),
-                    resources.getDimensionPixelSize(R.dimen.template_card_col_distance))
+                    resources.getDimensionPixelSize(R.dimen.template_card_col_distance)
+                )
             )
             itemAnimator = null
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getDynamicData()
     }
 
 }

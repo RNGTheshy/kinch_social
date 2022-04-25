@@ -4,6 +4,6 @@
 
     <application>
         <activity android:name=".activity.SocialForumActivity" />
-
+        <activity android:name=".activity.SocialForumAddActivity" />
     </application>
 </manifest>
