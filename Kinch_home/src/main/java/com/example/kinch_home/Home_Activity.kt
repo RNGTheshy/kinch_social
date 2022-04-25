@@ -89,7 +89,7 @@ class Home_Activity : AppCompatActivity() {
     inner class MyLocationListener : BDAbstractLocationListener() {
         override fun onReceiveLocation(location: BDLocation) {
             //mapView 销毁后不在处理新接收的位置
-            if (location == null || mMapView == null) {
+            if (mMapView == null) {
                 return
             }
 
@@ -103,9 +103,9 @@ class Home_Activity : AppCompatActivity() {
             mLongitude = location.longitude
             mLatitude = location.latitude
             val locData = MyLocationData.Builder()
-                .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(location.direction).latitude(location.latitude)
-                .longitude(location.longitude).build()
+                    .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(location.direction).latitude(location.latitude)
+                    .longitude(location.longitude).build()
             mBaiduMap!!.setMyLocationData(locData)
 
             // ------------------  以下是可选部分 ------------------
@@ -151,6 +151,7 @@ class Home_Activity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    // get My Location
     fun getMyLocation() {
         val latLng = LatLng(mLatitude, mLongitude)
         val msu = MapStatusUpdateFactory.newLatLng(latLng)

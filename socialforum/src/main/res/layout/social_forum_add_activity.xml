@@ -3,11 +3,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:background="#A6E173"
-            android:layout_width="match_parent"
-            android:id="@+id/main_fragment"
-            android:layout_height="match_parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
