@@ -4,8 +4,9 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChatActivity"/>
-        <activity android:name=".InforActivity"/>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".InforActivity" />
     </application>
 </manifest>

@@ -4,105 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light_green"
+    android:background="@color/lcim_commom_white"
     tools:context=".ChatActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrain1"
+    <fragment
+        android:id="@+id/fragment_1"
+        android:name="cn.leancloud.chatkit.activity.LCIMContactFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/bg_radius_corner"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
+        android:layout_height="match_parent"/>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constrain1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@drawable/bg_radius_corner"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/linearLayout"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/guideline2">-->
 
-        <ImageView
-            android:id="@+id/close_chat"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:src="@mipmap/icon_close"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/room_title"
-            app:layout_constraintEnd_toStartOf="@+id/room_title"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room_title" />
+<!--        <ImageView-->
+<!--            android:id="@+id/close_chat"-->
+<!--            android:layout_width="@dimen/icon_width"-->
+<!--            android:layout_height="@dimen/icon_height"-->
+<!--            android:src="@mipmap/icon_close"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/room_title"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/room_title"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/room_title" />-->
 
-        <TextView
-            android:id="@+id/room_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/chat_room_name"
-            android:textColor="@color/text_title_light_green"
-            android:textSize="@dimen/text_title_size"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/user"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/close_chat"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/room_title"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/chat_room_name"-->
+<!--            android:textColor="@color/text_title_light_green"-->
+<!--            android:textSize="@dimen/text_title_size"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/user"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/close_chat"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <ImageView
-            android:id="@+id/user"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:src="@mipmap/icon_user"
-            android:layout_marginRight="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/room_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/room_title"
-            app:layout_constraintTop_toTopOf="@+id/room_title" />
+<!--        <ImageView-->
+<!--            android:id="@+id/user"-->
+<!--            android:layout_width="@dimen/icon_width"-->
+<!--            android:layout_height="@dimen/icon_height"-->
+<!--            android:src="@mipmap/icon_user"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/room_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/room_title"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/room_title" />-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chatRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_title"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/chatRecycler"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/room_title"-->
+<!--            />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bg_edit_hegiht"
-        android:background="#f5f5f5"
-        app:layout_constraintBottom_toBottomOf="parent">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/bg_edit_hegiht"-->
+<!--        android:background="#f5f5f5"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-        <EditText
-            android:id="@+id/inputText"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/edit_hegiht"
-            android:layout_weight="1"
-            android:background="@drawable/radius_corner"
-            android:hint="Type something here"
-            android:maxLines="1"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="15dp"
+<!--        <EditText-->
+<!--            android:id="@+id/inputText"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/edit_hegiht"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/radius_corner"-->
+<!--            android:hint="Type something here"-->
+<!--            android:maxLines="1"-->
+<!--            android:layout_marginTop="7dp"-->
+<!--            android:layout_marginBottom="7dp"-->
+<!--            android:layout_marginLeft="15dp"-->
 
-            android:textColor="@color/text_normal_dark"
-            android:textSize="@dimen/text_normal_size" />
+<!--            android:textColor="@color/text_normal_dark"-->
+<!--            android:textSize="@dimen/text_normal_size" />-->
 
-        <ImageView
-            android:id="@+id/send"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:layout_margin="5dp"
-            android:src="@mipmap/icon_send"
-            android:text="Send" />
+<!--        <ImageView-->
+<!--            android:id="@+id/send"-->
+<!--            android:layout_width="@dimen/icon_width"-->
+<!--            android:layout_height="@dimen/icon_height"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:src="@mipmap/icon_send"-->
+<!--            android:text="Send" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="60dp" />
+<!--    <androidx.constraintlayout.widget.Guideline-->
+<!--        android:id="@+id/guideline2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintGuide_begin="60dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

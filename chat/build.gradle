@@ -38,9 +38,15 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation project(path: ':leancloudchatkit')
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.7.1'
     apply plugin:'kotlin-android'
     apply plugin: 'kotlin-android-extensions'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'de.greenrobot:eventbus:2.4.0'
+    implementation 'cn.leancloud:realtime-android:8.2.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'cn.leancloud:storage-android:8.2.5'
 }
