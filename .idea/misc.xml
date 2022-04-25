@@ -55,29 +55,40 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/fishprawncrab/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/socialforum/src/main/res/layout/social_forum_main_fragment.xml" value="0.19010416666666666" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_normal_white10.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_normal_white_15.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_normal_white_round.xml" value="0.21822916666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_press_gray10.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_press_gray_15.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_press_gray_round.xml" value="0.21822916666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_seletor_15.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_seletor_gray.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_home_white10.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_home_white25.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/bb_card.xml" value="0.75" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/item_homedetail_header.xml" value="0.5" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/broadcast/src/main/res/layout/msg_right_item.xml" value="0.20208333333333334" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/login/src/main/res/layout/login_come_activity.xml" value="0.2046875" />
+        <entry key="..\:/practise/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.14322916666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/app/src/main/res/layout/activity_main.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/app_debug/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/app_debug/src/main/res/layout/item_debug.xml" value="0.14322916666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/blindbox/src/main/res/layout/activity_box_detail.xml" value="0.14322916666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/blindbox/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/blindbox/src/main/res/layout/activity_welcome.xml" value="0.14322916666666666" />
         <entry key="..\:/practise/positioningsocialsystem-android/broadcast/src/main/res/drawable/radius_corner.xml" value="0.2005" />
         <entry key="..\:/practise/positioningsocialsystem-android/broadcast/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/practise/positioningsocialsystem-android/broadcast/src/main/res/layout/msg_left_item.xml" value="0.4" />
         <entry key="..\:/practise/positioningsocialsystem-android/broadcast/src/main/res/layout/msg_right_item.xml" value="0.1640625" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/bg_radius_corner.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/radius_corner.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/shape.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/translucent(1).xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/drawable/translucent.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/chat_room.xml" value="0.12083333333333333" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/friend_search_home.xml" value="0.264" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/msg_left_item.xml" value="0.25" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/msg_right_item.xml" value="0.2" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/user.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/xml/net_setting.xml" value="0.12083333333333333" />
+        <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/drawable/edit_text_bg.xml" value="0.1" />
+        <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/layout/login_come_activity.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/layout/login_main_activity.xml" value="0.1125" />
         <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/drawable/button_shape.xml" value="0.1235" />
         <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/drawable/translucent.xml" value="0.1235" />
-        <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/layout/activity_main.xml" value="0.152" />
-        <entry key="Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.26992753623188404" />
+        <entry key="..\:/practise/positioningsocialsystem-android/myapplication/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/practise/positioningsocialsystem-android/search/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/practise/positioningsocialsystem-android/socialforum/src/main/res/layout/social_forum_all_fragment.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/socialforum/src/main/res/layout/social_forum_fllow_item_view.xml" value="0.264" />
         <entry key="app_debug/src/main/res/layout/activity_main.xml" value="0.26458333333333334" />
         <entry key="app_debug/src/main/res/layout/item_debug.xml" value="0.12407407407407407" />
         <entry key="blindbox/src/main/res/layout/view_tsnackbar_big_layout.xml" value="0.2078804347826087" />
@@ -89,16 +100,12 @@
         <entry key="blindshow/src/main/res/layout/fragment_series.xml" value="0.29010416666666666" />
         <entry key="blindshow/src/main/res/layout/fragment_show.xml" value="0.31657608695652173" />
         <entry key="blindshow/src/main/res/layout/main_show_fragment.xml" value="0.13905775075987842" />
-        <entry key="broadcast/src/main/res/layout/msg_right_item.xml" value="0.26992753623188404" />
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
         <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
         <entry key="login/src/main/res/drawable/edit_text_bg.xml" value="0.2921875" />
-        <entry key="login/src/main/res/drawable/edit_text_bg2.xml" value="0.2953703703703704" />
         <entry key="login/src/main/res/layout/edit_text_bg.xml" value="0.20364583333333333" />
         <entry key="login/src/main/res/layout/login_come_activity.xml" value="0.20364583333333333" />
-        <entry key="login/src/main/res/layout/login_find_password_activity.xml" value="0.2563405797101449" />
-        <entry key="login/src/main/res/layout/login_main_activity.xml" value="0.25341040931843506" />
-        <entry key="login/src/main/res/layout/login_register_activity.xml" value="0.1661600810536981" />
+        <entry key="login/src/main/res/layout/login_main_activity.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_all_fragment.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_item_view.xml" value="0.2760416666666667" />
         <entry key="person_center/src/main/res/drawable/bg.xml" value="0.30185185185185187" />
