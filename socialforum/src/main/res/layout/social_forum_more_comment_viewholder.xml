@@ -2,17 +2,28 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:background="#E6E6E6"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_message"
+            android:id="@+id/icon_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/comment_name" />
 
     <TextView
             android:layout_width="wrap_content"
             android:text="yubinma："
+            android:layout_marginStart="5dp"
             android:id="@+id/comment_name"
             android:textStyle="bold"
             android:textColor="#03378F"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_message" />
 
     <TextView
             android:layout_width="wrap_content"
