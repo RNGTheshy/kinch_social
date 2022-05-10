@@ -8,7 +8,8 @@
     <ImageView
             android:layout_width="30dp"
             android:id="@+id/back"
-            android:layout_marginTop="15dp"
+
+            android:layout_marginTop="5dp"
             android:background="@drawable/bt_red_bg"
             android:src="@drawable/social_back_cicon"
             android:layout_marginStart="5dp"
@@ -28,7 +29,7 @@
 
     <EditText
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:hint="评论"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,7 @@
             app:layout_constraintEnd_toStartOf="@+id/sent" />
 
     <ImageView
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="40dp"
             android:src="@drawable/icon_like"
             android:id="@+id/icon_like"
@@ -45,7 +46,7 @@
             app:layout_constraintTop_toTopOf="@+id/editText" />
 
     <TextView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:text="评论"
             android:background="@drawable/bt_green_bg"
             android:textStyle="bold"
