@@ -1,10 +1,8 @@
 package com.example.kinch_home
 
-import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Color
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
@@ -18,11 +16,10 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.example.setting.SettingMainActivity
 
-import com.baidu.mapapi.map.MapStatusUpdate
 
-
-class Home_Activity : AppCompatActivity() {
+class Home_Activity : AppCompatActivity(), View.OnClickListener {
     private var mMapView: MapView? = null
     private var mBaiduMap: BaiduMap? = null
     private var mLocationClient: LocationClient? = null
@@ -33,26 +30,32 @@ class Home_Activity : AppCompatActivity() {
     private var mAddButton: ImageButton? = null
     private var mMinusButton: ImageButton? = null
     private var mapStatus: MapStatus? = null
-
     // 是否是第一次定位
     private var isFirstLocate = true
 
     // 当前定位模式
     private var locationMode: MyLocationConfiguration.LocationMode? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED //设置为竖屏
+        //设置为竖屏
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         window.navigationBarColor = resources.getColor(R.color.gray)
-        SDKInitializer.setAgreePrivacy(applicationContext, true)
-        SDKInitializer.initialize(applicationContext)
-        LocationClient.setAgreePrivacy(true);
+        //提供隐私权限
+        SDKInitializer.setAgreePrivacy(application, true)
+        SDKInitializer.initialize(application)
+        //提供隐私权限
+        LocationClient.setAgreePrivacy(true)
         setContentView(R.layout.activity_home_layout)
 
         //获取定位按钮
         mLocateButton = findViewById(R.id.locate)
-        //获取放大缩小按钮
+        //获取放大按钮 设置点击事件
         mAddButton = findViewById(R.id.add)
+        mAddButton?.setOnClickListener(this)
+        //获取缩小按钮 设置点击事件
         mMinusButton = findViewById(R.id.minus)
+        mMinusButton?.setOnClickListener(this)
         //获取地图控件引用
         mMapView = findViewById(R.id.bmapView)
         // 得到地图
@@ -82,7 +85,7 @@ class Home_Activity : AppCompatActivity() {
         //开启地图定位图层
         mLocationClient!!.start()
 
-        initAddMinusBtn()
+        hideAddMinusBtn()
     }
 
     // 继承抽象类BDAbstractListener并重写其onReceieveLocation方法来获取定位数据，并将其传给MapView
@@ -108,8 +111,7 @@ class Home_Activity : AppCompatActivity() {
                     .longitude(location.longitude).build()
             mBaiduMap!!.setMyLocationData(locData)
 
-            // ------------------  以下是可选部分 ------------------
-            // 自定义地图样式，可选
+            // 自定义地图样式
             // 更换定位图标，这里的图片是放在 drawble 文件下的
             val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate)
             // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
@@ -121,11 +123,19 @@ class Home_Activity : AppCompatActivity() {
             )
             // 使自定义的配置生效
             mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
-            // ------------------  可选部分结束 ------------------
-
-            //设置标题
-            mTextView?.setText(location.getDistrict())
-            //设置定位按钮点击事件
+            mapStatus = mBaiduMap?.mapStatus
+            // 设置标题 动态加载
+            if(mapStatus?.zoom!! < 5)
+                mTextView?.text = location.country
+            else if (mapStatus?.zoom!! < 7)
+                mTextView?.text = location.province
+            else if (mapStatus?.zoom!! < 10)
+                mTextView?.text = location.city
+            else if (mapStatus?.zoom!! < 14)
+                mTextView?.text = location.district
+            else
+                mTextView?.text = location.street
+            // 设置定位按钮点击事件
             mLocateButton?.setOnClickListener {
                 getMyLocation()
                 Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
@@ -158,20 +168,33 @@ class Home_Activity : AppCompatActivity() {
         mBaiduMap!!.setMapStatus(msu)
     }
 
-    fun initAddMinusBtn() {
+    fun hideAddMinusBtn() {
         mMapView?.showZoomControls(false) //隐藏原有UI
         mMapView?.showScaleControl(false)
-        mAddButton?.setOnClickListener {
-            mapStatus = mBaiduMap?.mapStatus;
-            mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.plus(1)))
-        }
-
-        mMinusButton?.setOnClickListener {
-            mapStatus = mBaiduMap?.mapStatus;
-            mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.minus(1)))
-        }
-
     }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            //放大按钮
+            mAddButton -> {
+                mapStatus = mBaiduMap?.mapStatus
+                mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.plus(1)))
+            }
+            //缩小按钮
+            mMinusButton -> {
+                mapStatus = mBaiduMap?.mapStatus
+                mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.minus(1)))
+            }
+        }
+        when(v?.id){
+            R.id.setting ->{
+                val intent = Intent(this, SettingMainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
+
 }
 
 
