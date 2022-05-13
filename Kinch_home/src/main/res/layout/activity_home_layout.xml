@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.baidu.mapapi.map.MapView
         android:id="@+id/bmapView"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         android:layout_marginTop="10dp"
         app:shadowColor="#1A333333"
         app:shadowDx="0dp"
-        app:shadowDy="4dp"
+        app:shadowDy="0dp"
         app:shadowRadius="10dp"
         app:shadowRadiusButtom="5dp"
         app:shadowRadiusLeft="5dp"
@@ -42,16 +43,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="20dp"
         app:shadowColor="#1A333333"
         app:shadowDx="0dp"
-        app:shadowDy="4dp"
+        app:shadowDy="0dp"
         app:shadowRadius="10dp"
         app:shadowRadiusButtom="5dp"
         app:shadowRadiusLeft="5dp"
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
+        app:shadowShape="oval"
         app:shadowSide="all">
 
         <ImageButton
@@ -64,96 +66,141 @@
             android:src="@mipmap/setting" />
     </com.example.kinch_home.widget.ShadowLayoutTwo>
 
-
-    <com.example.kinch_home.widget.ShadowLayoutTwo
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/bt_down"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
-        app:shadowColor="#1A333333"
-        app:shadowDx="0dp"
-        app:shadowDy="4dp"
-        app:shadowRadius="10dp"
-        app:shadowRadiusButtom="5dp"
-        app:shadowRadiusLeft="5dp"
-        app:shadowRadiusRight="5dp"
-        app:shadowRadiusTop="5dp"
-        app:shadowSide="all">
-
-        <ImageButton
-            android:id="@+id/message"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_button_seletor_round"
-            android:padding="15dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/message" />
-    </com.example.kinch_home.widget.ShadowLayoutTwo>
-
-
-    <com.example.kinch_home.widget.ShadowLayoutTwo
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
-        app:shadowColor="#1A333333"
-        app:shadowDx="0dp"
-        app:shadowDy="4dp"
-        app:shadowRadius="10dp"
-        app:shadowRadiusButtom="5dp"
-        app:shadowRadiusLeft="5dp"
-        app:shadowRadiusRight="5dp"
-        app:shadowRadiusTop="5dp"
-        app:shadowSide="all">
-
-        <ImageButton
-            android:id="@+id/friend"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_button_seletor_round"
-            android:padding="15dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/friend" />
-    </com.example.kinch_home.widget.ShadowLayoutTwo>
-
-    <com.example.kinch_home.widget.ShadowLayoutTwo
-        android:id="@+id/me_sha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="15dp"
-        app:shadowColor="#1A333333"
-        app:shadowDx="0dp"
-        app:shadowDy="4dp"
-        app:shadowRadius="10dp"
-        app:shadowRadiusButtom="5dp"
-        app:shadowRadiusLeft="5dp"
-        app:shadowRadiusRight="5dp"
-        app:shadowRadiusTop="5dp"
-        app:shadowSide="all">
+        android:layout_marginBottom="20dp">
 
-        <ImageButton
-            android:id="@+id/me"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_button_seletor_round"
-            android:padding="15dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/me" />
-    </com.example.kinch_home.widget.ShadowLayoutTwo>
+        <com.example.kinch_home.widget.ShadowLayoutTwo
+            android:id="@+id/message_sha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:shadowColor="#1A333333"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
+            app:shadowRadiusButtom="5dp"
+            app:shadowRadiusLeft="5dp"
+            app:shadowRadiusRight="5dp"
+            app:shadowRadiusTop="5dp"
+            app:shadowShape="oval"
+            app:shadowSide="all">
+
+            <ImageView
+                android:layout_marginLeft="25dp"
+                style="@style/UserBottomPointStyle"
+                android:src="@drawable/bg_round_red" />
+            <ImageButton
+                android:id="@+id/message"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_button_seletor_round"
+                android:padding="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/message"></ImageButton>
+        </com.example.kinch_home.widget.ShadowLayoutTwo>
+
+
+        <com.example.kinch_home.widget.ShadowLayoutTwo
+            android:id="@+id/trends_sha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:shadowColor="#1A333333"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
+            app:shadowRadiusButtom="5dp"
+            app:shadowRadiusLeft="5dp"
+            app:shadowRadiusRight="5dp"
+            app:shadowRadiusTop="5dp"
+            app:shadowShape="oval"
+            app:shadowSide="all">
+            <ImageView
+                android:layout_marginLeft="25dp"
+                style="@style/UserBottomPointStyle"
+                android:src="@drawable/bg_round_red" />
+            <ImageButton
+                android:id="@+id/trends"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_button_seletor_round"
+                android:padding="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/trends" />
+        </com.example.kinch_home.widget.ShadowLayoutTwo>
+
+        <com.example.kinch_home.widget.ShadowLayoutTwo
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:shadowColor="#1A333333"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
+            app:shadowRadiusButtom="5dp"
+            app:shadowRadiusLeft="5dp"
+            app:shadowRadiusRight="5dp"
+            app:shadowRadiusTop="5dp"
+            app:shadowShape="oval"
+            app:shadowSide="all">
+            <ImageView
+                android:layout_marginLeft="25dp"
+                style="@style/UserBottomPointStyle"
+                android:src="@drawable/bg_round_red" />
+
+            <ImageButton
+                android:id="@+id/friend"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_button_seletor_round"
+                android:padding="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/friend" />
+        </com.example.kinch_home.widget.ShadowLayoutTwo>
+
+        <com.example.kinch_home.widget.ShadowLayoutTwo
+            android:id="@+id/me_sha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:shadowColor="#1A333333"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
+            app:shadowRadiusButtom="5dp"
+            app:shadowRadiusLeft="5dp"
+            app:shadowRadiusRight="5dp"
+            app:shadowRadiusTop="5dp"
+            app:shadowShape="oval"
+            app:shadowSide="all">
+
+            <ImageButton
+                android:id="@+id/me"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_button_seletor_round"
+                android:padding="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/me" />
+        </com.example.kinch_home.widget.ShadowLayoutTwo>
+    </LinearLayout>
+
 
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/me_sha"
+        android:layout_alignBottom="@id/bt_down"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="100dp"
@@ -180,7 +227,7 @@
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/me_sha"
+        android:layout_alignBottom="@id/bt_down"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="150dp"
@@ -193,6 +240,7 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
+
         <ImageButton
             android:id="@+id/add"
             android:layout_width="40dp"
@@ -206,7 +254,7 @@
     <com.example.kinch_home.widget.ShadowLayoutTwo
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/me_sha"
+        android:layout_alignBottom="@id/bt_down"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="200dp"
@@ -219,6 +267,7 @@
         app:shadowRadiusRight="5dp"
         app:shadowRadiusTop="5dp"
         app:shadowSide="all">
+
         <ImageButton
             android:id="@+id/locate"
             android:layout_width="40dp"

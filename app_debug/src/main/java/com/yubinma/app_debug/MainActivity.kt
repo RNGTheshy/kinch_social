@@ -16,10 +16,7 @@ import com.example.chat.ChatActivity
 import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
-import com.nino.blindbox.ui.activity.HomeActivity
-import com.nino.blindbox.ui.activity.WelcomeActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
-import com.yubinma.fishprawncrab.FishPrawnCrabMainActivity
 import com.yubinma.person_center.PersonCenterActivity
 
 class MainActivity : AppCompatActivity() {
@@ -49,15 +46,6 @@ class MainActivity : AppCompatActivity() {
      * 配置 debug 菜单内容.
      */
     private val debugItem = listOf(
-        DebugItem("mainActivity") {
-            openFishPrawnCrabMainActivity()
-        },
-        DebugItem("BlindBox Show") {
-            openBlindBoxActivity()
-        },
-        DebugItem("home Activty") {
-            openBlindBoxHomeActivity()
-        },
         DebugItem("login_come Activty") {
             openLogin()
         },
@@ -107,10 +95,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun openFishPrawnCrabMainActivity() {
-        val intent = Intent(this, FishPrawnCrabMainActivity::class.java)
-        startActivity(intent)
-    }
 
     private fun openLogin() {
         val intent = Intent(this, LoginActivity::class.java)
@@ -122,15 +106,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun openBlindBoxActivity() {
-        val intent = Intent(this, WelcomeActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openBlindBoxHomeActivity() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-    }
 
     class DebugVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val btnAction = itemView.findViewById<Button>(R.id.btn_action)
