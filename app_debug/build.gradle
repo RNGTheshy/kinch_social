@@ -58,6 +58,7 @@ dependencies {
     implementation project(path: ':socialforum')
     implementation project(path: ':chat')
     implementation project(path: ':leancloudchatkit')
+    implementation project(path: ':data_center')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

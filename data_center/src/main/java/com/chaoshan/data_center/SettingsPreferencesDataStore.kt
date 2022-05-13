@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.map
 val Context.dataStore by preferencesDataStore(name = "settings")
 
 object SettingsPreferencesDataStore {
+
+    const val USER_NAME = "user_name"
+
+
     var EXAMPLE_COUNTER = stringPreferencesKey("example_counter")
 
     /**
@@ -29,10 +33,15 @@ object SettingsPreferencesDataStore {
     suspend fun getName(context: Context, key: String): String {
         EXAMPLE_COUNTER = stringPreferencesKey(key)
         val exampleCounterFlow: Flow<String> = context.dataStore.data
-            .map { preferences ->
-                // No type safety.
-                preferences[EXAMPLE_COUNTER] ?: "NULL"
-            }
+                .map { preferences ->
+                    // No type safety.
+                    preferences[EXAMPLE_COUNTER] ?: "NULL"
+                }
         return exampleCounterFlow.first()
     }
+}
+
+object GetApplicationContext {
+    var context: Context? = null
+
 }
