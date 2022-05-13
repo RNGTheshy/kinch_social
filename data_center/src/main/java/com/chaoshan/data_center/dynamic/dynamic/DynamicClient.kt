@@ -1,4 +1,4 @@
-package com.chaoshan.data_center.dynamic
+package com.chaoshan.data_center.dynamic.dynamic
 
 object DynamicClient {
     private val mDynamicDao = DynamicDao()

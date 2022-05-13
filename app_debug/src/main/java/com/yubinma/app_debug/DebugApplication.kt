@@ -1,5 +1,6 @@
 package com.yubinma.app_debug
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.multidex.MultiDexApplication
 import cn.leancloud.LCInstallation
@@ -19,6 +20,7 @@ import com.example.chat.CustomUserProvider
 
 class DebugApplication : MultiDexApplication() {
 
+    @SuppressLint("CheckResult")
     @DelicateCoroutinesApi
     override fun onCreate() {
         super.onCreate()

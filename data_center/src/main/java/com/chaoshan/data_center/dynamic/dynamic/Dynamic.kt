@@ -1,4 +1,4 @@
-package com.chaoshan.data_center.dynamic
+package com.chaoshan.data_center.dynamic.dynamic
 
 data class Dynamic(
     var dynamicId: String? = null,

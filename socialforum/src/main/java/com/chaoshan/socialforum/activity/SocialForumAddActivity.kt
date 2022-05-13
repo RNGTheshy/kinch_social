@@ -3,13 +3,12 @@ package com.chaoshan.socialforum.activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
-import com.chaoshan.data_center.dynamic.Dynamic
-import com.chaoshan.data_center.dynamic.DynamicClient
+import com.chaoshan.data_center.dynamic.dynamic.Dynamic
+import com.chaoshan.data_center.dynamic.dynamic.DynamicClient
 import com.chaoshan.socialforum.databinding.SocialAddFragmentBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
