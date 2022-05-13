@@ -3,11 +3,17 @@ package com.chaoshan.socialforum.activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.chaoshan.data_center.GetApplicationContext
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.DynamicClient
 import com.chaoshan.socialforum.databinding.SocialAddFragmentBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -46,16 +52,21 @@ class SocialForumAddActivity : AppCompatActivity() {
         }
     }
 
+    @DelicateCoroutinesApi
     private fun sent() {
-
-        val newDynamic = Dynamic(
-            "0",
-            "111",
-            null,
-            binding.mainText.text.toString()
-        )
-        DynamicClient.saveDate(newDynamic, mImageBytes)
-
+        // 获取数据
+        GetApplicationContext.context!!.let {
+            GlobalScope.launch {
+                val userId = SettingsPreferencesDataStore.USER_NAME
+                val newDynamic = Dynamic(
+                    "0",
+                    userId,
+                    null,
+                    binding.mainText.text.toString()
+                )
+                DynamicClient.saveDate(newDynamic, mImageBytes)
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
