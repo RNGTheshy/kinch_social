@@ -3,7 +3,6 @@ package com.chaoshan.socialforum.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.chaoshan.data_center.dynamic.DynamicClient
 import com.chaoshan.socialforum.databinding.SocialForumActivityBinding
 import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
