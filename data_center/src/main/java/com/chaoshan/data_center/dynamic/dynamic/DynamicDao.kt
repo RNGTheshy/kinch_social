@@ -1,4 +1,4 @@
-package com.chaoshan.data_center.dynamic
+package com.chaoshan.data_center.dynamic.dynamic
 
 import android.util.Log
 import cn.leancloud.LCFile
@@ -6,6 +6,7 @@ import cn.leancloud.LCObject
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import cn.leancloud.LCQuery
+import com.chaoshan.data_center.dynamic.GetDateCallBack
 
 
 class DynamicDao {

@@ -19,7 +19,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:background="#A6E173"
             android:layout_marginTop="5dp"
             android:id="@+id/main"
             android:layout_height="0dp"
