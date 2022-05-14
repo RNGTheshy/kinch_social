@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.dynamic.comment.Comment
+import com.chaoshan.data_center.dynamic.comment.CommentClient
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.Like
 import com.chaoshan.data_center.dynamic.like.LikeClient
@@ -57,6 +59,21 @@ class SocialForumMoreActivity : AppCompatActivity() {
             }
             Log.e("SocialForumMoreActivity_DYNAMIC_ID", intent.getStringExtra(DYNAMIC_ID).toString())
             adapter.reFresh()
+        }
+        binding.sent.setOnClickListener {
+            GetApplicationContext.context?.let {
+                GlobalScope.launch {
+                    CommentClient.pushData(
+                        Comment(
+                            intent.getStringExtra(DYNAMIC_ID).toString(),
+                            SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME),
+                            "",
+                            binding.editText.text.toString()
+                        )
+                    )
+                }
+            }
+            binding.editText.text.clear()
         }
     }
 
