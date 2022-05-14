@@ -9,4 +9,8 @@ object CommentClient {
     fun getData(id: String, listener: GetCommentDataListener) {
         mCommentDao.getAllCommentByDynamicId(id, listener)
     }
+
+    fun getDataCount(id: String, listener: GetCommentCountListener) {
+        mCommentDao.getCount(id, listener)
+    }
 }

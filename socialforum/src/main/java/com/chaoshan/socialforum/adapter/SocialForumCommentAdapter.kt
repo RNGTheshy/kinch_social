@@ -1,5 +1,6 @@
 package com.chaoshan.socialforum.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,9 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaoshan.data_center.dynamic.comment.Comment
+import com.chaoshan.data_center.dynamic.comment.CommentClient
+import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.LikeClient
@@ -22,7 +26,7 @@ import com.chaoshan.socialforum.viewmodel.SocialForumMoreActivityViewModel
 class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var currentCYID: String
     private val viewModel = SocialForumMoreActivityViewModel()
-
+    private var commentList: List<Comment>? = null
     private lateinit var currentCY: Dynamic
     fun setCurrentCYID(currentCYID: String) {
         this.currentCYID = currentCYID
@@ -32,9 +36,9 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         this.currentCY = currentCY
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun reFresh() {
-        notifyItemChanged(0)
-        notifyItemChanged(1)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -93,10 +97,20 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
 
                 Glide.with(holder.binding.root.context)
-                        .load(it.picture)
-                        .centerCrop()
-                        .into(holder.binding.mainImage)
+                    .load(it.picture)
+                    .centerCrop()
+                    .into(holder.binding.mainImage)
+                it.dynamicId?.let { it1 ->
+                    CommentClient.getDataCount(it1, object : GetCommentCountListener {
+                        override fun getCount(count: Int) {
+                            holder.binding.commentCount.text = count.toString()
+                        }
+
+                    })
+                }
+
             }
+
 
         } else {
             setRadius(holder.itemView.rootView, 10.0F)
@@ -104,6 +118,14 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         if (position > 3) {
             holder as SocialForumCommentItemViewHolder
             holder.binding.iconMessage.visibility = View.INVISIBLE
+        }
+        if (position >= 2) {
+            commentList?.let {
+                holder as SocialForumCommentItemViewHolder
+                holder.binding.mainComment.text = it[position - 2].comment
+                holder.binding.commentTime.text = it[position - 2].time
+            }
+
         }
 
     }
@@ -113,7 +135,7 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return commentList?.size?.plus(2) ?: 0
     }
 
     /**
@@ -129,5 +151,11 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         }
         //设置阴影
         view.elevation = 20F;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(comment: List<Comment>) {
+        this.commentList = comment
+        notifyDataSetChanged()
     }
 }
