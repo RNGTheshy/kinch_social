@@ -18,6 +18,7 @@ import com.example.chat.ChatActivity
 import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
+import com.example.setting.SettingMainActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.person_center.PersonCenter2Activity
 
@@ -68,9 +69,17 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("personActivity") {
             openPersonCenter()
+        },
+        DebugItem("openSetting") {
+            openSetting()
         }
 
     )
+
+    private fun openSetting() {
+        val intent = Intent(this, SettingMainActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun openPersonCenter() {
         val intent = Intent(this, PersonCenter2Activity::class.java)

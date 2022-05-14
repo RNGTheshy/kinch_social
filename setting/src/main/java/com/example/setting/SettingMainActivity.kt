@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.AppUtils
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
-import com.example.kinch_home.Home_Activity
 
 class SettingMainActivity : AppCompatActivity() {
     private var backBtn: ImageView? = null
@@ -54,9 +53,8 @@ class SettingMainActivity : AppCompatActivity() {
             startActivity(i)
         }
         exitBtn?.setOnClickListener {
-
             SettingsPreferencesDataStore.setUserObjectId("null")
-            Home_Activity.goToByActivity(this)
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 

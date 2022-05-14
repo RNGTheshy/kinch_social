@@ -17,12 +17,9 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
-import com.chaoshan.data_center.SettingsPreferencesDataStore
-import com.chaoshan.login.LoginActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
-import com.example.chat.InforActivity
 import com.example.setting.SettingMainActivity
 import com.yubinma.person_center.PersonCenter2Activity
 
@@ -248,11 +245,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
 
         fun goToByActivity(context: Context) {
             val intent: Intent =
-                if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
-                    Intent(context, LoginActivity::class.java)
-                } else {
-                    Intent(context, Home_Activity::class.java)
-                }
+
+                Intent(context, Home_Activity::class.java)
+
             context.startActivity(intent)
         }
     }
