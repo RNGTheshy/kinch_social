@@ -21,13 +21,21 @@ import kotlinx.android.synthetic.main.chat_room.*
 class ChatActivity : AppCompatActivity() {
 
         companion object {
-    /**
-     * 通过用户名和密码登录到通讯录临时通讯录，点击任意用户进行聊天,当前用户有限，未支持注册
-     */
-    public  fun goToChat(context:Context,usename:String,password:String){
+            val USER_NAME = "usename"
+            val PASSWORD  = "password"
+            val USER_ID = "userId"
+            /**
+             * 通过用户名和密码登录到通讯录临时通讯录，点击任意用户进行聊天,当前用户有限，未支持注册
+              */
+          fun goToChat(context:Context,usename:String,password:String){
                 val intent = Intent(context,ChatActivity::class.java)
-                intent.putExtra("usename",usename);
-                intent.putExtra("password",password);
+                intent.putExtra(USER_NAME,usename);
+                intent.putExtra(PASSWORD,password);
+                context.startActivity(intent)
+            }
+            fun goToChat(context: Context,userId:String){
+                val intent = Intent(context,ChatActivity::class.java)
+                intent.putExtra("userId",userId);
                 context.startActivity(intent)
             }
         }
@@ -36,23 +44,41 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.chat_room)
 
         LCIMOptions.getGlobalOptions().setAutoOpen(true)
-            val userName =  intent.getStringExtra("usename")
-            val password = intent.getStringExtra("password")
-            if (TextUtils.isEmpty(userName)||TextUtils.isEmpty(password)){
-                finish()
-            }
-        // 启动聊天连接 耗时操作
-            LCChatKit.getInstance().open(userName,password,null,object : LCIMClientCallback() {
-                override fun done(client: LCIMClient, e: LCIMException?) {
-                    if (e == null) {
+            val userId = intent.getStringExtra(USER_ID)
+            if (!TextUtils.isEmpty(userId)){
+                LCChatKit.getInstance().open(userId , object : LCIMClientCallback() {
+                    override fun done(client: LCIMClient, e: LCIMException?) {
+                        if (e == null) {
 //                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
 //                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
 //                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
+                        }
                     }
+                })
+            }else{
+                val userName =  intent.getStringExtra(USER_NAME)
+                val password = intent.getStringExtra(PASSWORD)
+                if (TextUtils.isEmpty(userName)||TextUtils.isEmpty(password)){
+                    finish()
                 }
-            })
+                // 启动聊天连接 耗时操作
+                LCChatKit.getInstance().open(userName,password,null,object : LCIMClientCallback() {
+                    override fun done(client: LCIMClient, e: LCIMException?) {
+                        if (e == null) {
+//                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
+//                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
+//                        startActivity(intent)
+                        } else {
+                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+            }
+
+
+
 //        send.setOnClickListener{
 //            LCIMOptions.getGlobalOptions().setAutoOpen(true)
 //            val userName = "147"

@@ -159,6 +159,7 @@ public class LCIMConversationFragment extends Fragment {
       public void onClick(View v) {
         //TODO 跳转聊天设置页面
         Intent intent = new Intent(getContext(),ChatSettingActivity.class);
+        intent.putExtra(ChatSettingActivity.CONVERSATION_ID,imConversation.getConversationId());
         startActivity(intent);
       }
     });
@@ -173,6 +174,22 @@ public class LCIMConversationFragment extends Fragment {
     super.onResume();
     if (null != imConversation) {
       LCIMNotificationUtils.addTag(imConversation.getConversationId());
+      //重新刷新数据
+      LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
+        @Override
+        public void done(List<LCIMMessage> messageList, LCIMException e) {
+          if (filterException(e)) {
+            itemAdapter.setMessageList(messageList);
+            recyclerView.setAdapter(itemAdapter);
+            itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
+                    imConversation.getLastReadAt());
+            itemAdapter.notifyDataSetChanged();
+            scrollToBottom();
+            clearUnreadConut();
+          }
+        }
+      };
+      imConversation.queryMessagesFromCache( 20, callback);
     }
   }
 
@@ -239,39 +256,39 @@ public class LCIMConversationFragment extends Fragment {
    * 拉取消息，必须加入 conversation 后才能拉取消息
    */
   private void fetchMessages() {
-    LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
-      @Override
-      public void done(List<LCIMMessage> messageList, LCIMException e) {
-        if (filterException(e)) {
-          itemAdapter.setMessageList(messageList);
-          recyclerView.setAdapter(itemAdapter);
-          itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
-                  imConversation.getLastReadAt());
-          itemAdapter.notifyDataSetChanged();
-          scrollToBottom();
-          clearUnreadConut();
-        }
-      }
-    };
-    if (!AppConfiguration.getGlobalNetworkingDetector().isConnected()) {
-      imConversation.queryMessagesFromCache( 20, callback);
-    }else{
-      imConversation.queryMessagesFromServer(20,callback);
-    }
-//    imConversation.queryMessages(new LCIMMessagesQueryCallback() {
+//    LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
 //      @Override
 //      public void done(List<LCIMMessage> messageList, LCIMException e) {
 //        if (filterException(e)) {
 //          itemAdapter.setMessageList(messageList);
 //          recyclerView.setAdapter(itemAdapter);
 //          itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
-//            imConversation.getLastReadAt());
+//                  imConversation.getLastReadAt());
 //          itemAdapter.notifyDataSetChanged();
 //          scrollToBottom();
 //          clearUnreadConut();
 //        }
 //      }
-//    });
+//    };
+//    if (!AppConfiguration.getGlobalNetworkingDetector().isConnected()) {
+//      imConversation.queryMessagesFromCache( 20, callback);
+//    }else{
+//      imConversation.queryMessagesFromServer(20,callback);
+//    }
+    imConversation.queryMessages(new LCIMMessagesQueryCallback() {
+      @Override
+      public void done(List<LCIMMessage> messageList, LCIMException e) {
+        if (filterException(e)) {
+          itemAdapter.setMessageList(messageList);
+          recyclerView.setAdapter(itemAdapter);
+          itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
+            imConversation.getLastReadAt());
+          itemAdapter.notifyDataSetChanged();
+          scrollToBottom();
+          clearUnreadConut();
+        }
+      }
+    });
   }
 
   /**
