@@ -62,10 +62,10 @@ class MainActivity : AppCompatActivity() {
         DebugItem("Chat") {
             openChat()
         },
-        DebugItem("openPerson") {
+        DebugItem("朋友圈") {
             openSoci()
         },
-        DebugItem("mainActivty") {
+        DebugItem("personActivity") {
             openPersonCenter()
         }
 
