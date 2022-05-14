@@ -9,7 +9,6 @@ dependencyResolutionManagement {
 rootProject.name = "Chaoshan Culture"
 include ':app'
 include ':app_debug'
-include ':blindbox'
 include ':login'
 include ':socialforum'
 include ':data_center'
