@@ -20,11 +20,11 @@ import kotlinx.android.synthetic.main.chat_room.*
 
 class ChatActivity : AppCompatActivity() {
 
-//    private val msgList = ArrayList<Msg>()
-//    private var adapter: MsgAdapter? = null
-//    private val appService = ServiceCreator.create<ChatService>()
         companion object {
-            public  fun goToChat(context:Context,usename:String,password:String){
+    /**
+     * 通过用户名和密码登录到通讯录临时通讯录，点击任意用户进行聊天,当前用户有限，未支持注册
+     */
+    public  fun goToChat(context:Context,usename:String,password:String){
                 val intent = Intent(context,ChatActivity::class.java)
                 intent.putExtra("usename",usename);
                 intent.putExtra("password",password);
@@ -34,6 +34,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_room)
+
         LCIMOptions.getGlobalOptions().setAutoOpen(true)
             val userName =  intent.getStringExtra("usename")
             val password = intent.getStringExtra("password")

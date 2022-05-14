@@ -120,6 +120,7 @@ public final class LCChatKit {
     if (null == callback) {
       throw new IllegalArgumentException("callback can not be null!");
     }
+    LCIMOptions.getGlobalOptions().setMessageQueryCacheEnabled(true);
     LCUser.logIn(userName, password).subscribe(new Observer<LCUser>() {
       public void onSubscribe(Disposable disposable) {}
       public void onNext(LCUser user) {
