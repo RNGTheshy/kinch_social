@@ -24,5 +24,4 @@ class SocialForumActivityViewModel : ViewModel() {
         MutableLiveData<Dynamic>()
     }
 
-
 }

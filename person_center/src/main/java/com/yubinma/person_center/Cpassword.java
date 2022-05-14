@@ -36,16 +36,20 @@ public class Cpassword extends AppCompatActivity{
                 query.whereEqualTo("objectid", objectid);
 
                         LCUser.requestPasswordResetInBackground("862432718@qq.com").subscribe(new Observer<LCNull>() {
+                            @Override
                             public void onSubscribe(Disposable disposable) {}
+                            @Override
                             public void onNext(LCNull lcNull) {
                                 // 成功调用
                                 Toast.makeText(Cpassword.this,"修改完成",Toast.LENGTH_SHORT).show();
                                 Log.e("修改完成。", "success");
                             }
+                            @Override
                             public void onError(Throwable throwable) {
                                 // 调用出错
                                 Log.e("修改失败2。", throwable.toString());
                             }
+                            @Override
                             public void onComplete() {}
                         });
                         System.out.println();

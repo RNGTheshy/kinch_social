@@ -15,15 +15,15 @@ public class plocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plocation);
 
-        Button button=findViewById(R.id.backb6);
+        Button button = findViewById(R.id.backb6);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tocenter=new Intent(plocation.this, com.example.myapplication.Setting.class);
+                Intent tocenter = new Intent(plocation.this, Setting.class);
                 startActivity(tocenter);
             }
         });
-        TextView textView=findViewById(R.id.back6);
+        TextView textView = findViewById(R.id.back6);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -12,7 +12,7 @@
     <application>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".PersonCenter2Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

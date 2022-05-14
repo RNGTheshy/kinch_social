@@ -38,41 +38,48 @@ public class Setting extends AppCompatActivity {
     final String classname = "userdata";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent=getIntent();
-        final String objectid=intent.getStringExtra("objectid").toString();
-
+        Intent intent = getIntent();
+        final String objectid = intent.getStringExtra("objectid").toString();
 
 
         img = (ImageView) findViewById(R.id.usernam);
 
 
-
-        com.example.myapplication.Personal_data personal_data=new com.example.myapplication.Personal_data();
+        Personal_data personal_data = new Personal_data();
         TextView username = findViewById(R.id.username);
         TextView usergender = findViewById(R.id.usergender);
         TextView showbirth = findViewById(R.id.showbirth);
         TextView userphone = findViewById(R.id.userphone);
-        TextView userpassword1=findViewById(R.id.userpassword);
-        personal_data.getdata(classname,objectid,username,usergender,showbirth,userphone,userpassword1);
+        TextView userpassword1 = findViewById(R.id.userpassword);
+        personal_data.getdata(classname, objectid, username, usergender, showbirth, userphone, userpassword1);
         telephonenumber = userphone.getText().toString();
         useremail = userpassword1.getText().toString();
 
         final LCQuery<LCObject> query = new LCQuery<>(classname);
         query.getInBackground(objectid).subscribe(new Observer<LCObject>() {
-            public void onSubscribe(Disposable disposable) {}
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+
+            @Override
             public void onNext(LCObject todo) {
                 telephonenumber = todo.getString("phone_number");
-                Toast.makeText(Setting.this,telephonenumber,Toast.LENGTH_SHORT).show();
+                Toast.makeText(Setting.this, telephonenumber, Toast.LENGTH_SHORT).show();
                 useremail = todo.getString("email");
             }
-            public void onError(Throwable throwable) {}
-            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable throwable) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
         });
         tvDate = findViewById(R.id.setbirth);
         etDate = findViewById(R.id.showbirth);
@@ -99,17 +106,11 @@ public class Setting extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month += 1;
                 String date = year + "-" + month + "-" + day;
-                com.example.myapplication.Personal_data personal_data=new com.example.myapplication.Personal_data();
-                personal_data.saveBirth(classname, objectid,date);
+                Personal_data personal_data = new Personal_data();
+                personal_data.saveBirth(classname, objectid, date);
                 etDate.setText(date);
             }
         };
-
-
-
-
-
-
 
 
         LinearLayout rename = findViewById(R.id.rename);
@@ -149,7 +150,7 @@ public class Setting extends AppCompatActivity {
         ctelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toctelephone = new Intent(Setting.this, com.example.myapplication.Ctelephone1.class);
+                Intent toctelephone = new Intent(Setting.this, Ctelephone1.class);
                 toctelephone.putExtra("telephone", telephonenumber);
                 toctelephone.putExtra("objectid", objectid);
                 toctelephone.putExtra("classname", classname);
@@ -173,10 +174,6 @@ public class Setting extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
     @Override
@@ -214,10 +211,6 @@ public class Setting extends AppCompatActivity {
                 break;
         }
     }
-
-
-
-
 
 
     private Intent corp(Uri uri) {
