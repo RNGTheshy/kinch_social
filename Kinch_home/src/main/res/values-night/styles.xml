@@ -1,0 +1,70 @@
+<resources>
+
+
+    <!-- Base application the App主题样式-->
+
+    <!-- 全屏对话框 -->
+    <style name="FullScreenDialog">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- 全屏对话框(背景透明) -->
+    <style name="FullScreenDialogTrans" parent="FullScreenDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="UserBottomLLStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/selector_btn_bg_white</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="UserBottomImgStyle">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+    </style>
+
+    <style name="UserBottomTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="UserBottomBackStyle">
+        <item name="android:layout_width">11dp</item>
+        <item name="android:layout_height">11dp</item>
+    </style>
+
+    <style name="UserBottomPointStyle">
+        <item name="android:layout_width">9dp</item>
+        <item name="android:layout_height">9dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+
+    <!-- IosPopupDialog start -->
+    <!-- 样式 -->
+    <style name="IosPopupDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
+</resources>
