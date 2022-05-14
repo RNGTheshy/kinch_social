@@ -12,17 +12,19 @@ import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.dynamic.comment.Comment
 import com.chaoshan.data_center.dynamic.comment.CommentClient
+import com.chaoshan.data_center.dynamic.comment.GetCommentDataListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.Like
 import com.chaoshan.data_center.dynamic.like.LikeClient
 import com.chaoshan.socialforum.GridSpaceDecoration
 import com.chaoshan.socialforum.adapter.SocialForumCommentAdapter
 import com.chaoshan.socialforum.databinding.SocialForumMoreActivityBinding
-import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 import com.chaoshan.socialforum.viewmodel.SocialForumMoreActivityViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SocialForumMoreActivity : AppCompatActivity() {
     private lateinit var binding: SocialForumMoreActivityBinding
@@ -62,18 +64,21 @@ class SocialForumMoreActivity : AppCompatActivity() {
         }
         binding.sent.setOnClickListener {
             GetApplicationContext.context?.let {
-                GlobalScope.launch {
-                    CommentClient.pushData(
-                        Comment(
-                            intent.getStringExtra(DYNAMIC_ID).toString(),
-                            SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME),
-                            "",
-                            binding.editText.text.toString()
+                GlobalScope.launch(Dispatchers.Main) {
+                    withContext(Dispatchers.IO) {
+                        CommentClient.pushData(
+                            Comment(
+                                intent.getStringExtra(DYNAMIC_ID).toString(),
+                                SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME),
+                                "",
+                                binding.editText.text.toString()
+                            )
                         )
-                    )
+                        binding.editText.text.clear()
+                    }
+                    adapter.reFresh()
                 }
             }
-            binding.editText.text.clear()
         }
     }
 
@@ -84,6 +89,12 @@ class SocialForumMoreActivity : AppCompatActivity() {
             val dynamic: Dynamic = it.getSerializable(DYNAMIC) as Dynamic
             adapter.setCurrentCY(dynamic)
         }
+        CommentClient.getData(intent.getStringExtra(DYNAMIC_ID).toString(), object : GetCommentDataListener {
+            override fun getData(comment: List<Comment>) {
+                adapter.setData(comment)
+            }
+
+        })
     }
 
     @DelicateCoroutinesApi

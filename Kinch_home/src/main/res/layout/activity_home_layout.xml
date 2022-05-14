@@ -92,10 +92,7 @@
             app:shadowShape="oval"
             app:shadowSide="all">
 
-            <ImageView
-                android:layout_marginLeft="25dp"
-                style="@style/UserBottomPointStyle"
-                android:src="@drawable/bg_round_red" />
+
             <ImageButton
                 android:id="@+id/message"
                 android:layout_width="60dp"
@@ -104,7 +101,7 @@
                 android:background="@drawable/bg_button_seletor_round"
                 android:padding="15dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/message"></ImageButton>
+                android:src="@mipmap/message" />
         </com.example.kinch_home.widget.ShadowLayoutTwo>
 
 
@@ -127,6 +124,7 @@
                 android:layout_marginLeft="25dp"
                 style="@style/UserBottomPointStyle"
                 android:src="@drawable/bg_round_red" />
+
             <ImageButton
                 android:id="@+id/trends"
                 android:layout_width="60dp"

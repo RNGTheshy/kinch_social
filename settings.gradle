@@ -9,13 +9,9 @@ dependencyResolutionManagement {
 rootProject.name = "Chaoshan Culture"
 include ':app'
 include ':app_debug'
-include ':fishprawncrab'
-include ':blindbox'
 include ':login'
-include ':ui'
 include ':socialforum'
 include ':data_center'
-include ':blindshow'
 include ':register'
 include ':leancloudchatkit'
 include ':Kinch_home'
