@@ -1,5 +1,6 @@
 package com.example.kinch_home
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -236,6 +237,13 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    companion object {
+        fun goTo(context: Context) {
+            val intent = Intent(context, Home_Activity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
+    }
 }
 
 
