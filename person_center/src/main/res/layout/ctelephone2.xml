@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linear"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:rowCount="1"
+            android:columnCount="2"
+
+            >
+
+            <TextView
+                android:id="@+id/reback4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/back" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="手机验证"
+                android:layout_marginTop="30dp"
+                android:textColor="#B3DA61"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="100dp"/>
+        </GridLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#B1B1B1"
+            >
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            >
+        </LinearLayout>
+        <TextView
+            android:id="@+id/phonetext2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#B1B1B1"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="请输入验证码"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            ></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/checkcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/ctelephonefinish"
+                android:layout_width="48dp"
+                android:layout_height="27dp"
+                android:background="#B3DA61"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
