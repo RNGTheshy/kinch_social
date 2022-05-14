@@ -57,7 +57,6 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position == 0) {
             holder as SocialForumItemViewHolder
-            // todo 统计likeText数量
             LikeClient.getLikeCount(currentCYID, object :
                 GetLikeCountCallBack {
                 override fun get(count: Int) {
@@ -65,6 +64,9 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 }
             })
             setRadius(holder.itemView.rootView, 40.0F)
+
+
+
         } else {
 
             setRadius(holder.itemView.rootView, 10.0F)

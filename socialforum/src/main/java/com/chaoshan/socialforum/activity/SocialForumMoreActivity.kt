@@ -15,6 +15,7 @@ import com.chaoshan.data_center.dynamic.like.LikeClient
 import com.chaoshan.socialforum.GridSpaceDecoration
 import com.chaoshan.socialforum.adapter.SocialForumCommentAdapter
 import com.chaoshan.socialforum.databinding.SocialForumMoreActivityBinding
+import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 class SocialForumMoreActivity : AppCompatActivity() {
     private lateinit var binding: SocialForumMoreActivityBinding
     private var adapter: SocialForumCommentAdapter = SocialForumCommentAdapter()
+    private val viewModel by lazy { SocialForumActivityViewModel() }
 
     @DelicateCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +58,7 @@ class SocialForumMoreActivity : AppCompatActivity() {
 
     private fun initData() {
         adapter.setCurrentCYID(intent.getStringExtra(DYNAMIC_ID).toString())
+
     }
 
     @DelicateCoroutinesApi

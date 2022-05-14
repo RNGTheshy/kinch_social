@@ -1,6 +1,7 @@
 package com.yubinma.app_debug
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,7 +18,6 @@ import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
-import com.yubinma.person_center.PersonCenterActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -61,9 +61,6 @@ class MainActivity : AppCompatActivity() {
         DebugItem("Chat") {
             openChat()
         },
-        DebugItem("openPersonCenterActivity") {
-            openPersonCenterActivity()
-        },
         DebugItem("openPerson") {
             openSoci()
         }
@@ -75,11 +72,6 @@ class MainActivity : AppCompatActivity() {
     }
     private fun openInfor() {
         val intent = Intent(this, InforActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openPersonCenterActivity() {
-        val intent = Intent(this, PersonCenterActivity::class.java)
         startActivity(intent)
     }
 
