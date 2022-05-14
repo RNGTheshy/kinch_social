@@ -6,21 +6,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.LikeClient
-import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumLikeViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumMoreCommentViewholderBinding
 import com.chaoshan.socialforum.viewholder.SocialForumCommentItemViewHolder
 import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
 import com.chaoshan.socialforum.viewholder.SocialForumLikeItemViewHolder
+import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
+import com.chaoshan.socialforum.viewmodel.SocialForumMoreActivityViewModel
 
 class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var currentCYID: String
+    private val viewModel = SocialForumMoreActivityViewModel()
 
+    private lateinit var currentCY: Dynamic
     fun setCurrentCYID(currentCYID: String) {
         this.currentCYID = currentCYID
+    }
+
+    fun setCurrentCY(currentCY: Dynamic) {
+        this.currentCY = currentCY
+    }
+
+    fun reFresh() {
+        notifyItemChanged(0)
+        notifyItemChanged(1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -64,11 +78,27 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 }
             })
             setRadius(holder.itemView.rootView, 40.0F)
+            this.currentCY.let {
+                if (it.text == "null" || it.text.isNullOrEmpty()) {
+                    holder.binding.mainText.visibility = View.GONE
+                } else {
+                    holder.binding.mainText.text = it.text
+                }
+                if (it.theme == "null" || it.theme.isNullOrEmpty()) {
+                    holder.binding.textSecond.visibility = View.GONE
+                } else {
+                    holder.binding.textSecond.text = "#" + it.theme
+                }
+                holder.binding.timeText.text = it.releaseTime
 
 
+                Glide.with(holder.binding.root.context)
+                        .load(it.picture)
+                        .centerCrop()
+                        .into(holder.binding.mainImage)
+            }
 
         } else {
-
             setRadius(holder.itemView.rootView, 10.0F)
         }
         if (position > 3) {
