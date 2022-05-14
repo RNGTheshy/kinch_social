@@ -1,5 +1,6 @@
 package com.example.kinch_home
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -16,7 +17,12 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.chaoshan.socialforum.activity.SocialForumActivity
+import com.example.chat.ChatActivity
+import com.example.chat.ChatActivity.Companion.goToChat
+import com.example.chat.InforActivity
 import com.example.setting.SettingMainActivity
+import com.yubinma.person_center.PersonCenter2Activity
 
 
 class Home_Activity : AppCompatActivity(), View.OnClickListener {
@@ -29,7 +35,13 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
     private var mLocateButton: ImageButton? = null
     private var mAddButton: ImageButton? = null
     private var mMinusButton: ImageButton? = null
+    private var mSettingButton: ImageButton? = null
+    private var mMessageButton: ImageButton? = null
+    private var mTrendsButton: ImageButton? = null
+    private var mFriendButton: ImageButton? = null
+    private var mMeButton: ImageButton? = null
     private var mapStatus: MapStatus? = null
+
     // 是否是第一次定位
     private var isFirstLocate = true
 
@@ -67,6 +79,13 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
         //标题初始化
         mTextView = findViewById(R.id.location_name)
 
+        //初始化主界面按钮
+        mSettingButton = findViewById(R.id.setting)
+        mMessageButton = findViewById(R.id.message)
+        mTrendsButton = findViewById(R.id.trends)
+        mFriendButton = findViewById(R.id.friend)
+        mMeButton = findViewById(R.id.me)
+
         //通过LocationClientOption设置LocationClient相关参数
         val option = LocationClientOption()
         option.isOpenGps = true // 打开gps
@@ -86,6 +105,35 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
         mLocationClient!!.start()
 
         hideAddMinusBtn()
+        initClickListener()
+
+    }
+
+    private fun initClickListener() {
+        mSettingButton?.setOnClickListener {
+            val intent = Intent(this, SettingMainActivity::class.java)
+            startActivity(intent)
+
+        }
+        mMessageButton?.setOnClickListener {
+            goToChat(this, "147", "147")
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+
+        }
+        mTrendsButton?.setOnClickListener {
+            val intent = Intent(this, SocialForumActivity::class.java)
+            startActivity(intent)
+
+        }
+        mFriendButton?.setOnClickListener {
+            //TODO
+        }
+        mMeButton?.setOnClickListener {
+            val intent = Intent(this, PersonCenter2Activity::class.java)
+            startActivity(intent)
+
+        }
     }
 
     // 继承抽象类BDAbstractListener并重写其onReceieveLocation方法来获取定位数据，并将其传给MapView
@@ -106,14 +154,14 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
             mLongitude = location.longitude
             mLatitude = location.latitude
             val locData = MyLocationData.Builder()
-                    .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
-                    .direction(location.direction).latitude(location.latitude)
-                    .longitude(location.longitude).build()
+                .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(location.direction).latitude(location.latitude)
+                .longitude(location.longitude).build()
             mBaiduMap!!.setMyLocationData(locData)
 
             // 自定义地图样式
             // 更换定位图标，这里的图片是放在 drawble 文件下的
-            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate)
+            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon)
             // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
             locationMode = MyLocationConfiguration.LocationMode.NORMAL
             // 定位模式、是否开启方向、设置自定义定位图标、精度圈填充颜色以及精度圈边框颜色5个属性（此处只设置了前三个）。
@@ -125,7 +173,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
             mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
             mapStatus = mBaiduMap?.mapStatus
             // 设置标题 动态加载
-            if(mapStatus?.zoom!! < 5)
+            if (mapStatus?.zoom!! < 5)
                 mTextView?.text = location.country
             else if (mapStatus?.zoom!! < 7)
                 mTextView?.text = location.province
@@ -186,15 +234,16 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
                 mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.minus(1)))
             }
         }
-        when(v?.id){
-            R.id.setting ->{
-                val intent = Intent(this, SettingMainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
+
     }
 
+    companion object {
+        fun goTo(context: Context) {
+            val intent = Intent(context, Home_Activity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
+    }
 }
 
 
