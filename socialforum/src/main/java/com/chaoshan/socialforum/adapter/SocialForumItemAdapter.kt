@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaoshan.data_center.dynamic.comment.CommentClient
+import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.LikeClient
@@ -28,7 +30,8 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val item = SocialForumItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val item =
+            SocialForumItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SocialForumItemViewHolder(item)
     }
 
@@ -67,9 +70,17 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             Glide.with(holder.binding.root.context)
-                    .load(it[position].picture)
-                    .centerCrop()
-                    .into(holder.binding.mainImage)
+                .load(it[position].picture)
+                .centerCrop()
+                .into(holder.binding.mainImage)
+            it[position].dynamicId?.let { it1 ->
+                CommentClient.getDataCount(it1, object : GetCommentCountListener {
+                    override fun getCount(count: Int) {
+                        holder.binding.commentCount.text = count.toString()
+                    }
+
+                })
+            }
         }
         setRadius(holder.itemView, 20.0F)
 
