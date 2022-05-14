@@ -1,10 +1,12 @@
 package com.chaoshan.data_center
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -17,10 +19,26 @@ object SettingsPreferencesDataStore {
 
     const val USER_NAME = "user_name"
 
+    @Volatile
     private var currentUserObjetID = "null"
     fun getCurrentUserObjetID(): String {
         return currentUserObjetID
     }
+
+    @DelicateCoroutinesApi
+    fun setCurrentUserObjectID() {
+        GetApplicationContext.context?.let {
+            GlobalScope.launch {
+                currentUserObjetID = getName(it, USER_NAME)
+
+                Log.e(
+                    "nameTest",
+                    getName(it, USER_NAME)
+                )
+            }
+        }
+    }
+
 
     var EXAMPLE_COUNTER = stringPreferencesKey("example_counter")
 
@@ -54,6 +72,18 @@ object SettingsPreferencesDataStore {
             return getName(it, USER_NAME)
         }
         return "null"
+    }
+
+
+    fun setUserObjectId(id: String) {
+        GlobalScope.launch {
+            currentUserObjetID = id
+            saveData(
+                GetApplicationContext.context!!,
+                id,
+                USER_NAME
+            )
+        }
     }
 }
 

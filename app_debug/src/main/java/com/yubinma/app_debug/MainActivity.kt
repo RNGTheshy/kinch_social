@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
 import com.example.chat.ChatActivity
@@ -94,7 +95,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun openKinchHome() {
-        val intent = Intent(this, Home_Activity::class.java)
+        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
+            Intent(this, LoginActivity::class.java)
+        } else {
+            Intent(this, Home_Activity::class.java)
+        }
         startActivity(intent)
     }
 

@@ -17,6 +17,8 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.login.LoginActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
@@ -241,6 +243,16 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
         fun goTo(context: Context) {
             val intent = Intent(context, Home_Activity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
+
+        fun goToByActivity(context: Context) {
+            val intent: Intent =
+                if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
+                    Intent(context, LoginActivity::class.java)
+                } else {
+                    Intent(context, Home_Activity::class.java)
+                }
             context.startActivity(intent)
         }
     }

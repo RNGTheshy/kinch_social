@@ -32,20 +32,24 @@ class DebugApplication : MultiDexApplication() {
         )
         LeanCloud.setLogLevel(LCLogger.Level.DEBUG);
         GetApplicationContext.context = this.applicationContext
-        // 暂时测试时保留用户的ID
-        GlobalScope.launch {
-            SettingsPreferencesDataStore.saveData(
-                this@DebugApplication.applicationContext,
-                "6279d9b47a6d3118ac0283c5",
-                SettingsPreferencesDataStore.USER_NAME
-            )
-        }
+//        // 暂时测试时保留用户的ID
+//        GlobalScope.launch {
+//            SettingsPreferencesDataStore.saveData(
+//                this@DebugApplication.applicationContext,
+//                "6279d9b47a6d3118ac0283c5",
+//                SettingsPreferencesDataStore.USER_NAME
+//            )
+//        }
         // 获取数据
         GetApplicationContext.context?.let {
             GlobalScope.launch {
-                Log.e("nameTest", SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME))
+                Log.e(
+                    "nameTest",
+                    SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME)
+                )
             }
         }
+        SettingsPreferencesDataStore.setCurrentUserObjectID()
 
         LCChatKit.getInstance().setProfileProvider(CustomUserProvider.getInstance())
         LCIMOptions.getGlobalOptions().setDisableAutoLogin4Push(true)
