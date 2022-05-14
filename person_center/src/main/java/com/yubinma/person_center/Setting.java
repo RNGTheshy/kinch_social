@@ -48,6 +48,15 @@ public class Setting extends AppCompatActivity {
         Intent intent = getIntent();
         final String objectid = intent.getStringExtra("objectid").toString();
 
+        TextView btcenter=findViewById(R.id.btcenter);
+        btcenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Setting.this,PersonCenter2Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         img = (ImageView) findViewById(R.id.usernam);
 

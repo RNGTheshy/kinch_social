@@ -13,7 +13,7 @@ import cn.leancloud.LCQuery;
 import cn.leancloud.LCUser;
 import cn.leancloud.types.LCNull;
 import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.Disposable;
 class Personal_data {
     String[] data = new String[5];
 
@@ -193,7 +193,89 @@ class Personal_data {
 
     }
 
-    //改性别
+    //改状态
+    void saveState(String classname, String objectid, final String state) {
+        LCQuery<LCObject> query = new LCQuery<>(classname);
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                // todo 是第一个满足条件的 Todo 对象
+                todo.put("state", state);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
+
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        System.out.println("okkkk");
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                        System.out.println("error");
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
+
+            public void onError(Throwable throwable) {
+            }
+
+            public void onComplete() {
+            }
+        });
+
+
+    }
+
+    //改状态
+    void savesign(String classname, String objectid, final String sign) {
+        LCQuery<LCObject> query = new LCQuery<>(classname);
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {}
+            @Override
+            public void onNext(LCObject todo) {
+                // todo 是第一个满足条件的 Todo 对象
+                todo.put("signature", sign);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {}
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        System.out.println("okkkk");
+                        Log.e("修改完成。", "succeed");}
+                    @Override
+                    public void onError(Throwable throwable) {
+                        System.out.println("error");
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {}
+                });
+            }
+
+            public void onError(Throwable throwable) {
+            }
+
+            public void onComplete() {
+            }
+        });
+    }
+        //改性别
     void saveGender(String classname, String objectid, final String gender) {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
@@ -360,14 +442,12 @@ class Personal_data {
 
     public void setcenter(String classname, String objectid, final TextView textView0,
                           final TextView textView1, final TextView textView2, final TextView textView3, final TextView textView4) {
-
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
             @Override
             public void onSubscribe(Disposable disposable) {
             }
-
             @Override
             public void onNext(LCObject todo) {
                 // todo 是第一个满足条件的 Todo 对象
@@ -377,14 +457,10 @@ class Personal_data {
                 textView3.setText("状态：" + todo.getString("state"));
                 textView4.setText(todo.getString("signature"));
             }
-
             @Override
-            public void onError(Throwable throwable) {
-            }
-
+            public void onError(Throwable throwable) {}
             @Override
-            public void onComplete() {
-            }
+            public void onComplete() {}
         });
 
 
