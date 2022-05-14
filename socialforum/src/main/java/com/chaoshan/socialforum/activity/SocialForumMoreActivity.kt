@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.Like
 import com.chaoshan.data_center.dynamic.like.LikeClient
 import com.chaoshan.socialforum.GridSpaceDecoration
 import com.chaoshan.socialforum.adapter.SocialForumCommentAdapter
 import com.chaoshan.socialforum.databinding.SocialForumMoreActivityBinding
 import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
+import com.chaoshan.socialforum.viewmodel.SocialForumMoreActivityViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,7 +25,7 @@ import kotlinx.coroutines.launch
 class SocialForumMoreActivity : AppCompatActivity() {
     private lateinit var binding: SocialForumMoreActivityBinding
     private var adapter: SocialForumCommentAdapter = SocialForumCommentAdapter()
-    private val viewModel by lazy { SocialForumActivityViewModel() }
+    private val viewModel by lazy { SocialForumMoreActivityViewModel() }
 
     @DelicateCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,15 +52,21 @@ class SocialForumMoreActivity : AppCompatActivity() {
                             ""
                         )
                     )
+
                 }
             }
             Log.e("SocialForumMoreActivity_DYNAMIC_ID", intent.getStringExtra(DYNAMIC_ID).toString())
+            adapter.reFresh()
         }
     }
 
     private fun initData() {
         adapter.setCurrentCYID(intent.getStringExtra(DYNAMIC_ID).toString())
-
+        val bundle = intent.extras
+        bundle?.let {
+            val dynamic: Dynamic = it.getSerializable(DYNAMIC) as Dynamic
+            adapter.setCurrentCY(dynamic)
+        }
     }
 
     @DelicateCoroutinesApi
@@ -78,9 +86,13 @@ class SocialForumMoreActivity : AppCompatActivity() {
 
     companion object {
         private const val DYNAMIC_ID = "dynamic_id"
-        fun goTo(context: Context, dynamicId: String) {
+        private const val DYNAMIC = "dynamic"
+        fun goTo(context: Context, dynamicId: String, dynamic: Dynamic) {
+            val bundle = Bundle()
+            bundle.putSerializable(DYNAMIC, dynamic)
             val intent = Intent(context, SocialForumMoreActivity::class.java)
             intent.putExtra(DYNAMIC_ID, dynamicId)
+            intent.putExtras(bundle)
             context.startActivity(intent)
         }
     }
