@@ -18,6 +18,7 @@ import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
+import com.yubinma.person_center.PersonCenter2Activity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -63,13 +64,23 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("openPerson") {
             openSoci()
+        },
+        DebugItem("mainActivty") {
+            openPersonCenter()
         }
 
     )
+
+    private fun openPersonCenter() {
+        val intent = Intent(this, PersonCenter2Activity::class.java)
+        startActivity(intent)
+    }
+
     private fun openChat() {
         val intent = Intent(this, ChatActivity::class.java)
         startActivity(intent)
     }
+
     private fun openInfor() {
         val intent = Intent(this, InforActivity::class.java)
         startActivity(intent)
