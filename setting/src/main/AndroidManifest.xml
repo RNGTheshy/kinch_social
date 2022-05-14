@@ -4,5 +4,7 @@
     <application>
         <activity android:name=".SettingMainActivity">
         </activity>
+        <activity android:name=".AboutKinchActivity">
+        </activity>
     </application>
 </manifest>

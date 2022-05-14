@@ -55,6 +55,26 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/fishprawncrab/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/socialforum/src/main/res/layout/social_forum_main_fragment.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_normal_white_15.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_normal_white_round.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_press_gray_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_press_gray_round.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_seletor_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_button_seletor_round.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_home_white10.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_round_red.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/ic_launcher_background.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/selector_btn_bg_white.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.33" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/chat/src/main/res/layout/friend_search_home.xml" value="0.25" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_normal_white_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_press_gray_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_red_15.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/selector_btn_bg_white.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/shape_divider.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/layout/about_kinch.xml" value="0.67" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/layout/setting_main_menu.xml" value="0.25" />
         <entry key="..\:/practise/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.14322916666666666" />
         <entry key="..\:/practise/positioningsocialsystem-android/app/src/main/res/layout/activity_main.xml" value="0.1125" />
         <entry key="..\:/practise/positioningsocialsystem-android/app_debug/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
@@ -109,7 +129,6 @@
         <entry key="login/src/main/res/layout/social_forum_all_fragment.xml" value="0.2760416666666667" />
         <entry key="login/src/main/res/layout/social_forum_item_view.xml" value="0.2760416666666667" />
         <entry key="person_center/src/main/res/drawable/bg.xml" value="0.30185185185185187" />
-        <entry key="person_center/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="person_center/src/main/res/layout/login_come_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
@@ -123,8 +142,6 @@
         <entry key="socialforum/src/main/res/layout/social_forum_fllow_item_view.xml" value="0.18110435663627153" />
         <entry key="socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.18110435663627153" />
         <entry key="socialforum/src/main/res/layout/social_forum_main_fragment.xml" value="0.18110435663627153" />
-        <entry key="socialforum/src/main/res/layout/social_forum_more_activity.xml" value="0.28802083333333334" />
-        <entry key="socialforum/src/main/res/layout/social_forum_more_comment_viewholder.xml" value="0.2" />
       </map>
     </option>
   </component>
@@ -133,6 +150,9 @@
     <option name="effort" value="default" />
     <option name="priority" value="Medium" />
     <option name="excludeFilter" value="" />
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://schemas.android.com/tools" location="$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
