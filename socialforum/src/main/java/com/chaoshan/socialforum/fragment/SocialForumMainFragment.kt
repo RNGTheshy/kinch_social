@@ -71,6 +71,7 @@ class SocialForumMainFragment : Fragment() {
             itemAnimator = null
         }
 
+
     }
 
     override fun onResume() {

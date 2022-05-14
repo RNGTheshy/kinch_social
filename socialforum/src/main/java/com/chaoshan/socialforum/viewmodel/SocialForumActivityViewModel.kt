@@ -20,4 +20,8 @@ class SocialForumActivityViewModel : ViewModel() {
         dynamicDao.updateObjectList()
     }
 
+    val currentDynamic: MutableLiveData<Dynamic> by lazy {
+        MutableLiveData<Dynamic>()
+    }
+
 }

@@ -65,7 +65,8 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/bg_round_red.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/ic_launcher_background.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/drawable/selector_btn_bg_white.xml" value="0.35052083333333334" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.18" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/Kinch_home/src/main/res/layout/activity_home_layout.xml" value="0.33" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/chat/src/main/res/layout/friend_search_home.xml" value="0.25" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_normal_white_15.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_press_gray_15.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_15.xml" value="0.35052083333333334" />
@@ -141,8 +142,6 @@
         <entry key="socialforum/src/main/res/layout/social_forum_fllow_item_view.xml" value="0.18110435663627153" />
         <entry key="socialforum/src/main/res/layout/social_forum_item_view.xml" value="0.18110435663627153" />
         <entry key="socialforum/src/main/res/layout/social_forum_main_fragment.xml" value="0.18110435663627153" />
-        <entry key="socialforum/src/main/res/layout/social_forum_more_activity.xml" value="0.28802083333333334" />
-        <entry key="socialforum/src/main/res/layout/social_forum_more_comment_viewholder.xml" value="0.2" />
       </map>
     </option>
   </component>

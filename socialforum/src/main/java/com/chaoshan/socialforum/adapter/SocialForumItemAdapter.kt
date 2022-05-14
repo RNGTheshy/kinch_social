@@ -8,13 +8,20 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaoshan.data_center.dynamic.comment.CommentClient
+import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
+import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
+import com.chaoshan.data_center.dynamic.like.LikeClient
 import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
+import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
 class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var data: List<Dynamic>? = null
+
+    private val viewModel by lazy { SocialForumActivityViewModel() }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<Dynamic>) {
@@ -23,16 +30,23 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val item = SocialForumItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val item =
+            SocialForumItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SocialForumItemViewHolder(item)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as SocialForumItemViewHolder
-        holder.binding.root.setOnClickListener {
-            SocialForumMoreActivity.goTo(it.context)
+        data?.get(position)?.let { p ->
+            holder.binding.root.setOnClickListener {
+                p.dynamicId?.let { it1 ->
+                    viewModel.currentDynamic.value = p
+                    SocialForumMoreActivity.goTo(it.context, it1, p)
+                }
+            }
         }
+
         data?.let {
             if (it[position].text == "null" || it[position].text.isNullOrEmpty()) {
                 holder.binding.mainText.visibility = View.GONE
@@ -46,11 +60,27 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             holder.binding.timeText.text = it[position].releaseTime
 
+            it[position].dynamicId?.let {
+                LikeClient.getLikeCount(it, object :
+                    GetLikeCountCallBack {
+                    override fun get(count: Int) {
+                        holder.binding.likesText.text = count.toString()
+                    }
+                })
+            }
 
             Glide.with(holder.binding.root.context)
-                    .load(it[position].picture)
-                    .centerCrop()
-                    .into(holder.binding.mainImage)
+                .load(it[position].picture)
+                .centerCrop()
+                .into(holder.binding.mainImage)
+            it[position].dynamicId?.let { it1 ->
+                CommentClient.getDataCount(it1, object : GetCommentCountListener {
+                    override fun getCount(count: Int) {
+                        holder.binding.commentCount.text = count.toString()
+                    }
+
+                })
+            }
         }
         setRadius(holder.itemView, 20.0F)
 

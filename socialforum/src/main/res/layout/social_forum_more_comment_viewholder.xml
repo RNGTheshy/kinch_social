@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:background="#E6E6E6"
-        android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E6E6E6">
 
 
     <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/icon_message"
-            android:id="@+id/icon_message"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comment_name" />
+        android:id="@+id/icon_message"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/icon_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/comment_name" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:text="yubinma："
-            android:layout_marginStart="5dp"
-            android:id="@+id/comment_name"
-            android:textStyle="bold"
-            android:textColor="#03378F"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_message" />
+        android:id="@+id/comment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="yubinma："
+        android:textColor="#03378F"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/icon_message"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/comment_time"
-            android:layout_marginEnd="10dp"
-            android:text="19:00 today"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comment_name"
-            app:layout_constraintBottom_toBottomOf="@+id/comment_name" />
+        android:id="@+id/comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="19:00 today"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/comment_name" />
 
     <TextView
-            android:layout_width="0dp"
-            android:layout_marginEnd="5dp"
-            android:text="hellloworo wordhello wordhello wordhello word"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/comment_name"
-            app:layout_constraintStart_toStartOf="@+id/comment_name"
-            app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/main_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="hellloworo wordhello wordhello wordhello word"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/comment_name"
+        app:layout_constraintTop_toBottomOf="@+id/comment_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

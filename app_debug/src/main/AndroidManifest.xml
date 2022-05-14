@@ -12,6 +12,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
+            android:theme="@style/Theme.ChaoshanCulture"
             android:supportsRtl="true">
         <activity
                 android:name=".MainActivity"
@@ -23,7 +24,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.yubinma.fishprawncrab.FishPrawnCrabMainActivity" />
         <!-- 即时通讯和推送 START -->
         <!-- 即时通讯和推送都需要 PushService -->
         <service android:name="cn.leancloud.push.PushService" />

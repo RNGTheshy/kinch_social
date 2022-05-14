@@ -23,7 +23,7 @@ class SocialForumActivity : AppCompatActivity() {
 
     private fun initAction() {
         binding.addSocialForum.setOnClickListener {
-            val intent = Intent(this, SocialForumMoreActivity::class.java)
+            val intent = Intent(this, SocialForumAddActivity::class.java)
             startActivity(intent)
         }
         binding.back.setOnClickListener {
