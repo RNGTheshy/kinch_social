@@ -3,7 +3,6 @@ package com.chaoshan.socialforum.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.chaoshan.data_center.dynamic.DynamicClient
 import com.chaoshan.socialforum.databinding.SocialForumActivityBinding
 import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
@@ -24,7 +23,7 @@ class SocialForumActivity : AppCompatActivity() {
 
     private fun initAction() {
         binding.addSocialForum.setOnClickListener {
-            val intent = Intent(this, SocialForumAddActivity::class.java)
+            val intent = Intent(this, SocialForumMoreActivity::class.java)
             startActivity(intent)
         }
         binding.back.setOnClickListener {

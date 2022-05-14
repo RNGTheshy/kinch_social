@@ -34,11 +34,13 @@ android {
 dependencies {
     implementation fileTree(dir:  'libs' , include: ['*.jar'])
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation project(path: ':setting')
     androidTestImplementation ('com.android.support.test.espresso: espresso-core: 2.2.2', {
         exclude group: 'com.android.support',  module: 'support-annotations'
     })
 
-
+    implementation 'cn.leancloud:storage-android:8.2.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

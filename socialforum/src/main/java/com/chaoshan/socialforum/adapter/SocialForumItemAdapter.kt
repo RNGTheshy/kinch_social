@@ -2,19 +2,16 @@ package com.chaoshan.socialforum.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Outline
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chaoshan.data_center.dynamic.Dynamic
+import com.chaoshan.data_center.dynamic.dynamic.Dynamic
+import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
-import kotlinx.coroutines.GlobalScope
-import kotlin.concurrent.thread
 
 class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var data: List<Dynamic>? = null
@@ -33,6 +30,9 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as SocialForumItemViewHolder
+        holder.binding.root.setOnClickListener {
+            SocialForumMoreActivity.goTo(it.context)
+        }
         data?.let {
             if (it[position].text == "null" || it[position].text.isNullOrEmpty()) {
                 holder.binding.mainText.visibility = View.GONE
