@@ -2,14 +2,58 @@ package com.chaoshan.data_center.dynamic.like
 
 import android.util.Log
 import cn.leancloud.LCObject
+import cn.leancloud.LCQuery
+import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 class LikeDao {
     fun createNewObject(like: Like) {
         val todoCreateObject: LCObject = LCObject(like.javaClass.simpleName)
-        createNewObject(todoCreateObject, like)
-        pushObject(todoCreateObject)
+        // 如果对应的ID有了就不再push上去了。
+        updateObjectList(todoCreateObject, like)
+    }
+
+    // 拉取对象数据
+    private fun updateObjectList(todoCreateObject: LCObject, like: Like) {
+        val query = LCQuery<LCObject>(Like::class.java.simpleName)
+        query.orderByDescending("createdAt")
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                t.forEach {
+                    if (it?.getString("dynamic_id") == like.dynamicID
+                            && it?.getString("like_people_id") == like.likePeopleId
+                    ) {
+                        return
+                    }
+                }
+                createNewObject(todoCreateObject, like)
+                pushObject(todoCreateObject)
+            }
+        })
+    }
+
+    fun getAllCountByDynamicId(string: String, listen: GetLikeCountCallBack) {
+        var count = 0
+        val query = LCQuery<LCObject>(Like::class.java.simpleName)
+        query.orderByDescending("createdAt")
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                t.forEach {
+                    if (it?.getString("dynamic_id") == string) {
+                        count++;
+                    }
+                }
+                listen.get(count);
+
+            }
+        })
     }
 
     // push对象
