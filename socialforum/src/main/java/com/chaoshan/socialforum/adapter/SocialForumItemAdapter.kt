@@ -9,12 +9,17 @@ import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
+import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
+import com.chaoshan.data_center.dynamic.like.LikeClient
 import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
+import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
 class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var data: List<Dynamic>? = null
+
+    private val viewModel by lazy { SocialForumActivityViewModel() }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<Dynamic>) {
@@ -32,9 +37,13 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder as SocialForumItemViewHolder
         data?.get(position)?.let { p ->
             holder.binding.root.setOnClickListener {
-                p.dynamicId?.let { it1 -> SocialForumMoreActivity.goTo(it.context, it1) }
+                p.dynamicId?.let { it1 ->
+                    viewModel.currentDynamic.value = p
+                    SocialForumMoreActivity.goTo(it.context, it1, p)
+                }
             }
         }
+
         data?.let {
             if (it[position].text == "null" || it[position].text.isNullOrEmpty()) {
                 holder.binding.mainText.visibility = View.GONE
@@ -48,6 +57,14 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             holder.binding.timeText.text = it[position].releaseTime
 
+            it[position].dynamicId?.let {
+                LikeClient.getLikeCount(it, object :
+                    GetLikeCountCallBack {
+                    override fun get(count: Int) {
+                        holder.binding.likesText.text = count.toString()
+                    }
+                })
+            }
 
             Glide.with(holder.binding.root.context)
                     .load(it[position].picture)

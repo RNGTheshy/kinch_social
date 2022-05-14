@@ -102,7 +102,7 @@ class DynamicDao {
 
     private fun lCObject2Dynamic(lCObject: LCObject): Dynamic {
         return Dynamic(
-            lCObject.getString("dynamic_id"),
+            lCObject.objectId,
             lCObject.getString("user_id"),
             lCObject.getString("theme"),
             lCObject.getString("text"),
