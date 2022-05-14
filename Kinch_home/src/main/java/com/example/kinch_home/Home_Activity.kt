@@ -240,6 +240,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
     companion object {
         fun goTo(context: Context) {
             val intent = Intent(context, Home_Activity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
     }
