@@ -133,6 +133,8 @@
         <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/person_center_activitty.xml" value="0.3209109854679962" />
+        <entry key="setting/src/main/res/layout/about_kinch.xml" value="0.2667572463768116" />
+        <entry key="setting/src/main/res/layout/setting_main_menu.xml" value="0.2667572463768116" />
         <entry key="socialforum/src/main/res/drawable/bt_green_bg.xml" value="0.2546875" />
         <entry key="socialforum/src/main/res/drawable/bt_red_bg.xml" value="0.28425925925925927" />
         <entry key="socialforum/src/main/res/layout/social_add_fragment.xml" value="0.3050381203364537" />

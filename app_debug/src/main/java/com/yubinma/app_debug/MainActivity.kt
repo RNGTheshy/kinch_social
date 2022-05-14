@@ -11,12 +11,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
 import com.example.chat.ChatActivity
 import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.kinch_home.Home_Activity
+import com.example.setting.SettingMainActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.person_center.PersonCenter2Activity
 
@@ -67,9 +69,17 @@ class MainActivity : AppCompatActivity() {
         },
         DebugItem("personActivity") {
             openPersonCenter()
+        },
+        DebugItem("openSetting") {
+            openSetting()
         }
 
     )
+
+    private fun openSetting() {
+        val intent = Intent(this, SettingMainActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun openPersonCenter() {
         val intent = Intent(this, PersonCenter2Activity::class.java)
@@ -94,7 +104,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun openKinchHome() {
-        val intent = Intent(this, Home_Activity::class.java)
+        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
+            Intent(this, LoginActivity::class.java)
+        } else {
+            Intent(this, Home_Activity::class.java)
+        }
         startActivity(intent)
     }
 

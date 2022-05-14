@@ -11,10 +11,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 
 class AboutKinchActivity : AppCompatActivity() {
-    private var backBtn : ImageView ?= null
-    private var updateBtn : LinearLayout?=null
-    private var introduceBtn : LinearLayout?=null
-    private var helpBtn : LinearLayout?=null
+    private var backBtn: ImageView? = null
+    private var updateBtn: LinearLayout? = null
+    private var introduceBtn: LinearLayout? = null
+    private var helpBtn: LinearLayout? = null
+
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.about_kinch)
@@ -33,7 +35,7 @@ class AboutKinchActivity : AppCompatActivity() {
         backBtn?.setOnClickListener {
             finish()
         }
-        updateBtn?.setOnClickListener{
+        updateBtn?.setOnClickListener {
             Snackbar.make(window.decorView.rootView, "已经是最新版本", Snackbar.LENGTH_SHORT).show()
         }
     }

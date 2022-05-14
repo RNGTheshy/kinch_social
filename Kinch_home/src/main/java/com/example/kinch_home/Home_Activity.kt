@@ -20,7 +20,6 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
-import com.example.chat.InforActivity
 import com.example.setting.SettingMainActivity
 import com.yubinma.person_center.PersonCenter2Activity
 
@@ -241,6 +240,14 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
         fun goTo(context: Context) {
             val intent = Intent(context, Home_Activity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
+
+        fun goToByActivity(context: Context) {
+            val intent: Intent =
+
+                Intent(context, Home_Activity::class.java)
+
             context.startActivity(intent)
         }
     }
