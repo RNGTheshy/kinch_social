@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +35,7 @@ public class PersonCenter2Activity extends AppCompatActivity {
         tosetting1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(PersonCenter2Activity.this,objectid,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PersonCenter2Activity.this, Setting.class);
                 intent.putExtra("objectid", objectid);
                 startActivity(intent);
