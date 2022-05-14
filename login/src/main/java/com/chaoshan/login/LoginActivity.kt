@@ -3,6 +3,7 @@ package com.chaoshan.login
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.userManager.LoginCallBack
 import com.chaoshan.data_center.userManager.UserManger
 import com.chaoshan.login.databinding.LoginMainActivityBinding
@@ -34,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
                 binding.editText2.text.toString(),
                 object : LoginCallBack {
                     override fun success() {
-
                         Home_Activity.goTo(GetApplicationContext.context!!)
                     }
 

@@ -243,8 +243,6 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
             context.startActivity(intent)
         }
     }
-
-
 }
 
 
