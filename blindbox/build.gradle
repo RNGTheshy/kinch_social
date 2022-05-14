@@ -49,7 +49,6 @@ dependencies {
     implementation project(path: ':login')
     implementation project(path: ':data_center')
     implementation project(path: ':socialforum')
-    implementation project(path: ':ui')
     implementation project(path: ':blindshow')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
