@@ -17,6 +17,10 @@ object SettingsPreferencesDataStore {
 
     const val USER_NAME = "user_name"
 
+    private var currentUserObjetID = "null"
+    fun getCurrentUserObjetID(): String {
+        return currentUserObjetID
+    }
 
     var EXAMPLE_COUNTER = stringPreferencesKey("example_counter")
 
@@ -24,6 +28,7 @@ object SettingsPreferencesDataStore {
      * 保存数据
      * */
     suspend fun saveData(context: Context, string: String, key: String) {
+        currentUserObjetID = string
         EXAMPLE_COUNTER = stringPreferencesKey(key)
         context.dataStore.edit { settings ->
             settings[EXAMPLE_COUNTER] = string
