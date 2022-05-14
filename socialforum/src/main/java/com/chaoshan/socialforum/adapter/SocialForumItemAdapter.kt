@@ -30,8 +30,10 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as SocialForumItemViewHolder
-        holder.binding.root.setOnClickListener {
-            SocialForumMoreActivity.goTo(it.context)
+        data?.get(position)?.let { p ->
+            holder.binding.root.setOnClickListener {
+                p.dynamicId?.let { it1 -> SocialForumMoreActivity.goTo(it.context, it1) }
+            }
         }
         data?.let {
             if (it[position].text == "null" || it[position].text.isNullOrEmpty()) {

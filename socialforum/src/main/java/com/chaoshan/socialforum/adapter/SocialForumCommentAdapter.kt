@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
+import com.chaoshan.data_center.dynamic.like.LikeClient
+import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumLikeViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumMoreCommentViewholderBinding
@@ -14,6 +17,12 @@ import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
 import com.chaoshan.socialforum.viewholder.SocialForumLikeItemViewHolder
 
 class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var currentCYID: String
+
+    fun setCurrentCYID(currentCYID: String) {
+        this.currentCYID = currentCYID
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             0 -> {
@@ -44,10 +53,20 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         }
     }
 
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position == 0) {
+            holder as SocialForumItemViewHolder
+            // todo 统计likeText数量
+            LikeClient.getLikeCount(currentCYID, object :
+                GetLikeCountCallBack {
+                override fun get(count: Int) {
+                    holder.binding.likesText.text = count.toString()
+                }
+            })
             setRadius(holder.itemView.rootView, 40.0F)
         } else {
+
             setRadius(holder.itemView.rootView, 10.0F)
         }
         if (position > 3) {
