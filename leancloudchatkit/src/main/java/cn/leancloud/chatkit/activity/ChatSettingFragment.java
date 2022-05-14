@@ -20,8 +20,9 @@ public class ChatSettingFragment extends Fragment {
     protected TextView clearChatHistory;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        //初始化界面
         View view = inflater.inflate(R.layout.chat_setting_fragment_layout, container, false);
-        closeSetting = (ImageView) view.findViewById(R.id.chat_setting);
+        closeSetting = (ImageView) view.findViewById(R.id.close_setting);
         findChatHistory = (TextView) view.findViewById(R.id.find_chat_history);
         clearChatHistory = (TextView) view.findViewById(R.id.clear_chat_history);
         return view;
@@ -29,18 +30,22 @@ public class ChatSettingFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
+        //点击时间
+        //返回时间
         closeSetting.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
+        //查找聊天记录
         findChatHistory.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //TODO 查找聊天记录
             }
         });
+        //清空聊天记录
         clearChatHistory.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

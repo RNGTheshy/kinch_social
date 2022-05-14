@@ -41,12 +41,13 @@ class ChatActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(userName)||TextUtils.isEmpty(password)){
                 finish()
             }
+        // 启动聊天连接 耗时操作
             LCChatKit.getInstance().open(userName,password,null,object : LCIMClientCallback() {
                 override fun done(client: LCIMClient, e: LCIMException?) {
                     if (e == null) {
-                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
-                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
-                        startActivity(intent)
+//                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
+//                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
+//                        startActivity(intent)
                     } else {
                         Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
                     }
