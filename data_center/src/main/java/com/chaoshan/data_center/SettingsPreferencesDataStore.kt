@@ -20,7 +20,7 @@ object SettingsPreferencesDataStore {
     const val USER_NAME = "user_name"
 
     @Volatile
-    private var currentUserObjetID = "null"
+    private var currentUserObjetID = "NULL"
     fun getCurrentUserObjetID(): String {
         return currentUserObjetID
     }

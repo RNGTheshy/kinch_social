@@ -25,7 +25,7 @@ class LikeDao {
             override fun onNext(t: List<LCObject?>) {
                 t.forEach {
                     if (it?.getString("dynamic_id") == like.dynamicID
-                            && it?.getString("like_people_id") == like.likePeopleId
+                        && it?.getString("like_people_id") == like.likePeopleId
                     ) {
                         return
                     }
@@ -55,6 +55,33 @@ class LikeDao {
             }
         })
     }
+
+    fun getLikePersonList(dyId: String, list: GetLikePersonList) {
+        val query = LCQuery<LCObject>(Like::class.java.simpleName)
+        query.orderByDescending("createdAt")
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                val outLikeList: MutableList<Like> = mutableListOf()
+                t.forEach {
+                    if (it?.getString("dynamic_id") == dyId) {
+                        outLikeList.add(
+                            Like(
+                                it.getString("dynamic_id"),
+                                it.getString("like_people_id"),
+                                it.getString("like_time")
+                            )
+                        )
+                    }
+                }
+                list.getLikePersonList(outLikeList)
+
+            }
+        })
+    }
+
 
     // push对象
     private fun pushObject(todoCreateObject: LCObject) {

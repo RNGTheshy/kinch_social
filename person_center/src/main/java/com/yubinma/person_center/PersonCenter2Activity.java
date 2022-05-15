@@ -1,5 +1,7 @@
 package com.yubinma.person_center;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +17,7 @@ import cn.leancloud.LeanCloud;
 
 public class PersonCenter2Activity extends AppCompatActivity {
     final String classname = "userdata";
-    final String objectid = SettingsPreferencesDataStore.INSTANCE.getCurrentUserObjetID();;
+    final String objectid = SettingsPreferencesDataStore.INSTANCE.getCurrentUserObjetID();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +26,16 @@ public class PersonCenter2Activity extends AppCompatActivity {
 //        System.out.println("hello");
         LeanCloud.initialize(this, "WFB1URKdIJqueBEjLd0P0xoy-gzGzoHsz", "9uuBkty0jB2T7HXyqDWmLOVj", "https://wfb1urkd.lc-cn-n1-shared.com");
 
+            Personal_data personal_data = new Personal_data();
+            TextView textView1 = findViewById(R.id.name100);
+            TextView textView2 = findViewById(R.id.gender100);
+            TextView textView3 = findViewById(R.id.birth100);
+            TextView textView4 = findViewById(R.id.state100);
+            TextView textView5 = findViewById(R.id.sign11);
+            personal_data.setcenter(classname, objectid, textView1, textView3, textView2, textView4, textView5);
+            Toast.makeText(PersonCenter2Activity.this, objectid, Toast.LENGTH_SHORT).show();
 
 
-
-
-
-        Personal_data personal_data = new Personal_data();
-        TextView textView1 = findViewById(R.id.name100);
-        TextView textView2 = findViewById(R.id.gender100);
-        TextView textView3 = findViewById(R.id.birth100);
-        TextView textView4 = findViewById(R.id.state100);
-        TextView textView5 = findViewById(R.id.sign11);
-        personal_data.setcenter(classname, objectid, textView1, textView3, textView2, textView4, textView5);
-        Toast.makeText(PersonCenter2Activity.this,objectid,Toast.LENGTH_SHORT).show();
 
         GridLayout tosetting1 = findViewById(R.id.turnto1);
         tosetting1.setOnClickListener(new View.OnClickListener() {

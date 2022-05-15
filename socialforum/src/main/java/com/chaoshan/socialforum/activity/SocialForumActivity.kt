@@ -3,10 +3,11 @@ package com.chaoshan.socialforum.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.chaoshan.socialforum.databinding.SocialForumActivityBinding
 import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 
-class SocialForumActivity : AppCompatActivity() {
+class SocialForumActivity : AppCompatActivity() , ActivityManager.IRecordPage{
     private val viewModel = SocialForumActivityViewModel()
     lateinit var binding: SocialForumActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {

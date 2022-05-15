@@ -10,4 +10,9 @@ object LikeClient {
         likeDao.getAllCountByDynamicId(dynamicId, likeCountCallBack)
     }
 
+    fun getLikePerson(dynamicId: String, getLikePersonList: GetLikePersonList) {
+        likeDao.getLikePersonList(dynamicId, getLikePersonList)
+    }
+
+
 }

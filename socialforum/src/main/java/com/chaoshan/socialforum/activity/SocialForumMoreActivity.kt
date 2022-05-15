@@ -48,18 +48,30 @@ class SocialForumMoreActivity : AppCompatActivity() {
             // 获取数据
             GetApplicationContext.context?.let {
                 GlobalScope.launch {
-                    Log.e("nameTest", SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME))
+                    Log.e(
+                        "nameTest",
+                        SettingsPreferencesDataStore.getName(
+                            it,
+                            SettingsPreferencesDataStore.USER_NAME
+                        )
+                    )
                     LikeClient.saveDate(
                         Like(
                             intent.getStringExtra(DYNAMIC_ID).toString(),
-                            SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME),
+                            SettingsPreferencesDataStore.getName(
+                                it,
+                                SettingsPreferencesDataStore.USER_NAME
+                            ),
                             ""
                         )
                     )
 
                 }
             }
-            Log.e("SocialForumMoreActivity_DYNAMIC_ID", intent.getStringExtra(DYNAMIC_ID).toString())
+            Log.e(
+                "SocialForumMoreActivity_DYNAMIC_ID",
+                intent.getStringExtra(DYNAMIC_ID).toString()
+            )
             adapter.reFresh()
         }
         binding.sent.setOnClickListener {
@@ -69,7 +81,10 @@ class SocialForumMoreActivity : AppCompatActivity() {
                         CommentClient.pushData(
                             Comment(
                                 intent.getStringExtra(DYNAMIC_ID).toString(),
-                                SettingsPreferencesDataStore.getName(it, SettingsPreferencesDataStore.USER_NAME),
+                                SettingsPreferencesDataStore.getName(
+                                    it,
+                                    SettingsPreferencesDataStore.USER_NAME
+                                ),
                                 "",
                                 binding.editText.text.toString()
                             )
@@ -77,6 +92,14 @@ class SocialForumMoreActivity : AppCompatActivity() {
                         binding.editText.text.clear()
                     }
                     adapter.reFresh()
+                    CommentClient.getData(
+                        intent.getStringExtra(DYNAMIC_ID).toString(),
+                        object : GetCommentDataListener {
+                            override fun getData(comment: List<Comment>) {
+                                adapter.setData(comment)
+                            }
+
+                        })
                 }
             }
         }
@@ -89,12 +112,14 @@ class SocialForumMoreActivity : AppCompatActivity() {
             val dynamic: Dynamic = it.getSerializable(DYNAMIC) as Dynamic
             adapter.setCurrentCY(dynamic)
         }
-        CommentClient.getData(intent.getStringExtra(DYNAMIC_ID).toString(), object : GetCommentDataListener {
-            override fun getData(comment: List<Comment>) {
-                adapter.setData(comment)
-            }
+        CommentClient.getData(
+            intent.getStringExtra(DYNAMIC_ID).toString(),
+            object : GetCommentDataListener {
+                override fun getData(comment: List<Comment>) {
+                    adapter.setData(comment)
+                }
 
-        })
+            })
     }
 
     @DelicateCoroutinesApi

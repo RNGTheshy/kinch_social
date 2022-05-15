@@ -56,7 +56,7 @@ class SocialForumAddActivity : AppCompatActivity() {
         // 获取数据
         GetApplicationContext.context!!.let {
             GlobalScope.launch {
-                val userId = SettingsPreferencesDataStore.USER_NAME
+                val userId = SettingsPreferencesDataStore.getCurrentUserObjetID()
                 val newDynamic = Dynamic(
                     "0",
                     userId,

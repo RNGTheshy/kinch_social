@@ -17,6 +17,7 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
@@ -24,7 +25,7 @@ import com.example.setting.SettingMainActivity
 import com.yubinma.person_center.PersonCenter2Activity
 
 
-class Home_Activity : AppCompatActivity(), View.OnClickListener {
+class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManager.IRecordPage {
     private var mMapView: MapView? = null
     private var mBaiduMap: BaiduMap? = null
     private var mLocationClient: LocationClient? = null

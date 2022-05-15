@@ -32,6 +32,7 @@ class SocialForumMainFragment : Fragment() {
         private const val DELAY_SHOW_MORE_DATA_DURATION = 400L
     }
 
+
     private val socialForumItemAdapter = SocialForumItemAdapter()
 
     private lateinit var binding: SocialForumMainFragmentBinding

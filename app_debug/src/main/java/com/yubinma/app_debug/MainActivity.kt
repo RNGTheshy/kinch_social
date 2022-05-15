@@ -12,6 +12,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.chaoshan.login.LoginActivity
 import com.chaoshan.login.LoginComeActivity
 import com.example.chat.ChatActivity
@@ -22,14 +23,16 @@ import com.example.setting.SettingMainActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.person_center.PersonCenter2Activity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     private lateinit var binding: ActivityMainBinding
     private var adapter = DebugAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initView()
+        openKinchHome()
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//        initView()
     }
 
     private fun initView() {
@@ -104,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun openKinchHome() {
-        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
+        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "NULL") {
             Intent(this, LoginActivity::class.java)
         } else {
             Intent(this, Home_Activity::class.java)

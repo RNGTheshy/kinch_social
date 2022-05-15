@@ -13,6 +13,8 @@ import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.LikeClient
+import com.chaoshan.data_center.togetname.center_getname
+import com.chaoshan.data_center.togetname.getPersonal_data
 import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
@@ -73,6 +75,7 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .load(it[position].picture)
                 .centerCrop()
                 .into(holder.binding.mainImage)
+
             it[position].dynamicId?.let { it1 ->
                 CommentClient.getDataCount(it1, object : GetCommentCountListener {
                     override fun getCount(count: Int) {
@@ -81,6 +84,13 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 })
             }
+
+            getPersonal_data.center_getname(it[position].userID, object : center_getname {
+                override fun getname(name: String?) {
+                    holder.binding.nameText.text = name
+                }
+            })
+
         }
         setRadius(holder.itemView, 20.0F)
 

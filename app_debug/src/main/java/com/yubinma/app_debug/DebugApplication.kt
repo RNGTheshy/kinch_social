@@ -14,6 +14,7 @@ import cn.leancloud.im.LCIMOptions
 import cn.leancloud.push.PushService
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.example.chat.ChatActivity
 import com.example.chat.CustomUserProvider
 
@@ -50,7 +51,7 @@ class DebugApplication : MultiDexApplication() {
             }
         }
         SettingsPreferencesDataStore.setCurrentUserObjectID()
-
+        ActivityManager.registerActivityLifecycleCallbacks(this)
         LCChatKit.getInstance().setProfileProvider(CustomUserProvider.getInstance())
         LCIMOptions.getGlobalOptions().setDisableAutoLogin4Push(true)
         LCChatKit.getInstance().init(

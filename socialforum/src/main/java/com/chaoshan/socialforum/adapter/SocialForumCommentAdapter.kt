@@ -13,7 +13,11 @@ import com.chaoshan.data_center.dynamic.comment.CommentClient
 import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
+import com.chaoshan.data_center.dynamic.like.GetLikePersonList
+import com.chaoshan.data_center.dynamic.like.Like
 import com.chaoshan.data_center.dynamic.like.LikeClient
+import com.chaoshan.data_center.togetname.center_getname
+import com.chaoshan.data_center.togetname.getPersonal_data
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumLikeViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumMoreCommentViewholderBinding
@@ -108,6 +112,11 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
                     })
                 }
+                getPersonal_data.center_getname(it.userID, object : center_getname {
+                    override fun getname(name: String?) {
+                        holder.binding.nameText.text = name
+                    }
+                })
 
             }
 
@@ -124,7 +133,35 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 holder as SocialForumCommentItemViewHolder
                 holder.binding.mainComment.text = it[position - 2].comment
                 holder.binding.commentTime.text = it[position - 2].time
+                getPersonal_data.center_getname(
+                    it[position - 2].commentatorId,
+                    object : center_getname {
+                        override fun getname(name: String?) {
+                            holder.binding.commentName.text = name
+                        }
+                    })
             }
+
+        }
+        if (position == 1) {
+
+            LikeClient.getLikePerson(this.currentCYID, object : GetLikePersonList {
+                override fun getLikePersonList(likeList: List<Like>) {
+                    var outString: String = ""
+                    likeList.forEach {
+                        getPersonal_data.center_getname(it.likePeopleId, object : center_getname {
+                            override fun getname(name: String?) {
+                                outString = "$outString;$name"
+                                holder as SocialForumLikeItemViewHolder
+                                holder.binding.commentName.text = outString
+                            }
+                        })
+                    }
+
+                    holder as SocialForumLikeItemViewHolder
+                    holder.binding.commentName.text = outString
+                }
+            })
 
         }
 

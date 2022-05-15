@@ -9,9 +9,9 @@
             android:usesCleartextTraffic="true"
             android:allowBackup="true"
             android:name=".DebugApplication"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:icon="@mipmap/kinch_icon"
+            android:label="Kinch"
+            android:roundIcon="@mipmap/kinch_icon"
             android:theme="@style/Theme.ChaoshanCulture"
             android:supportsRtl="true">
         <activity
