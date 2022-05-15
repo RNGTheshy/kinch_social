@@ -1,25 +1,28 @@
 package com.yubinma.person_center
 
+import android.content.Context
 import android.util.Log
+import android.widget.ImageView
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
+import com.bumptech.glide.Glide
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 
-public class Headport {
+public class headport {
 
 
     // push对象
     private fun pushObject(todoCreateObject: LCObject) {
-
         todoCreateObject.saveInBackground().subscribe(object : Observer<LCObject?> {
             override fun onSubscribe(d: Disposable) {}
             override fun onError(e: Throwable) {
                 Log.e("DynamicCreate", "saveError")
 
             }
+
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
                 Log.e("DynamicCreate", "saveSuccess" + t.objectId)
@@ -28,7 +31,7 @@ public class Headport {
     }
 
     //查找objectid对应位置
-    private fun pushpicutre(objectid: String,theurl: String){
+    private fun pushpicutre(objectid: String, theurl: String) {
         val query = LCQuery<LCObject>("headportrait")
         query.whereEqualTo("userid", objectid)
         query.firstInBackground.subscribe(object : Observer<LCObject?> {
@@ -36,7 +39,7 @@ public class Headport {
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
-                t.put("picture",theurl);
+                t.put("picture", theurl);
                 pushObject(t);
 
             }
@@ -45,12 +48,12 @@ public class Headport {
 
 
     //保存图片
-    public fun savepicture(objectid: String, bitmap: ByteArray) {
+    private fun savepicture(objectid: String, bitmap: ByteArray) {
         val file = LCFile("test", bitmap)
         file.saveInBackground().subscribe(object : Observer<LCFile> {
             override fun onSubscribe(disposable: Disposable) {}
             override fun onNext(file: LCFile) {
-                pushpicutre(objectid,file.url)
+                pushpicutre(objectid, file.url)
                 Log.e("文件保存完成。", "URL：" + file.url)
             }
 
@@ -62,5 +65,12 @@ public class Headport {
             override fun onComplete() {}
         })
 
+    }
+
+    private fun saveToImage(url: String, context: Context, imageView: ImageView) {
+        Glide.with(context)
+            .load(url)
+            .centerCrop()
+            .into(imageView)
     }
 }

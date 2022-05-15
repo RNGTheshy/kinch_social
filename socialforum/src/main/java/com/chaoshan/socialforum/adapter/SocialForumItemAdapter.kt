@@ -75,6 +75,7 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .load(it[position].picture)
                 .centerCrop()
                 .into(holder.binding.mainImage)
+
             it[position].dynamicId?.let { it1 ->
                 CommentClient.getDataCount(it1, object : GetCommentCountListener {
                     override fun getCount(count: Int) {
