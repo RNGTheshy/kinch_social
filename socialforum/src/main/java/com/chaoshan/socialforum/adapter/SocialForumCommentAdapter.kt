@@ -133,6 +133,13 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 holder as SocialForumCommentItemViewHolder
                 holder.binding.mainComment.text = it[position - 2].comment
                 holder.binding.commentTime.text = it[position - 2].time
+                getPersonal_data.center_getname(
+                    it[position - 2].commentatorId,
+                    object : center_getname {
+                        override fun getname(name: String?) {
+                            holder.binding.commentName.text = name
+                        }
+                    })
             }
 
         }
