@@ -116,8 +116,8 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener {
         }
         mMessageButton?.setOnClickListener {
             goToChat(this, "147", "147")
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, ChatActivity::class.java)
+//            startActivity(intent)
 
         }
         mTrendsButton?.setOnClickListener {
