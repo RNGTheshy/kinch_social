@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Rename" />
+        <activity android:name=".csign" />
+        <activity android:name=".changestate" />
         <activity android:name=".Setsex"/>
         <activity android:name=".Setting"/>
         <activity android:name=".Cpassword"/>

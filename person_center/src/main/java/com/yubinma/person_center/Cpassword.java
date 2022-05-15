@@ -31,29 +31,17 @@ public class Cpassword extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent=getIntent();
                 String objectid=intent.getStringExtra("objectid");
+                Toast.makeText(Cpassword.this,objectid,Toast.LENGTH_SHORT).show();
+                Personal_data personal_data = new Personal_data();
+                personal_data.setPassword(objectid);
 
-                LCQuery<LCObject> query = new LCQuery<>("_User");
-                query.whereEqualTo("objectid", objectid);
 
-                        LCUser.requestPasswordResetInBackground("862432718@qq.com").subscribe(new Observer<LCNull>() {
-                            @Override
-                            public void onSubscribe(Disposable disposable) {}
-                            @Override
-                            public void onNext(LCNull lcNull) {
-                                // 成功调用
-                                Toast.makeText(Cpassword.this,"修改完成",Toast.LENGTH_SHORT).show();
-                                Log.e("修改完成。", "success");
-                            }
-                            @Override
-                            public void onError(Throwable throwable) {
-                                // 调用出错
-                                Log.e("修改失败2。", throwable.toString());
-                            }
-                            @Override
-                            public void onComplete() {}
-                        });
-                        System.out.println();
-                        // changePassword(todo.getString("email"));
+
+
+
+
+                System.out.println();
+                // changePassword(todo.getString("email"));
 
 
             }
@@ -63,9 +51,6 @@ public class Cpassword extends AppCompatActivity{
 //                Toast.makeText(Cpassword.this,objectid,Toast.LENGTH_SHORT).show();
 //                Personal_data personal_data=new Personal_data();
 //                personal_data.setPassword(objectid);
-
-
-
 
 
         TextView textView=findViewById(R.id.back5);
