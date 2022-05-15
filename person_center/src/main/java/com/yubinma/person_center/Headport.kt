@@ -1,14 +1,17 @@
 package com.yubinma.person_center
 
+import android.content.Context
 import android.util.Log
+import android.widget.ImageView
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
+import com.bumptech.glide.Glide
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 
-public class headport {
+public class Headport {
 
 
     // push对象
