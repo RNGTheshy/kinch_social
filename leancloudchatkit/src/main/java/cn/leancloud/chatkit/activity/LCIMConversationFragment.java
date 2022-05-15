@@ -276,7 +276,7 @@ public class LCIMConversationFragment extends Fragment {
 //    }else{
 //      imConversation.queryMessagesFromServer(20,callback);
 //    }
-    imConversation.queryMessages(new LCIMMessagesQueryCallback() {
+    imConversation.queryMessagesFromCache(10,new LCIMMessagesQueryCallback() {
       @Override
       public void done(List<LCIMMessage> messageList, LCIMException e) {
         if (filterException(e)) {
