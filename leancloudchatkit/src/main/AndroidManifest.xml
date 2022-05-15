@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LCIMImageActivity"/>
-        <activity android:name=".activity.LCIMConversationSettingActivity">
+        <activity android:name=".activity.LCIMConversationSettingActivity"/>
+        <activity android:name=".activity.ChatSettingActivity">
         </activity>
 
         <receiver android:name="cn.leancloud.push.AVBroadcastReceiver"
