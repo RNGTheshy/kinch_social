@@ -73,4 +73,20 @@ public class Headport {
             .centerCrop()
             .into(imageView)
     }
+    fun setImage(objectid: String,imageView: ImageView){
+        val query = LCQuery<LCObject>("userdata")
+        query.whereEqualTo("userid", objectid)
+        query.firstInBackground.subscribe(object : Observer<LCObject?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: LCObject) {
+                saveToImage(t.getString("picture"),imageView.context,imageView);
+
+            }
+        })
+
+    }
+
+
 }
