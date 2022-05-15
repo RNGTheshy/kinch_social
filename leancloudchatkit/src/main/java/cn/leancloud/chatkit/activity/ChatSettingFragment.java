@@ -3,6 +3,7 @@ package cn.leancloud.chatkit.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,13 +50,15 @@ public class ChatSettingFragment extends Fragment {
                 getActivity().finish();
             }
         });
-        //查找聊天记录
+        //查询聊天记录
         findChatHistory.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //TODO 查找聊天记录
-//                DatabaseDelegateFactory factory = InternalConfiguration.getDatabaseDelegateFactory();
-//                DatabaseDelegate delegate = factory.createInstance(LCChatKit.getInstance().getCurrentUserId());
+               //跳转聊天设置页面
+                Intent intent = new Intent(getContext(),FindChatHistoryActivity.class);
+                intent.putExtra(FindChatHistoryActivity.CONVERSATION_ID,imConversation.getConversationId());
+                startActivity(intent);
             }
         });
         //清空聊天记录
@@ -63,7 +66,7 @@ public class ChatSettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO 清空聊天记录
-                LCIMMessageStorage lcimMessageStorage = LCIMMessageStorage.getInstance(LCChatKit.getInstance().getCurrentUserId());
+                LCIMMessageStorage lcimMessageStorage =LCChatKit.getInstance().getCurrentMessageStorage();
                 //删除确定窗口
                 AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("清空聊天记录").setMessage("确定要清空聊天记录吗?")
                         .setNegativeButton("取消",new DialogInterface.OnClickListener() {

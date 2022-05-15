@@ -37,21 +37,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
-            <TextView
-                android:id="@+id/find_chat_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/icon_going"
-                android:text="查找聊天记录"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#FF383838"
-                android:layout_marginTop="30dp"
-                app:layout_constraintLeft_toLeftOf="@id/close_setting"
-                app:layout_constraintTop_toBottomOf="@id/close_setting"
-                />
+        <TextView
+            android:id="@+id/find_chat_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/icon_going"
+            android:text="查找聊天记录"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF383838"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="@id/close_setting"
+            app:layout_constraintTop_toBottomOf="@id/close_setting"
+            />
         <TextView
             android:id="@+id/clear_chat_history"
             android:layout_width="match_parent"
@@ -76,5 +76,3 @@
         app:layout_constraintGuide_begin="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

@@ -16,6 +16,7 @@ import cn.leancloud.im.LCIMOptions
 import cn.leancloud.im.v2.LCIMClient
 import cn.leancloud.im.v2.LCIMException
 import cn.leancloud.im.v2.callback.LCIMClientCallback
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import kotlinx.android.synthetic.main.chat_room.*
 
 class ChatActivity : AppCompatActivity() {
@@ -44,38 +45,48 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.chat_room)
 
         LCIMOptions.getGlobalOptions().setAutoOpen(true)
-            val userId = intent.getStringExtra(USER_ID)
-            if (!TextUtils.isEmpty(userId)){
-                LCChatKit.getInstance().open(userId , object : LCIMClientCallback() {
-                    override fun done(client: LCIMClient, e: LCIMException?) {
-                        if (e == null) {
-//                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
-//                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
-//                        startActivity(intent)
-                        } else {
-                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                })
-            }else{
-                val userName =  intent.getStringExtra(USER_NAME)
-                val password = intent.getStringExtra(PASSWORD)
-                if (TextUtils.isEmpty(userName)||TextUtils.isEmpty(password)){
-                    finish()
+        LCChatKit.getInstance().open(SettingsPreferencesDataStore.getCurrentUserObjetID(),object : LCIMClientCallback() {
+            override fun done(client: LCIMClient, e: LCIMException?) {
+                if (e == null) {
+
+                } else {
+                    Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
                 }
-                // 启动聊天连接 耗时操作
-                LCChatKit.getInstance().open(userName,password,null,object : LCIMClientCallback() {
-                    override fun done(client: LCIMClient, e: LCIMException?) {
-                        if (e == null) {
-//                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
-//                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
-//                        startActivity(intent)
-                        } else {
-                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                })
             }
+        })
+
+//            val userId = intent.getStringExtra(USER_ID)
+//            if (!TextUtils.isEmpty(userId)){
+//                LCChatKit.getInstance().open(userId , object : LCIMClientCallback() {
+//                    override fun done(client: LCIMClient, e: LCIMException?) {
+//                        if (e == null) {
+////                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
+////                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
+////                        startActivity(intent)
+//                        } else {
+//                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                })
+//            }else{
+//                val userName =  intent.getStringExtra(USER_NAME)
+//                val password = intent.getStringExtra(PASSWORD)
+//                if (TextUtils.isEmpty(userName)||TextUtils.isEmpty(password)){
+//                    finish()
+//                }
+//                // 启动聊天连接 耗时操作
+//                LCChatKit.getInstance().open(userName,password,object : LCIMClientCallback() {
+//                    override fun done(client: LCIMClient, e: LCIMException?) {
+//                        if (e == null) {
+////                        val intent = Intent(this@ChatActivity,LCIMConversationActivity::class.java)
+////                        intent.putExtra(LCIMConstants.PEER_ID, "626684ceadc5786698ac1f09")
+////                        startActivity(intent)
+//                        } else {
+//                            Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                })
+//            }
 
 
 
