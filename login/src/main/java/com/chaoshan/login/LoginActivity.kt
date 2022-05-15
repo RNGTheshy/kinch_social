@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chaoshan.data_center.GetApplicationContext
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.chaoshan.data_center.userManager.LoginCallBack
 import com.chaoshan.data_center.userManager.UserManger
 import com.chaoshan.login.databinding.LoginMainActivityBinding
@@ -11,7 +12,7 @@ import com.example.kinch_home.Home_Activity
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     lateinit var binding: LoginMainActivityBinding
 
     @DelicateCoroutinesApi

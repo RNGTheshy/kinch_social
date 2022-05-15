@@ -4,15 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/drawable/bg.xml" value="0.218" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/center.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/cpassword.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/csign.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/cstate.xml" value="0.23697916666666666" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/ctelephone.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/person_center_activitty.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/74293/Desktop/positioningsocialsystem-android/person_center/src/main/res/layout/setsex.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/app_debug/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/app_debug/src/main/res/layout/item_debug.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/ChaoshanCulture-Android/blindbox/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.36102564102564105" />
@@ -142,6 +133,10 @@
         <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/person_center_activitty.xml" value="0.3209109854679962" />
+        <entry key="setting/src/main/res/drawable/bg_button_seletor_green_15.xml" value="0.2759259259259259" />
+        <entry key="setting/src/main/res/drawable/bg_button_seletor_red_15.xml" value="0.2759259259259259" />
+        <entry key="setting/src/main/res/drawable/selector_btn_bg_white.xml" value="0.2759259259259259" />
+        <entry key="setting/src/main/res/drawable/shape_divider.xml" value="0.2759259259259259" />
         <entry key="setting/src/main/res/layout/about_kinch.xml" value="0.2667572463768116" />
         <entry key="setting/src/main/res/layout/setting_main_menu.xml" value="0.2667572463768116" />
         <entry key="socialforum/src/main/res/drawable/bt_green_bg.xml" value="0.2546875" />
