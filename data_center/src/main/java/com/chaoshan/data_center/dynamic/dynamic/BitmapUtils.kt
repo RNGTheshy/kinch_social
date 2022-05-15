@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream
 object BitmapUtils {
     private const val TAG = "BitmapUtils"
 
+    @JvmStatic
     fun bmpToByteArray(bmp: Bitmap, needRecycle: Boolean): ByteArray {
         val output = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, output)//设置图片格式压缩相关
