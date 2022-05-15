@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chaoshan.data_center.dynamic.dynamic.BitmapUtils;
+
 import java.nio.ByteBuffer;
 import java.util.Calendar;
 
@@ -37,7 +39,7 @@ public class Setting extends AppCompatActivity {
     private ImageView img;
     ImageView iv_photo;
     final String classname = "userdata";
-
+    String objid="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class Setting extends AppCompatActivity {
         Toast.makeText(Setting.this,"修改成功",Toast.LENGTH_SHORT).show();
         Intent intent = getIntent();
         final String objectid = intent.getStringExtra("objectid").toString();
-
+        objid=objectid;
         TextView btcenter=findViewById(R.id.btcenter);
         btcenter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,10 +219,10 @@ public class Setting extends AppCompatActivity {
                 int bytes = bitmap2.getByteCount();
                 ByteBuffer buf = ByteBuffer.allocate(bytes);
                 bitmap2.copyPixelsToBuffer(buf);
+                Headport headport=new Headport();
 
-                Intent intent = getIntent();
-                final String objectid = intent.getStringExtra("objectid").toString();
 
+                headport.savepicture(objid, BitmapUtils.bmpToByteArray(bitmap2,false));
 
 
 
