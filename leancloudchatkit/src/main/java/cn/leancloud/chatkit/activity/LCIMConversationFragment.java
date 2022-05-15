@@ -158,6 +158,7 @@ public class LCIMConversationFragment extends Fragment {
       @Override
       public void onClick(View v) {
         //TODO 跳转聊天设置页面
+        //跳转聊天设置页面
         Intent intent = new Intent(getContext(),ChatSettingActivity.class);
         intent.putExtra(ChatSettingActivity.CONVERSATION_ID,imConversation.getConversationId());
         startActivity(intent);
