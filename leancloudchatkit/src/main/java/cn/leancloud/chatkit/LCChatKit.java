@@ -13,6 +13,7 @@ import cn.leancloud.im.SignatureFactory;
 import cn.leancloud.im.v2.LCIMClient;
 import cn.leancloud.im.v2.LCIMException;
 import cn.leancloud.im.v2.LCIMMessageManager;
+import cn.leancloud.im.v2.LCIMMessageStorage;
 import cn.leancloud.im.v2.LCIMTypedMessage;
 import cn.leancloud.im.v2.callback.LCIMClientCallback;
 
@@ -227,5 +228,12 @@ public final class LCChatKit {
       user.setUsername(userName);
       user.setPassword(password);
       user.signUpInBackground().subscribe(callback);
+  }
+
+  public LCIMMessageStorage getCurrentMessageStorage(){
+    if (!TextUtils.isEmpty(currentUserId)) {
+      return LCIMMessageStorage.getInstance(currentUserId);
+    }
+    return null;
   }
 }

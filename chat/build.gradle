@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation project(path: ':leancloudchatkit')
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.7.1'
+    implementation project(path: ':data_center')
     apply plugin:'kotlin-android'
     apply plugin: 'kotlin-android-extensions'
     testImplementation 'junit:junit:4.13.2'
