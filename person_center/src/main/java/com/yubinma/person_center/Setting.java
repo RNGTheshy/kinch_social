@@ -218,6 +218,12 @@ public class Setting extends AppCompatActivity {
                 ByteBuffer buf = ByteBuffer.allocate(bytes);
                 bitmap2.copyPixelsToBuffer(buf);
 
+                Intent intent = getIntent();
+                final String objectid = intent.getStringExtra("objectid").toString();
+
+
+
+
                 img.setImageBitmap(bitmap2);
                 break;
         }
