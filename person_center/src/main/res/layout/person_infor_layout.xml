@@ -26,13 +26,13 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/back" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="基本资料"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:textColor="#B3DA61"
                 android:textSize="20dp"
                 android:gravity="center"

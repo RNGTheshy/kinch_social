@@ -12,7 +12,7 @@
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:textSize="20dp"/>
     <GridLayout
         android:layout_width="match_parent"
@@ -27,13 +27,13 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/back" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="个人中心"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:textColor="#B3DA61"
             android:textSize="25dp"
             android:gravity="center"
