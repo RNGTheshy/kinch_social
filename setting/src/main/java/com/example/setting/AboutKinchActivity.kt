@@ -8,9 +8,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.google.android.material.snackbar.Snackbar
 
-class AboutKinchActivity : AppCompatActivity() {
+class AboutKinchActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     private var backBtn: ImageView? = null
     private var updateBtn: LinearLayout? = null
     private var introduceBtn: LinearLayout? = null

@@ -10,8 +10,9 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.AppUtils
 import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.activitymanger.ActivityManager
 
-class SettingMainActivity : AppCompatActivity() {
+class SettingMainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     private var backBtn: ImageView? = null
     private var aboutKinchBtn: LinearLayout? = null
     private var evaluationBtn: LinearLayout? = null
@@ -50,8 +51,8 @@ class SettingMainActivity : AppCompatActivity() {
             startActivity(i)
         }
         exitBtn?.setOnClickListener {
-            SettingsPreferencesDataStore.setUserObjectId("null")
-            android.os.Process.killProcess(android.os.Process.myPid());
+            SettingsPreferencesDataStore.setUserObjectId("NULL")
+            ActivityManager.finishAllActivities()
         }
     }
 

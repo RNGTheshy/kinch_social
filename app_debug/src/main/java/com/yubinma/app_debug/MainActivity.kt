@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun openKinchHome() {
-        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "null") {
+        val intent: Intent = if (SettingsPreferencesDataStore.getCurrentUserObjetID() == "NULL") {
             Intent(this, LoginActivity::class.java)
         } else {
             Intent(this, Home_Activity::class.java)
