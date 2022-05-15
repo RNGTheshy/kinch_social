@@ -11,7 +11,7 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 
-public class headport {
+public class Headport {
 
 
     // push对象
@@ -48,7 +48,7 @@ public class headport {
 
 
     //保存图片
-    private fun savepicture(objectid: String, bitmap: ByteArray) {
+    fun savepicture(objectid: String, bitmap: ByteArray) {
         val file = LCFile("test", bitmap)
         file.saveInBackground().subscribe(object : Observer<LCFile> {
             override fun onSubscribe(disposable: Disposable) {}
