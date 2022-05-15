@@ -36,7 +36,6 @@ public class Rename extends AppCompatActivity {
                     LCObject todo = LCObject.createWithoutData(classname, objectid);
                     Personal_data personal_data = new Personal_data();
                     personal_data.saveId(classname, objectid, namee1);
-
                     try {
                         sleep(500);
                     } catch (InterruptedException e) {

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -42,10 +43,20 @@ public class Setting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.person_infor_layout);
+        Toast.makeText(Setting.this,"修改成功",Toast.LENGTH_SHORT).show();
         Intent intent = getIntent();
         final String objectid = intent.getStringExtra("objectid").toString();
 
+        TextView btcenter=findViewById(R.id.btcenter);
+        btcenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Setting.this,PersonCenter2Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         img = (ImageView) findViewById(R.id.usernam);
 
@@ -56,27 +67,27 @@ public class Setting extends AppCompatActivity {
         TextView showbirth = findViewById(R.id.showbirth);
         TextView userphone = findViewById(R.id.userphone);
         TextView userpassword1 = findViewById(R.id.userpassword);
+
         personal_data.getdata(classname, objectid, username, usergender, showbirth, userphone, userpassword1);
+
         telephonenumber = userphone.getText().toString();
         useremail = userpassword1.getText().toString();
 
-        final LCQuery<LCObject> query = new LCQuery<>(classname);
+        final LCQuery<LCObject> query;
+        query = new LCQuery<>(classname);
         query.getInBackground(objectid).subscribe(new Observer<LCObject>() {
             @Override
             public void onSubscribe(Disposable disposable) {
             }
-
             @Override
             public void onNext(LCObject todo) {
                 telephonenumber = todo.getString("phone_number");
                 Toast.makeText(Setting.this, telephonenumber, Toast.LENGTH_SHORT).show();
                 useremail = todo.getString("email");
             }
-
             @Override
             public void onError(Throwable throwable) {
             }
-
             @Override
             public void onComplete() {
             }
