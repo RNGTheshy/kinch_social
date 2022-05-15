@@ -48,7 +48,7 @@ public class Headport {
 
 
     //保存图片
-    fun savepicture(objectid: String, bitmap: ByteArray) {
+    private fun savepicture(objectid: String, bitmap: ByteArray) {
         val file = LCFile("test", bitmap)
         file.saveInBackground().subscribe(object : Observer<LCFile> {
             override fun onSubscribe(disposable: Disposable) {}

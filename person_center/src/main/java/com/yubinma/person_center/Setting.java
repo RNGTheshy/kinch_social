@@ -223,10 +223,8 @@ public class Setting extends AppCompatActivity {
 
 
                 headport.savepicture(objid, BitmapUtils.bmpToByteArray(bitmap2,false));
+                headport.setImage(objid,img);
 
-
-
-                img.setImageBitmap(bitmap2);
                 break;
         }
     }

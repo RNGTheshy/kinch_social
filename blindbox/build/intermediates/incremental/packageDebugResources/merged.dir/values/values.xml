@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="golden">#FABF31</color>
+    <color name="gray">#4C4C4C</color>
+    <color name="light_gray">#979797</color>
+    <color name="pink">#E91E63</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="badge_radio_button_text_size">10sp</dimen>
+    <dimen name="loading_dialog_height">80dp</dimen>
+    <dimen name="loading_dialog_icon_height">30dp</dimen>
+    <dimen name="loading_dialog_icon_width">30dp</dimen>
+    <dimen name="loading_dialog_msg_margin_top">10dp</dimen>
+    <dimen name="loading_dialog_width">80dp</dimen>
+    <string name="app_name">Chaoshan Culture</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryVariant">@color/gray</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/golden</item>
+        <item name="colorSecondaryVariant">@color/golden</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="CheckBoxTheme">
+        <item name="colorAccent">@color/golden</item><!--选中颜色-->
+    </style>
+    <style name="Theme.BlindBox" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/golden</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="grayButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
+        <item name="colorButtonNormal">@color/gray</item>
+    </style>
+    <declare-styleable name="ShadowLayout">
+        <attr format="color" name="shadowColor"/>
+        <attr format="dimension" name="shadowRadius"/>
+        <attr format="dimension" name="shadowRadiusLeft"/>
+        <attr format="dimension" name="shadowRadiusRight"/>
+        <attr format="dimension" name="shadowRadiusTop"/>
+        <attr format="dimension" name="shadowRadiusButtom"/>
+        <attr format="dimension" name="shadowDx"/>
+        <attr format="dimension" name="shadowDy"/>
+        <attr name="shadowShape">
+            <flag name="rectangle" value="0x0001"/>
+            <flag name="oval" value="0x0010"/>
+        </attr>
+        <attr name="shadowSide">
+            <flag name="all" value="0x1111"/>
+            <flag name="left" value="0x0001"/>
+            <flag name="top" value="0x0010"/>
+            <flag name="right" value="0x0100"/>
+            <flag name="bottom" value="0x1000"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="SwipePanel">
+        <attr format="color" name="leftSwipeColor"/>
+        <attr format="color" name="topSwipeColor"/>
+        <attr format="color" name="rightSwipeColor"/>
+        <attr format="color" name="bottomSwipeColor"/>
+        <attr format="dimension" name="leftEdgeSize"/>
+        <attr format="dimension" name="topEdgeSize"/>
+        <attr format="dimension" name="rightEdgeSize"/>
+        <attr format="dimension" name="bottomEdgeSize"/>
+        <attr format="reference" name="leftDrawable"/>
+        <attr format="reference" name="topDrawable"/>
+        <attr format="reference" name="rightDrawable"/>
+        <attr format="reference" name="bottomDrawable"/>
+        <attr format="boolean" name="isLeftCenter"/>
+        <attr format="boolean" name="isTopCenter"/>
+        <attr format="boolean" name="isRightCenter"/>
+        <attr format="boolean" name="isBottomCenter"/>
+        <attr format="boolean" name="isLeftEnabled"/>
+        <attr format="boolean" name="isTopEnabled"/>
+        <attr format="boolean" name="isRightEnabled"/>
+        <attr format="boolean" name="isBottomEnabled"/>
+    </declare-styleable>
+</resources>
