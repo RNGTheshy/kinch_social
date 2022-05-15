@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import cn.leancloud.chatkit.LCChatKit;
 import cn.leancloud.chatkit.R;
+import cn.leancloud.im.DatabaseDelegate;
+import cn.leancloud.im.DatabaseDelegateFactory;
+import cn.leancloud.im.InternalConfiguration;
 import cn.leancloud.im.v2.LCIMConversation;
 import cn.leancloud.im.v2.LCIMMessageStorage;
 
@@ -51,7 +54,8 @@ public class ChatSettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO 查找聊天记录
-
+//                DatabaseDelegateFactory factory = InternalConfiguration.getDatabaseDelegateFactory();
+//                DatabaseDelegate delegate = factory.createInstance(LCChatKit.getInstance().getCurrentUserId());
             }
         });
         //清空聊天记录
@@ -60,6 +64,7 @@ public class ChatSettingFragment extends Fragment {
             public void onClick(View v) {
                 //TODO 清空聊天记录
                 LCIMMessageStorage lcimMessageStorage = LCIMMessageStorage.getInstance(LCChatKit.getInstance().getCurrentUserId());
+                //删除确定窗口
                 AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("清空聊天记录").setMessage("确定要清空聊天记录吗?")
                         .setNegativeButton("取消",new DialogInterface.OnClickListener() {
                             @Override
