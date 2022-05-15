@@ -1,6 +1,0 @@
-com/yubinma/fishprawncrab/BuildConfig.java
- com.yubinma.fishprawncrab.BuildConfig
-com/yubinma/fishprawncrab/databinding/FishPrawnCrabMainActivityBinding.java
- com.yubinma.fishprawncrab.databinding.FishPrawnCrabMainActivityBinding
-com/yubinma/fishprawncrab/MySurfaceView.java
- com.yubinma.fishprawncrab.MySurfaceView
