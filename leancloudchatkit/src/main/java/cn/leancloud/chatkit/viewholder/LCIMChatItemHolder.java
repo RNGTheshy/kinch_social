@@ -17,6 +17,8 @@ import cn.leancloud.callback.LCCallback;
 import cn.leancloud.LCException;
 import cn.leancloud.chatkit.activity.LCIMConversationSettingActivity;
 import cn.leancloud.im.v2.LCIMMessage;
+
+import com.chaoshan.data_center.togetname.Headport;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -88,6 +90,9 @@ public class LCIMChatItemHolder extends LCIMCommonViewHolder {
     timeView.setText(millisecsToDateString(message.getTimestamp()));
     nameView.setText("");
     avatarView.setImageResource(R.drawable.lcim_default_avatar_icon);
+    //TODO 头像设置
+    Headport  headPort = new Headport();
+    headPort.setImage(message.getFrom(),avatarView);
     LCIMProfileCache.getInstance().getCachedUser(message.getFrom(), new LCCallback<LCChatKitUser>() {
       @Override
       protected void internalDone0(LCChatKitUser userProfile, LCException e) {

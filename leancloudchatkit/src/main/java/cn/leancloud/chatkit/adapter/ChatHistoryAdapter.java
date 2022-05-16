@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chaoshan.data_center.togetname.Headport;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -79,7 +80,8 @@ public class ChatHistoryAdapter extends RecyclerView.Adapter<ChatHistoryHolder>{
             }
         });
         //TODO 头像更新
-        //        holder.avatar
+        Headport headPort = new Headport();
+        headPort.setImage(message.getFrom(),holder.avatar);
     }
     private static String millisecsToDateString(long timestamp) {
         SimpleDateFormat format = new SimpleDateFormat("M-dd HH:mm");
