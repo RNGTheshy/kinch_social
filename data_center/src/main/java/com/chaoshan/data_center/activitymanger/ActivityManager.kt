@@ -71,6 +71,22 @@ object ActivityManager {
         activities.clear()
     }
 
+    fun finishActivityAndOpenLoginActivity() {
+        activities.forEach {
+            it.get()?.let {
+                if (it is IRecordPage2) {
+
+                } else {
+                    it.finish()
+                }
+
+            }
+
+        }
+        activities.clear()
+
+    }
+
     fun finishActivity(cls: Class<Any>) {
         val listIterator = activities.listIterator()
         while (listIterator.hasNext()) {
@@ -93,6 +109,7 @@ object ActivityManager {
 
     interface IRecordPage
 
+    interface IRecordPage2
     class ForceFinishActivity : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.let {

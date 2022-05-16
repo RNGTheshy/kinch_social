@@ -17,6 +17,7 @@ class SettingMainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     private var aboutKinchBtn: LinearLayout? = null
     private var evaluationBtn: LinearLayout? = null
     private var exitBtn: Button? = null
+    private var changeNumberBtn: Button? = null
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,7 @@ class SettingMainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         aboutKinchBtn = findViewById(R.id.about_kinch)
         evaluationBtn = findViewById(R.id.evaluation)
         exitBtn = findViewById(R.id.exit)
+        changeNumberBtn = findViewById(R.id.change_number)
     }
 
     private fun initClickListener() {
@@ -53,6 +55,11 @@ class SettingMainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         exitBtn?.setOnClickListener {
             SettingsPreferencesDataStore.setUserObjectId("NULL")
             ActivityManager.finishAllActivities()
+        }
+        changeNumberBtn?.setOnClickListener {
+            SettingsPreferencesDataStore.setUserObjectId("NULL")
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
