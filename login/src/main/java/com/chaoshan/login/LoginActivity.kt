@@ -2,6 +2,7 @@ package com.chaoshan.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.chaoshan.data_center.GetApplicationContext
 import com.chaoshan.data_center.activitymanger.ActivityManager
@@ -37,10 +38,11 @@ class LoginActivity : AppCompatActivity(), ActivityManager.IRecordPage {
                 object : LoginCallBack {
                     override fun success() {
                         Home_Activity.goTo(GetApplicationContext.context!!)
+                        Toast.makeText(this@LoginActivity, "登录成功", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun fail() {
-
+                        Toast.makeText(this@LoginActivity, "登录失败", Toast.LENGTH_SHORT).show()
                     }
 
                 }
