@@ -1,5 +1,6 @@
 package cn.leancloud.chatkit.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
@@ -34,7 +35,11 @@ import cn.leancloud.chatkit.utils.LCIMLogUtils;
 public class LCIMConversationActivity extends AppCompatActivity {
 
   protected LCIMConversationFragment conversationFragment;
-
+  public static void startChatWithFriend(Context context, String friendObjId){
+    Intent intent = new Intent(context, LCIMConversationActivity.class);
+    intent.putExtra(LCIMConstants.PEER_ID, friendObjId);
+    context.startActivity(intent);
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
