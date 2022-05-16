@@ -29,10 +29,10 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        openKinchHome()
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//        initView()
+//        openKinchHome()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initView()
     }
 
     private fun initView() {

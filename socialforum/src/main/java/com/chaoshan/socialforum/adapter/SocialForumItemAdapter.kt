@@ -13,6 +13,7 @@ import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.LikeClient
+import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.chaoshan.socialforum.activity.SocialForumMoreActivity
@@ -90,6 +91,8 @@ class SocialForumItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     holder.binding.nameText.text = name
                 }
             })
+            it[position].userID?.let { it1 -> Headport().setImage(it1, holder.binding.titleImage) }
+            setRadius(holder.binding.titleImage, 5.0F)
 
         }
         setRadius(holder.itemView, 20.0F)
