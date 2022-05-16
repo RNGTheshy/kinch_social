@@ -66,7 +66,7 @@ public class Headport {
         })
 
     }
-    private fun saveToImage(url: String, context: Context, imageView: ImageView) {
+     fun saveToImage(url: String, context: Context, imageView: ImageView) {
         Glide.with(context)
             .load(url)
             .centerCrop()

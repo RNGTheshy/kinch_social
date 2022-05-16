@@ -12,28 +12,28 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:columnCount="2"
             android:orientation="vertical"
             android:rowCount="1">
 
             <TextView
                 android:id="@+id/signback"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/back" />
+                android:layout_marginTop="15dp"
+                android:background="@drawable/back"  />
 
             <TextView
                 android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_marginRight="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:text="个性签名"
+                android:layout_marginTop="15dp"
                 android:textColor="#B3DA61"
-                android:textSize="20dp" />
+                android:textSize="16dp"
+                android:gravity="center"
+                android:layout_marginRight="100dp" />
         </GridLayout>
         <LinearLayout
             android:layout_width="match_parent"

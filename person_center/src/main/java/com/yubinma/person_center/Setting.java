@@ -47,7 +47,6 @@ public class Setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.person_infor_layout);
-        Toast.makeText(Setting.this, "修改成功", Toast.LENGTH_SHORT).show();
         Intent intent = getIntent();
         final String objectid = intent.getStringExtra("objectid").toString();
         objid = objectid;
