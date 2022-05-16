@@ -1,14 +1,17 @@
 package com.yubinma.person_center
 
+import android.content.Context
 import android.util.Log
+import android.widget.ImageView
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
+import com.bumptech.glide.Glide
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 
-public class headport {
+public class Headport {
 
 
     // push对象
@@ -44,7 +47,7 @@ public class headport {
 
 
     //保存图片
-    private fun savepicture(objectid: String, bitmap: ByteArray) {
+     fun savepicture(objectid: String, bitmap: ByteArray) {
         val file = LCFile("test", bitmap)
         file.saveInBackground().subscribe(object : Observer<LCFile> {
             override fun onSubscribe(disposable: Disposable) {}
@@ -62,4 +65,28 @@ public class headport {
         })
 
     }
+    private fun saveToImage(url: String, context: Context, imageView: ImageView) {
+        Glide.with(context)
+            .load(url)
+            .centerCrop()
+            .into(imageView)
+    }
+
+
+    //
+    fun setImage(objectid: String,imageView: ImageView){
+        val query = LCQuery<LCObject>("userdata")
+        query.whereEqualTo("userid", objectid)
+        query.firstInBackground.subscribe(object : Observer<LCObject?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: LCObject) {
+                saveToImage(t.getString("picture"),imageView.context,imageView);
+
+            }
+        })
+
+    }
+
 }
