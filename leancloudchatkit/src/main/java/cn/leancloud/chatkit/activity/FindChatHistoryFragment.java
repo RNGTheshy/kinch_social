@@ -122,6 +122,11 @@ public class FindChatHistoryFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * 设置对话对象
+     * @param imConversation
+     */
     public void setImConversation(LCIMConversation imConversation){
         this.imConversation = imConversation;
     }

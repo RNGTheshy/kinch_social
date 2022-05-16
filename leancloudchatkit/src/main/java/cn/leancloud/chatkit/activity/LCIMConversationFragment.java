@@ -313,6 +313,7 @@ public class LCIMConversationFragment extends Fragment {
       imConversation.getConversationId().equals(messageEvent.conversation.getConversationId())) {
       System.out.println("currentConv unreadCount=" + imConversation.getUnreadMessagesCount());
       if (imConversation.getUnreadMessagesCount() > 0) {
+//        Log.e("testPost",String.valueOf(itemAdapter.getItemCount()));
         paddingNewMessage(imConversation);
       } else {
         itemAdapter.addMessage(messageEvent.message);
@@ -417,10 +418,12 @@ public class LCIMConversationFragment extends Fragment {
     if (event.conversation.getUnreadMessagesCount() < 1) {
       return;
     }
-    paddingNewMessage(event.conversation);
+//    Log.e("testOff",String.valueOf(itemAdapter.getItemCount()));
+//    paddingNewMessage(event.conversation);
   }
 
   private void paddingNewMessage(LCIMConversation currentConversation) {
+    Log.e("testRead",String.valueOf(itemAdapter.getItemCount()));
     if (null == currentConversation || currentConversation.getUnreadMessagesCount() < 1) {
       return;
     }
@@ -435,6 +438,8 @@ public class LCIMConversationFragment extends Fragment {
           itemAdapter.addMessage(m);
         }
         itemAdapter.notifyDataSetChanged();
+        scrollToBottom();
+//        Log.e("testMess",String.valueOf(itemAdapter.getItemCount()));
         clearUnreadConut();
       }
     });
