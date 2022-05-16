@@ -16,7 +16,7 @@ object GetAllUer {
             override fun onNext(t: List<LCObject?>) {
                 val f: MutableList<Friend> = mutableListOf()
                 t.forEach {
-                    f.add(Friend("null", null, "null", null, it?.getString("objectId").toString()))
+                    f.add(Friend("null", null, "null", it?.getString("objectId").toString()))
                 }
                 callBack.success(f)
             }

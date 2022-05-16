@@ -82,7 +82,10 @@ public class Headport {
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
-                saveToImage(t.getString("picture"),imageView.context,imageView);
+                t.getString("picture")?.let {
+                    saveToImage(t.getString("picture"),imageView.context,imageView);
+                }
+
 
             }
         })

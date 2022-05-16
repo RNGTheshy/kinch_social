@@ -13,7 +13,7 @@ import com.example.kinch_home.Home_Activity
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 
-class loLoginActivity : AppCompatActivity(), ActivityManager.IRecordPage,
+class LoginActivity : AppCompatActivity(), ActivityManager.IRecordPage,
     ActivityManager.IRecordPage2 {
     lateinit var binding: LoginMainActivityBinding
 

@@ -18,6 +18,7 @@ import com.chaoshan.login.LoginComeActivity
 import com.example.chat.ChatActivity
 import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
+import com.example.friend.friendMainActivity
 import com.example.kinch_home.Home_Activity
 import com.example.setting.SettingMainActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
@@ -75,7 +76,11 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         },
         DebugItem("openSetting") {
             openSetting()
+        },
+        DebugItem("sss") {
+            openLogin2()
         }
+
 
     )
 
@@ -120,6 +125,12 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
+    private fun openLogin2() {
+        val intent = Intent(this, friendMainActivity::class.java)
+        startActivity(intent)
+    }
+//    friendMainActivity
 
     private fun openComeLogin() {
         val intent = Intent(this, LoginComeActivity::class.java)

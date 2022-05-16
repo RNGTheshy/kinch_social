@@ -18,16 +18,13 @@ import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
 
 
-class friendItemAdapter(var datas: LinkedList<Friend>) :
+class friendItemAdapter(var datas: List<Friend>) :
     RecyclerView.Adapter<friendItemAdapter.ViewHolder>() {
-    private var mContext : Context? = null
-    fun add(data: Friend) {
-        if (datas == null) datas = LinkedList()
-        datas!!.add(data)
+    private var mContext: Context? = null
 
-        //如果使用notifyDataSetChanged()则没有添加的动画效果
-        //notifyDataSetChanged();
-        notifyItemInserted(datas!!.size - 1)
+    fun setData(datas: List<Friend>) {
+        this.datas = datas
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,20 +34,6 @@ class friendItemAdapter(var datas: LinkedList<Friend>) :
         var state: ImageView = view.findViewById(R.id.state) as ImageView
     }
 
-    fun remove(position: Int) {
-        if (datas != null) {
-            datas!!.removeAt(position)
-
-            //如果使用notifyDataSetChanged()则没有移除的动画效果
-            //notifyDataSetChanged();
-            notifyItemRemoved(position)
-        }
-    }
-
-    fun modify(data: Friend, position: Int) {
-        datas!![position] = data
-        notifyDataSetChanged()
-    }
 
     //事件监听的回调接口
     interface OnItemClickListener {
@@ -76,11 +59,11 @@ class friendItemAdapter(var datas: LinkedList<Friend>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //为viewholder绑定数据
-        val friend=datas[position]
+        val friend = datas[position]
 
         //设置头像
         val headport = Headport()
-        headport.setImage(friend.id,holder.headView)
+        friend.id?.let { headport.setImage(it, holder.headView) }
 
         //设置名字
         getPersonal_data.center_getname(friend.id, object : center_getname {
@@ -93,8 +76,8 @@ class friendItemAdapter(var datas: LinkedList<Friend>) :
         holder.location.text = friend.location
 
         //设置状态
-        when(friend.state){
-            "正在睡觉" ->{
+        when (friend.state) {
+            "正在睡觉" -> {
                 holder.state.setImageResource(R.mipmap.state_sleep)
             }
         }

@@ -13,7 +13,7 @@ import com.example.friend.adapter.friendItemAdapter
 import java.util.*
 
 class friendMainActivity : AppCompatActivity() {
-    private var friends = listOf<Friend?>()
+    private var friends = listOf<Friend>()
     private var mRecycleView: RecyclerView? = null
     private var mAdapter: friendItemAdapter? = null
     private var backBtn: ImageView? = null
@@ -41,7 +41,7 @@ class friendMainActivity : AppCompatActivity() {
         mRecycleView?.adapter = mAdapter
 
         GetAllUer.getAllUerDao(object : GetAllDataListener {
-            override fun success(friendList: List<Friend?>) {
+            override fun success(friendList: List<Friend>) {
                 friends = friendList
                 mAdapter?.setData(friends)
             }
