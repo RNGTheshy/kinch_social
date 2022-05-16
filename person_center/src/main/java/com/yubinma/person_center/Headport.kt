@@ -24,6 +24,7 @@ public class Headport {
             }
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
+
                 Log.e("DynamicCreate", "saveSuccess" + t.objectId)
             }
         })
@@ -31,7 +32,7 @@ public class Headport {
 
     //查找objectid对应位置
     private fun pushpicutre(objectid: String,theurl: String){
-        val query = LCQuery<LCObject>("headportrait")
+        val query = LCQuery<LCObject>("userdata")
         query.whereEqualTo("userid", objectid)
         query.firstInBackground.subscribe(object : Observer<LCObject?> {
             override fun onSubscribe(disposable: Disposable) {}
