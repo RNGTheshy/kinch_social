@@ -55,7 +55,6 @@ public class Setsex extends AppCompatActivity {
                     final String objectid = intent.getStringExtra("objectid");
 
                     final String classname = intent.getStringExtra("classname");
-                    Toast.makeText(Setsex.this, classname, Toast.LENGTH_SHORT).show();
                     LCObject todo = LCObject.createWithoutData(classname, objectid);
 
                     Personal_data personal_data = new Personal_data();
