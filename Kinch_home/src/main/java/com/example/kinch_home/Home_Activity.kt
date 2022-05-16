@@ -21,6 +21,7 @@ import com.chaoshan.data_center.activitymanger.ActivityManager
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
+import com.example.friend.friendMainActivity
 import com.example.setting.SettingMainActivity
 import com.yubinma.person_center.PersonCenter2Activity
 
@@ -127,7 +128,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
 
         }
         mFriendButton?.setOnClickListener {
-            //TODO
+            val intent = Intent(this, friendMainActivity::class.java)
+            startActivity(intent)
+
         }
         mMeButton?.setOnClickListener {
             val intent = Intent(this, PersonCenter2Activity::class.java)

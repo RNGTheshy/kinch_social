@@ -75,13 +75,15 @@
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/chat/src/main/res/layout/templogin.xml" value="0.2046875" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/drawable/selector_btn_bg_white.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/drawable/shape_divider.xml" value="0.196875" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/drawable/shape_round_rec.xml" value="0.196875" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/drawable/shape_title.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/drawable/translucent.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/layout/friend_main.xml" value="0.25" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/layout/friend_main.xml" value="0.33" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/friend/src/main/res/layout/item_friend.xml" value="0.33" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_normal_white_15.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_press_gray_15.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_15.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_green_15.xml" value="0.196875" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/bg_button_seletor_red_15.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/selector_btn_bg_white.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/86177/AndroidStudioProjects/positioningsocialsystem-android/setting/src/main/res/drawable/shape_divider.xml" value="0.20104166666666667" />
@@ -145,12 +147,7 @@
         <entry key="person_center/src/main/res/layout/login_main_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/login_register_activity.xml" value="0.161231884057971" />
         <entry key="person_center/src/main/res/layout/person_center_activitty.xml" value="0.3209109854679962" />
-        <entry key="setting/src/main/res/drawable/bg_button_seletor_green_15.xml" value="0.2759259259259259" />
-        <entry key="setting/src/main/res/drawable/bg_button_seletor_red_15.xml" value="0.2759259259259259" />
-        <entry key="setting/src/main/res/drawable/selector_btn_bg_white.xml" value="0.2759259259259259" />
-        <entry key="setting/src/main/res/drawable/shape_divider.xml" value="0.2759259259259259" />
         <entry key="setting/src/main/res/layout/about_kinch.xml" value="0.2667572463768116" />
-        <entry key="setting/src/main/res/layout/login_main_activity.xml" value="0.2916666666666667" />
         <entry key="setting/src/main/res/layout/setting_main_menu.xml" value="0.2667572463768116" />
         <entry key="socialforum/src/main/res/drawable/bt_green_bg.xml" value="0.2546875" />
         <entry key="socialforum/src/main/res/drawable/bt_red_bg.xml" value="0.28425925925925927" />
