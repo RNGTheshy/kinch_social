@@ -4,8 +4,7 @@ import android.widget.ImageView
 
 data class Friend(
     var name: String = "",
-    var headView: ImageView? = null,
     var location: String = "",
-    var state: ImageView? = null ,
+    var state: String? = "" ,
     val id: String = ""
 )

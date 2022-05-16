@@ -74,7 +74,6 @@ public class Headport {
     }
 
 
-    //
     fun setImage(objectid: String,imageView: ImageView){
         val query = LCQuery<LCObject>("userdata")
         query.whereEqualTo("userid", objectid)
