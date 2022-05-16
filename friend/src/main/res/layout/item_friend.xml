@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="15dp">
+    <ImageView
+        android:id="@+id/headView"
+        android:layout_rowSpan="2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/mayubin" />
+    <TextView
+        android:id="@+id/name"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_width="190dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:text="C1033荣耀王者神威马超" />
+    <ImageView
+        android:id="@+id/state"
+        android:layout_rowSpan="2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/state_sleep"
+        />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:text="深大红豆斋"
+        android:textSize="15dp" />
+</GridLayout>
