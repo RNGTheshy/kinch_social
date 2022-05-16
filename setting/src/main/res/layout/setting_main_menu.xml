@@ -65,6 +65,7 @@
             android:layout_marginLeft="40dp"
             android:layout_weight="1"
             android:text="用户权限"
+            android:id="@+id/user_"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
