@@ -6,14 +6,16 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chaoshan.data_center.friend
+import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.friend.GetAllDataListener
+import com.chaoshan.data_center.friend.GetAllUer
 import com.example.friend.adapter.friendItemAdapter
 import java.util.*
 
-class friendMainActivity:AppCompatActivity() {
-    private var friends= LinkedList<friend>()
+class friendMainActivity : AppCompatActivity() {
+    private var friends = listOf<Friend?>()
     private var mRecycleView: RecyclerView? = null
-    private var mAdapter: friendItemAdapter ? = null
+    private var mAdapter: friendItemAdapter? = null
     private var backBtn: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +28,32 @@ class friendMainActivity:AppCompatActivity() {
     }
 
     private fun initViews() {
-        backBtn =findViewById(R.id.back_toolBar)
+        backBtn = findViewById(R.id.back_toolBar)
         mRecycleView = findViewById(R.id.friend_recyclerView)
     }
+
     private fun initData() {
-        //TODO : Mayubin 初始化数据,向friends里面加入数据
+
+
         mAdapter = friendItemAdapter(friends)
+
         mRecycleView?.layoutManager = GridLayoutManager(this, 1)
         mRecycleView?.adapter = mAdapter
+
+        GetAllUer.getAllUerDao(object : GetAllDataListener {
+            override fun success(friendList: List<Friend?>) {
+                friends = friendList
+                mAdapter?.setData(friends)
+            }
+
+            override fun fail() {
+            }
+
+        })
+
     }
-    private fun initClickListener(){
+
+    private fun initClickListener() {
         backBtn?.setOnClickListener {
             finish()
         }
