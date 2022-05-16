@@ -138,6 +138,7 @@
         <entry key="setting/src/main/res/drawable/selector_btn_bg_white.xml" value="0.2759259259259259" />
         <entry key="setting/src/main/res/drawable/shape_divider.xml" value="0.2759259259259259" />
         <entry key="setting/src/main/res/layout/about_kinch.xml" value="0.2667572463768116" />
+        <entry key="setting/src/main/res/layout/login_main_activity.xml" value="0.2916666666666667" />
         <entry key="setting/src/main/res/layout/setting_main_menu.xml" value="0.2667572463768116" />
         <entry key="socialforum/src/main/res/drawable/bt_green_bg.xml" value="0.2546875" />
         <entry key="socialforum/src/main/res/drawable/bt_red_bg.xml" value="0.28425925925925927" />

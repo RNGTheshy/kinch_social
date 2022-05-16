@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaoshan.data_center.dynamic.dynamic.BitmapUtils;
+import com.chaoshan.data_center.togetname.Headport;
 
 import java.nio.ByteBuffer;
 import java.util.Calendar;
@@ -39,22 +39,23 @@ public class Setting extends AppCompatActivity {
     private ImageView img;
     ImageView iv_photo;
     final String classname = "userdata";
-    String objid="";
+    String objid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.person_infor_layout);
-        Toast.makeText(Setting.this,"修改成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Setting.this, "修改成功", Toast.LENGTH_SHORT).show();
         Intent intent = getIntent();
         final String objectid = intent.getStringExtra("objectid").toString();
-        objid=objectid;
-        TextView btcenter=findViewById(R.id.btcenter);
+        objid = objectid;
+        TextView btcenter = findViewById(R.id.btcenter);
         btcenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Setting.this,PersonCenter2Activity.class);
+                Intent intent = new Intent(Setting.this, PersonCenter2Activity.class);
                 startActivity(intent);
                 finish();
             }
@@ -81,15 +82,18 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onSubscribe(Disposable disposable) {
             }
+
             @Override
             public void onNext(LCObject todo) {
                 telephonenumber = todo.getString("phone_number");
                 Toast.makeText(Setting.this, telephonenumber, Toast.LENGTH_SHORT).show();
                 useremail = todo.getString("email");
             }
+
             @Override
             public void onError(Throwable throwable) {
             }
+
             @Override
             public void onComplete() {
             }
@@ -184,7 +188,8 @@ public class Setting extends AppCompatActivity {
                 startActivityForResult(inten, 333);
             }
         });
-
+        Headport headport = new Headport();
+        headport.setImage(objid, img);
 
     }
 
@@ -219,11 +224,10 @@ public class Setting extends AppCompatActivity {
                 int bytes = bitmap2.getByteCount();
                 ByteBuffer buf = ByteBuffer.allocate(bytes);
                 bitmap2.copyPixelsToBuffer(buf);
-                Headport headport=new Headport();
+                Headport headport = new Headport();
 
 
-                headport.savepicture(objid, BitmapUtils.bmpToByteArray(bitmap2,false));
-
+                headport.savepicture(objid, BitmapUtils.bmpToByteArray(bitmap2, false));
 
 
                 img.setImageBitmap(bitmap2);

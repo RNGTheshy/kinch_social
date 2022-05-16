@@ -40,6 +40,7 @@ object UserManger {
                 }
 
                 override fun onError(e: Throwable) {
+                    callBack.fail()
                 }
 
                 override fun onSubscribe(d: Disposable) {
