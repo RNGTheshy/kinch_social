@@ -1,14 +1,11 @@
 package com.yubinma.person_center;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,9 +40,9 @@ public class PersonCenter2Activity extends AppCompatActivity {
 
         //暂时设置的好友框
         ImageView friend1=findViewById(R.id.friend1);
-        headport.setImage("6265738aadc5786698ab7876",friend1);
+        headport.setImage("6280f0b74fb5b8572d28e623",friend1);
         ImageView friend2=findViewById(R.id.friend2);
-        headport.setImage("626684d61c11246b6f372cc4",friend2);
+        headport.setImage("6280ee567a6d3118ac0d0352",friend2);
         ImageView friend3=findViewById(R.id.friend3);
         headport.setImage("626684f51c11246b6f372cd2",friend3);
         ImageView dt1=findViewById(R.id.dt1);

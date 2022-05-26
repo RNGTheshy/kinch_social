@@ -18,6 +18,7 @@ class SocialForumAllFragment : Fragment() {
         fun newInstance(): SocialForumMainFragment {
             return SocialForumMainFragment()
         }
+
         private const val TAG = "SocialForumMainFragment"
         const val SPAN_COUNT = 2 // 每行的个数
         private const val DELAY_SCROLL_TO_ZERO_US = 10L
@@ -29,7 +30,11 @@ class SocialForumAllFragment : Fragment() {
     private val socialForumItemAdapter = SocialForumItemAdapter()
 
     private lateinit var binding: SocialForumAllFragmentBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = SocialForumAllFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,17 +50,22 @@ class SocialForumAllFragment : Fragment() {
         binding.mainFragment.apply {
             val staggeredGridLayoutManager = StaggeredGridLayoutManager(
                 SPAN_COUNT,
-                StaggeredGridLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager.VERTICAL
+            )
             layoutManager = staggeredGridLayoutManager
-            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //防止item 交换位置
-            val boundDistance = resources.getDimensionPixelSize(R.dimen.template_card_bound_distance)
-            val topBoundDistance = resources.getDimensionPixelSize(R.dimen.template_card_top_bound_distance)
+            staggeredGridLayoutManager.gapStrategy =
+                StaggeredGridLayoutManager.GAP_HANDLING_NONE //防止item 交换位置
+            val boundDistance =
+                resources.getDimensionPixelSize(R.dimen.template_card_bound_distance)
+            val topBoundDistance =
+                resources.getDimensionPixelSize(R.dimen.template_card_top_bound_distance)
             val bottomDistance = 0
             addItemDecoration(
                 StaggeredGridSpaceDecoration(
                     Rect(boundDistance, topBoundDistance, boundDistance, bottomDistance),
                     resources.getDimensionPixelSize(R.dimen.template_card_row_distance),
-                    resources.getDimensionPixelSize(R.dimen.template_card_col_distance))
+                    resources.getDimensionPixelSize(R.dimen.template_card_col_distance)
+                )
             )
             itemAnimator = null
         }

@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        openKinchHome()
+//        finish()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
