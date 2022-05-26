@@ -1,5 +1,6 @@
 package com.example.friend
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.ImageButton
@@ -62,8 +63,8 @@ class friendMainActivity : AppCompatActivity() {
             finish()
         }
         addBtn?.setOnClickListener {
-            // todo
-            finish()
+            val intent = Intent(this, AddFriendActivity::class.java)
+            startActivity(intent)
         }
 
     }
