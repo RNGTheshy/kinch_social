@@ -2,6 +2,7 @@ package com.example.friend
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,6 +18,7 @@ class friendMainActivity : AppCompatActivity() {
     private var mRecycleView: RecyclerView? = null
     private var mAdapter: friendItemAdapter? = null
     private var backBtn: ImageView? = null
+    private var addBtn: ImageButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED; //设置为竖屏
@@ -30,7 +32,9 @@ class friendMainActivity : AppCompatActivity() {
     private fun initViews() {
         backBtn = findViewById(R.id.back_toolBar)
         mRecycleView = findViewById(R.id.friend_recyclerView)
+        addBtn = findViewById(R.id.addFriend)
     }
+
 
     private fun initData() {
 
@@ -57,5 +61,10 @@ class friendMainActivity : AppCompatActivity() {
         backBtn?.setOnClickListener {
             finish()
         }
+        addBtn?.setOnClickListener {
+            // todo
+            finish()
+        }
+
     }
 }

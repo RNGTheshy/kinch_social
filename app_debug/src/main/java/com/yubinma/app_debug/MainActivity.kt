@@ -80,6 +80,8 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         },
         DebugItem("sss") {
             openLogin2()
+        }, DebugItem("friend") {
+            openFirend();
         }
 
 
@@ -87,6 +89,11 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
 
     private fun openSetting() {
         val intent = Intent(this, SettingMainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun openFirend() {
+        val intent = Intent(this, friendMainActivity::class.java)
         startActivity(intent)
     }
 
