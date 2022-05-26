@@ -1,15 +1,15 @@
 package com.example.friend
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.friend.databinding.AddFriendBinding
+import com.example.friend.databinding.FindFriendBinding
 
-class AddFriendActivity : AppCompatActivity() {
-    lateinit var binding: AddFriendBinding
+
+class FindFriendActivity : AppCompatActivity() {
+    lateinit var binding: FindFriendBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = AddFriendBinding.inflate(layoutInflater)
+        binding = FindFriendBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initLister()
     }
@@ -17,9 +17,6 @@ class AddFriendActivity : AppCompatActivity() {
     private fun initLister() {
         binding.backToolBar.setOnClickListener {
             finish()
-        }
-        binding.sent.setOnClickListener {
-            startActivity(Intent(this, FindFriendActivity::class.java))
         }
     }
 }

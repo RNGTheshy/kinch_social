@@ -9,5 +9,8 @@
         <activity android:name=".AddFriendActivity">
 
         </activity>
+        <activity android:name=".FindFriendActivity">
+
+        </activity>
     </application>
 </manifest>
