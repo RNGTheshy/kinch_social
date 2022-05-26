@@ -122,8 +122,14 @@
         <entry key="blindshow/src/main/res/layout/main_show_fragment.xml" value="0.13905775075987842" />
         <entry key="fishprawncrab/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
         <entry key="fishprawncrab/src/main/res/layout/fish_prawn_crab_main_activity.xml" value="0.26992753623188404" />
+        <entry key="friend/src/main/res/drawable/bg_button_seletor_15.xml" value="0.29739583333333336" />
+        <entry key="friend/src/main/res/drawable/bt_green_bg.xml" value="0.29739583333333336" />
+        <entry key="friend/src/main/res/layout/add_friend.xml" value="0.28125" />
+        <entry key="friend/src/main/res/layout/add_friend_agree_item.xml" value="0.28125" />
+        <entry key="friend/src/main/res/layout/add_new_friend_item.xml" value="0.28125" />
         <entry key="friend/src/main/res/layout/friend_main.xml" value="0.2803442028985507" />
         <entry key="friend/src/main/res/layout/item_friend.xml" value="0.1802536231884058" />
+        <entry key="friend/src/main/res/layout/text_view.xml" value="0.28125" />
         <entry key="login/src/main/res/drawable/edit_text_bg.xml" value="0.2921875" />
         <entry key="login/src/main/res/layout/edit_text_bg.xml" value="0.20364583333333333" />
         <entry key="login/src/main/res/layout/login_come_activity.xml" value="0.20364583333333333" />
