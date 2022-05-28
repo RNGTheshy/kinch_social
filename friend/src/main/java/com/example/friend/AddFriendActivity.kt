@@ -5,9 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chaoshan.data_center.friend.Friend
-import com.chaoshan.data_center.friend.GetAllDataListener
-import com.chaoshan.data_center.friend.GetAllUer
+import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.friend.*
 import com.example.friend.adapter.MayBeFriend
 import com.example.friend.databinding.AddFriendBinding
 import com.example.friend.viewholder.GridSpaceDecoration
@@ -34,6 +33,12 @@ class AddFriendActivity : AppCompatActivity() {
             }
 
         })
+        GetAllUer.getSendFriendData(SettingsPreferencesDataStore.getCurrentUserObjetID(),
+            object : GetSentFriendCallBack {
+                override fun getSuccess(friend: List<SentFriend>) {
+                    adapter.setAgreeData(friend)
+                }
+            })
 
     }
 

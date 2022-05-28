@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.friend.SentFriend
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
@@ -17,16 +18,12 @@ import com.example.friend.viewholder.AddFriendAgreeItemViewHolder
 import com.example.friend.viewholder.TitleViewHolder
 
 class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var agreeData: List<String>? = null
+    private var agreeData: List<SentFriend>? = null
     private var mayBeData: List<Friend>? = null
 
     private var mId: String? = null
-    fun setAgreeData(listdata: List<String>) {
+    fun setAgreeData(listdata: List<SentFriend>) {
         agreeData = listdata
-    }
-
-    fun setMId(string: String) {
-        mId = string
     }
 
     fun setMayBeData(listdata: List<Friend>) {
@@ -87,6 +84,25 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             holder.binding.mainText.text = "好友通知"
         }
         if (position > 0 && position <= agreeData?.size ?: 0) {
+            holder as AddFriendAgreeItemViewHolder
+
+
+            val friend = agreeData?.get(position - 1)
+
+            //设置头像
+            val headPort = Headport()
+            friend?.mId?.let { headPort.setImage(it, holder.binding.headView) }
+
+            //设置名字
+            if (friend != null) {
+                getPersonal_data.center_getname(friend.mId, object : center_getname {
+                    override fun getname(name: String?) {
+                        holder.binding.name.text = name
+                    }
+                })
+            }
+
+
 
 
         }

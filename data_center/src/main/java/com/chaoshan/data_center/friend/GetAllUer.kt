@@ -131,4 +131,33 @@ object GetAllUer {
         })
     }
 
+    fun getSendFriendData(mId: String, getSentFriendCallBack: GetSentFriendCallBack) {
+        val query = LCQuery<LCObject>(SentFriend::class.java.simpleName)
+        query.whereEqualTo("fId", mId);
+        query.orderByDescending("createdAt")
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                val list: MutableList<SentFriend> = mutableListOf()
+                t.forEach {
+                    it?.let {
+                        list.add(
+                            SentFriend(
+                                it.getString("mId").toString(),
+                                it.getString("fId").toString(),
+                                it.getString("message")
+                            )
+                        )
+                    }
+                }
+                getSentFriendCallBack.getSuccess(
+                    list.toList()
+                )
+
+            }
+        })
+    }
+
 }
