@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 
 /**
- * Created by wli on 15/8/25.
  * RecyclerView.ViewHolder 的公共类，做了一些封装。目的：
  * ViewHolder 与 Adapter 解耦，和 ViewHolder 相关的逻辑都放到 ViewHolder 里边，避免 Adapter 有相关逻辑
  */

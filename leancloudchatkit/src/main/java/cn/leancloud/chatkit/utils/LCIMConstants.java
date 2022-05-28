@@ -1,7 +1,6 @@
 package cn.leancloud.chatkit.utils;
 
 /**
- * Created by wli on 16/2/29.
  * 所有常量值均放到此类里边
  */
 public class LCIMConstants {

@@ -28,7 +28,6 @@ import cn.leancloud.chatkit.utils.LCIMConversationUtils;
 import cn.leancloud.chatkit.utils.LCIMLogUtils;
 
 /**
- * Created by wli on 16/2/29.
  * 会话详情页
  * 包含会话的创建以及拉取，具体的 UI 细节在 LCIMConversationFragment 中
  */

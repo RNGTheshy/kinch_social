@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cn.leancloud.chatkit.LCChatKit
+import cn.leancloud.chatkit.activity.ConversationListActivity
 import cn.leancloud.chatkit.activity.LCIMConversationActivity
 import cn.leancloud.chatkit.activity.LCIMUserSelectActivity
 import cn.leancloud.chatkit.utils.LCIMConstants
@@ -58,7 +59,7 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.chat_room)
 
         initUserChat()
-
+        ConversationListActivity.goToConList(this)
 //            val userId = intent.getStringExtra(USER_ID)
 //            if (!TextUtils.isEmpty(userId)){
 //                LCChatKit.getInstance().open(userId , object : LCIMClientCallback() {

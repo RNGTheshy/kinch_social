@@ -40,7 +40,6 @@ import cn.leancloud.chatkit.utils.LCIMLogUtils;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by wli on 15/10/8.
  * 会话 item 对应的 holder
  */
 public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
@@ -51,27 +50,39 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
   TextView messageView;
   TextView timeView;
   TextView nameView;
-  RelativeLayout avatarLayout;
-  LinearLayout contentLayout;
+//  RelativeLayout avatarLayout;
+//  LinearLayout contentLayout;
 
+  /**
+   * 绑定布局
+   * @param root
+   */
   public LCIMConversationItemHolder(ViewGroup root) {
     super(root.getContext(), root, R.layout.lcim_conversation_item);
     initView();
   }
 
+  /**
+   * 获取组件
+   */
   public void initView() {
     avatarView = (ImageView) itemView.findViewById(R.id.conversation_item_iv_avatar);
     nameView = (TextView) itemView.findViewById(R.id.conversation_item_tv_name);
     timeView = (TextView) itemView.findViewById(R.id.conversation_item_tv_time);
     unreadView = (TextView) itemView.findViewById(R.id.conversation_item_tv_unread);
-    typeView = (TextView) itemView.findViewById(R.id.conversation_item_tv_type);
+//    typeView = (TextView) itemView.findViewById(R.id.conversation_item_tv_type);
     messageView = (TextView) itemView.findViewById(R.id.conversation_item_tv_message);
-    avatarLayout = (RelativeLayout) itemView.findViewById(R.id.conversation_item_layout_avatar);
-    contentLayout = (LinearLayout) itemView.findViewById(R.id.conversation_item_layout_content);
+//    avatarLayout = (RelativeLayout) itemView.findViewById(R.id.conversation_item_layout_avatar);
+//    contentLayout = (LinearLayout) itemView.findViewById(R.id.conversation_item_layout_content);
   }
 
+  /**
+   * 将传入的数据绑定到组件上
+   * @param o
+   */
   @Override
   public void bindData(Object o) {
+    //清空数据
     reset();
     final LCIMConversation conversation = (LCIMConversation) o;
     if (null != conversation) {
@@ -92,25 +103,30 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
         updateIcon(conversation);
       }
 
-      if (conversation instanceof LCIMServiceConversation) {
-        typeView.setText("S");
-      } else if (conversation instanceof LCIMTemporaryConversation) {
-        typeView.setText("T");
-      } else if (conversation instanceof LCIMChatRoom) {
-        typeView.setText("R");
-      } else {
-        typeView.setText("C");
-      }
+//      if (conversation instanceof LCIMServiceConversation) {
+//        typeView.setText("S");
+//      } else if (conversation instanceof LCIMTemporaryConversation) {
+//        typeView.setText("T");
+//      } else if (conversation instanceof LCIMChatRoom) {
+//        typeView.setText("R");
+//      } else {
+//        typeView.setText("C");
+//      }
+
+      //刷新未读数据量
       updateUnreadCount(conversation);
+      //更新最后的消息
       updateLastMessage(conversation.getLastMessage());
       itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+          //响应点击事件 跳转到聊天
           onConversationItemClick(conversation);
         }
       });
-
+    //删除聊天项item事件
       itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        //长按
         @Override
         public boolean onLongClick(View v) {
           AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -140,18 +156,19 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
   }
 
   /**
-   * 更新 name，单聊的话展示对方姓名，群聊展示所有用户的用户名
+   * 更新 name，单聊的话展示对方姓名
    *
    * @param conversation
    */
   private void updateName(final LCIMConversation conversation) {
+    //从缓存中取出数据
     LCIMConversationUtils.getConversationName(conversation, new LCCallback<String>() {
       @Override
       protected void internalDone0(String s, LCException e) {
         if (null != e) {
           LCIMLogUtils.logException(e);
         } else {
-
+          //设置聊天名
           nameView.setText(s);
         }
       }
@@ -161,8 +178,6 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
   /**
    * 更新 item icon，目前的逻辑为：
    * 单聊：展示对方的头像
-   * 群聊：展示一个静态的 icon
-   *
    * @param conversation
    */
   private void updateIcon(LCIMConversation conversation) {
@@ -170,6 +185,8 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
       if (conversation.isTransient() || conversation.getMembers().size() > 2) {
         avatarView.setImageResource(R.drawable.lcim_group_icon);
       } else {
+        //TODO 更新头像
+        //更新头像
         LCIMConversationUtils.getConversationPeerIcon(conversation, new LCCallback<String>() {
           @Override
           protected void internalDone0(String s, LCException e) {
@@ -207,14 +224,19 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
   private void updateLastMessage(LCIMMessage message) {
     if (null != message) {
       Date date = new Date(message.getTimestamp());
-      SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+      SimpleDateFormat format = new SimpleDateFormat("M-d HH:mm");
       timeView.setText(format.format(date));
       messageView.setText(getMessageeShorthand(getContext(), message));
     }
   }
 
+  /**
+   * 响应聊天项点击事件，跳转到聊天页面
+   * @param conversation
+   */
   private void onConversationItemClick(LCIMConversation conversation) {
     try {
+      //跳转 传入对话id
       Intent intent = new Intent();
       intent.setPackage(getContext().getPackageName());
       intent.setAction(LCIMConstants.CONVERSATION_ITEM_CLICK_ACTION);
@@ -226,6 +248,9 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
     }
   }
 
+  /**
+   * 通过此接口实例化该类
+   */
   public static ViewHolderCreator HOLDER_CREATOR = new ViewHolderCreator<LCIMConversationItemHolder>() {
     @Override
     public LCIMConversationItemHolder createByViewGroupAndType(ViewGroup parent, int viewType, int attachData) {
@@ -233,6 +258,12 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
     }
   };
 
+  /**
+   * 获取消息的简讯
+   * @param context
+   * @param message
+   * @return 消息的简讯CharSequence类型,语音返回[语音],文字返回文本内容
+   */
   private static CharSequence getMessageeShorthand(Context context, LCIMMessage message) {
     if (message instanceof LCIMTypedMessage) {
       LCIMReservedMessageType type = LCIMReservedMessageType.getLCIMReservedMessageType(

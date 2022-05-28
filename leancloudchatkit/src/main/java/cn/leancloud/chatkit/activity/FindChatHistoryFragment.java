@@ -59,12 +59,12 @@ public class FindChatHistoryFragment extends Fragment {
         findHistory.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //Nothing
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                //Nothing
             }
 
             @Override

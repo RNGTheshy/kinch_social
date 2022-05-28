@@ -8,7 +8,6 @@ import cn.leancloud.json.JSONObject;
 import cn.leancloud.chatkit.utils.LCIMLogUtils;
 
 /**
- * Created by wli on 16/3/8.
  * 会话 item，包含三个属性，ConversatoinId，unreadCount，updateTime
  */
 class LCIMConversationItem implements Comparable {

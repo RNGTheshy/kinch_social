@@ -11,7 +11,6 @@ import cn.leancloud.chatkit.utils.LCIMLogUtils;
 import cn.leancloud.chatkit.viewholder.LCIMCommonViewHolder;
 
 /**
- * Created by wli on 15/11/23.
  * 单类型 item 的 RecyclerView 对应的 Adapter
  */
 public class LCIMCommonListAdapter<T> extends RecyclerView.Adapter<LCIMCommonViewHolder> {

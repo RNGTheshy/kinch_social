@@ -14,7 +14,6 @@ import cn.leancloud.chatkit.R;
 import cn.leancloud.chatkit.utils.LCIMConstants;
 
 /**
- * Created by wli on 16/2/29.
  * 图片详情页，聊天时点击图片则会跳转到此页面
  */
 public class LCIMImageActivity extends AppCompatActivity {
