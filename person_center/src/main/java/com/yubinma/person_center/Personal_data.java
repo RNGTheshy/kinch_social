@@ -414,29 +414,46 @@ class Personal_data {
     }
 
 
-    //改密码
-    void changePassword(String email) {
-        LCUser.requestPasswordResetInBackground(email).subscribe(new Observer<LCNull>() {
+    //改经纬度
+    void saveplace(double longitude,double latitude,String objectid) {
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
             @Override
             public void onSubscribe(Disposable disposable) {
             }
-
             @Override
-            public void onNext(LCNull lcNull) {
-                // 成功调用
-                Log.e("修改完成。", "success");
-            }
+            public void onNext(LCObject todo) {
+                todo.put("latitude", latitude);
+                todo.put("longitude", longitude);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
 
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
             @Override
             public void onError(Throwable throwable) {
-                // 调用出错
-                Log.e("修改失败2。", throwable.toString());
             }
-
             @Override
             public void onComplete() {
             }
         });
+
     }
 
 
