@@ -151,7 +151,7 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
     nameView.setText("");
     timeView.setText("");
     messageView.setText("");
-    typeView.setText("");
+//    typeView.setText("");
     unreadView.setVisibility(View.GONE);
   }
 

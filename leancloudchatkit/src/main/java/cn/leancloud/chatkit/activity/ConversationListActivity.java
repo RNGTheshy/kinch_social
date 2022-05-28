@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import cn.leancloud.chatkit.R;
 
 public class ConversationListActivity extends AppCompatActivity {
+    //跳转到会话列表接口
     public static void goToConList(Context context){
         context.startActivity(new Intent(context,ConversationListActivity.class));
     }
@@ -15,8 +16,5 @@ public class ConversationListActivity extends AppCompatActivity {
         //填充布局
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conversation_list_activity_layout);
-//        chatSettingFragment = (ChatSettingFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_chat_setting);
-        //获取会话id并设置对话
-
     }
 }
