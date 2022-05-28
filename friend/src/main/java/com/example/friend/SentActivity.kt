@@ -17,6 +17,7 @@ class SentActivity : AppCompatActivity() {
         initLister()
     }
 
+    // 初始化数据件监听
     private fun initLister() {
         message = binding.message.text.toString()
         fId = intent.getStringExtra("fId")

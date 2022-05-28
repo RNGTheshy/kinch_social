@@ -8,7 +8,7 @@ import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
-import com.example.friend.MayBeFriendItemViewHolder
+import com.example.friend.viewholder.MayBeFriendItemViewHolder
 import com.example.friend.SentActivity
 import com.example.friend.databinding.AddFriendAgreeItemBinding
 import com.example.friend.databinding.AddNewFriendItemBinding
@@ -105,9 +105,9 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val friend = mayBeData?.get(position - ((agreeData?.size ?: 0) + 2))
 
             //设置头像
-            val headport = Headport()
+            val headPort = Headport()
             if (friend != null) {
-                friend.id?.let { headport.setImage(it, holder.binding.headView) }
+                friend.id?.let { headPort.setImage(it, holder.binding.headView) }
             }
 
 

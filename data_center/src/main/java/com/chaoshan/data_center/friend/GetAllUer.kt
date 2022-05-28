@@ -8,6 +8,7 @@ import com.chaoshan.data_center.SettingsPreferencesDataStore
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.GlobalScope
+import java.util.*
 import kotlin.concurrent.thread
 
 object GetAllUer {
@@ -27,6 +28,23 @@ object GetAllUer {
             }
         })
 
+    }
+
+    fun getUerDaoByNameOrId(callBack: GetAllDataListener, phoneNumber: String, useremail: String) {
+        val query = LCQuery<LCObject>("userdata")
+        query.whereEqualTo("mobilePhoneNumber", phoneNumber)
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                val f: MutableList<Friend> = mutableListOf()
+                t.forEach {
+                    f.add(Friend("null", null, "null", it?.getString("userid").toString()))
+                }
+                callBack.success(f)
+            }
+        })
 
     }
 

@@ -3,6 +3,7 @@ package com.chaoshan.data_center.togetname
 import android.content.Context
 import android.util.Log
 import android.widget.ImageView
+import androidx.core.view.drawToBitmap
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
