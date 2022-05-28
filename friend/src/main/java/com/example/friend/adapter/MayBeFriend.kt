@@ -20,8 +20,13 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var agreeData: List<String>? = null
     private var mayBeData: List<Friend>? = null
 
+    private var mId: String? = null
     fun setAgreeData(listdata: List<String>) {
         agreeData = listdata
+    }
+
+    fun setMId(string: String) {
+        mId = string
     }
 
     fun setMayBeData(listdata: List<Friend>) {
@@ -116,9 +121,13 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             holder.binding.root.setOnClickListener {
-                var a = 1;
-                a = 2;
-                it.context.startActivity(Intent(it.context, SentActivity::class.java))
+                it.context.startActivity(
+                    Intent(it.context, SentActivity::class.java)
+                        .putExtra(
+                            "id",
+                            mId
+                        ).putExtra("fId", friend?.id)
+                )
             }
 
 

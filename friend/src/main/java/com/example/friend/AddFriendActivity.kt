@@ -34,6 +34,7 @@ class AddFriendActivity : AppCompatActivity() {
             }
 
         })
+
     }
 
     private fun initView() {

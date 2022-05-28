@@ -1,7 +1,10 @@
 package com.chaoshan.data_center.friend
 
+import android.util.Log
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
+import cn.leancloud.Messages
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.GlobalScope
@@ -10,7 +13,7 @@ import kotlin.concurrent.thread
 object GetAllUer {
     fun getAllUerDao(callBack: GetAllDataListener) {
         val query = LCQuery<LCObject>("_User")
-        query.whereNotEqualTo("objectId", "");
+        query.whereNotEqualTo("objectId", SettingsPreferencesDataStore.getCurrentUserObjetID());
         query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
             override fun onSubscribe(disposable: Disposable) {}
             override fun onError(throwable: Throwable) {}
@@ -23,8 +26,27 @@ object GetAllUer {
                 callBack.success(f)
             }
         })
-       
 
+
+    }
+
+    fun addFriendWithMessage(mId: String, fId: String, messages: String) {
+        val todoCreateObject: LCObject = LCObject(SentFriend::class.java.simpleName)
+        todoCreateObject.put("mId", mId)
+        todoCreateObject.put("fId", fId)
+        todoCreateObject.put("message", messages)
+        todoCreateObject.saveInBackground().subscribe(object : Observer<LCObject?> {
+            override fun onSubscribe(d: Disposable) {}
+            override fun onError(e: Throwable) {
+                Log.e("addFriendWithMessage", "saveError")
+
+            }
+
+            override fun onComplete() {}
+            override fun onNext(t: LCObject) {
+                Log.e("addFriendWithMessage", "saveSuccess" + t.objectId)
+            }
+        })
     }
 
     fun addFriend(mId: String, fId: String) {
