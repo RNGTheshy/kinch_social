@@ -28,7 +28,6 @@
             <option value="$PROJECT_DIR$/socialforum" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
