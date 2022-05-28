@@ -1,17 +1,16 @@
 package com.yubinma.person_center;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaoshan.data_center.SettingsPreferencesDataStore;
+import com.chaoshan.data_center.togetname.Headport;
 
 import cn.leancloud.LeanCloud;
 
@@ -33,7 +32,25 @@ public class PersonCenter2Activity extends AppCompatActivity {
             TextView textView4 = findViewById(R.id.state100);
             TextView textView5 = findViewById(R.id.sign11);
             personal_data.setcenter(classname, objectid, textView1, textView3, textView2, textView4, textView5);
-            Toast.makeText(PersonCenter2Activity.this, objectid, Toast.LENGTH_SHORT).show();
+        Headport headport = new Headport();
+        ImageView img=findViewById(R.id.heads);
+        headport.setImage(objectid, img);
+
+
+
+        //暂时设置的好友框
+        ImageView friend1=findViewById(R.id.friend1);
+        headport.setImage("6280f0b74fb5b8572d28e623",friend1);
+        ImageView friend2=findViewById(R.id.friend2);
+        headport.setImage("6280ee567a6d3118ac0d0352",friend2);
+        ImageView friend3=findViewById(R.id.friend3);
+        headport.setImage("626684f51c11246b6f372cd2",friend3);
+        ImageView dt1=findViewById(R.id.dt1);
+        headport.saveToImage("http://lc-WFB1URKd.cn-n1.lcfile.com/yIE0P8Nil2VQ7JCbHzmGyQM4oAhTzIXy/test", dt1.getContext(), dt1);
+        ImageView dt2=findViewById(R.id.dt2);
+        headport.saveToImage("http://lc-WFB1URKd.cn-n1.lcfile.com/opH930Idjxg4WTYCmCNYzbgpFg3Cwhzt/test", dt2.getContext(), dt2);
+        ImageView dt3=findViewById(R.id.dt3);
+        headport.saveToImage("http://lc-WFB1URKd.cn-n1.lcfile.com/AHwgtrGr75yjXsJ8tppmziwRbAWRAx8Q/test", dt3.getContext(), dt3);
 
 
 

@@ -3,6 +3,7 @@ package com.chaoshan.data_center.togetname
 import android.content.Context
 import android.util.Log
 import android.widget.ImageView
+import androidx.core.view.drawToBitmap
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
@@ -66,7 +67,7 @@ public class Headport {
         })
 
     }
-    private fun saveToImage(url: String, context: Context, imageView: ImageView) {
+     fun saveToImage(url: String, context: Context, imageView: ImageView) {
         Glide.with(context)
             .load(url)
             .centerCrop()
@@ -74,7 +75,6 @@ public class Headport {
     }
 
 
-    //
     fun setImage(objectid: String,imageView: ImageView){
         val query = LCQuery<LCObject>("userdata")
         query.whereEqualTo("userid", objectid)
@@ -83,7 +83,10 @@ public class Headport {
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
-                saveToImage(t.getString("picture"),imageView.context,imageView);
+                t.getString("picture")?.let {
+                    saveToImage(t.getString("picture"),imageView.context,imageView);
+                }
+
 
             }
         })

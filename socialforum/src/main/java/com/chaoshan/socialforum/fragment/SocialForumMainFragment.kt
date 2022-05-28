@@ -36,7 +36,11 @@ class SocialForumMainFragment : Fragment() {
     private val socialForumItemAdapter = SocialForumItemAdapter()
 
     private lateinit var binding: SocialForumMainFragmentBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = SocialForumMainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,7 +51,7 @@ class SocialForumMainFragment : Fragment() {
     }
 
     private fun initView() {
-
+        viewModel.getDynamicData()
         binding.mainFragment.adapter = socialForumItemAdapter
         viewModel.dynamicDaoList.observe(this, Observer {
             socialForumItemAdapter.setData(it)
@@ -58,9 +62,12 @@ class SocialForumMainFragment : Fragment() {
                 StaggeredGridLayoutManager.VERTICAL
             )
             layoutManager = staggeredGridLayoutManager
-            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //防止item 交换位置
-            val boundDistance = resources.getDimensionPixelSize(R.dimen.template_card_bound_distance)
-            val topBoundDistance = resources.getDimensionPixelSize(R.dimen.template_card_top_bound_distance)
+            staggeredGridLayoutManager.gapStrategy =
+                StaggeredGridLayoutManager.GAP_HANDLING_NONE //防止item 交换位置
+            val boundDistance =
+                resources.getDimensionPixelSize(R.dimen.template_card_bound_distance)
+            val topBoundDistance =
+                resources.getDimensionPixelSize(R.dimen.template_card_top_bound_distance)
             val bottomDistance = 0
             addItemDecoration(
                 StaggeredGridSpaceDecoration(

@@ -46,7 +46,7 @@ public class changestate  extends AppCompatActivity {
         state3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                state="胡思乱想";
+                state="d胡思乱想";
                 sstate1.setText("");
                 sstate2.setText("");
                 sstate3.setText("√");

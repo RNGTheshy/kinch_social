@@ -15,7 +15,7 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:rowCount="1"
             android:columnCount="2"
 
@@ -23,18 +23,18 @@
 
             <TextView
                 android:id="@+id/btcenter"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/back" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="基本资料"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:textColor="#B3DA61"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:gravity="center"
                 android:layout_marginRight="100dp"/>
         </GridLayout>
@@ -72,7 +72,6 @@
                 android:id="@+id/usernam"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/mayubin"
                 android:background="@drawable/shape"
                 android:textSize="15dp"
                 android:layout_marginRight="15dp"/>

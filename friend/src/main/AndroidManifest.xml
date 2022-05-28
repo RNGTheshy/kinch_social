@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.friend">
+
+    <application>
+        <activity android:name=".friendMainActivity">
+
+        </activity>
+        <activity android:name=".AddFriendActivity">
+
+        </activity>
+        <activity android:name=".FindFriendActivity">
+
+        </activity>
+        <activity android:name=".SentActivity">
+
+        </activity>
+    </application>
+</manifest>

@@ -29,4 +29,27 @@ public class getPersonal_data {
             }
         });
     }
+    public static  void  getplace(String objectid,Getplace togetplace){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                double longitude=todo.getDouble("longitude");
+                double latitude=todo.getDouble("latitude");
+                togetplace.getplace(longitude,latitude);
+            }
+            @Override
+            public void onError(Throwable throwable) {
+            }
+            @Override
+            public void onComplete() {
+            }
+        });
+
+    }
+
 }

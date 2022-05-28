@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_title"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/back_toolBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:src="@mipmap/icon_new_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="朋友"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.example.friend.utils.ShadowLayoutTwo
+            android:id="@+id/addFriend_sha"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:shadowColor="#1A333333"
+            app:shadowRadiusButtom="5dp"
+            app:shadowRadiusLeft="5dp"
+            app:shadowRadiusRight="5dp"
+            app:shadowRadiusTop="5dp"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
+            app:shadowShape="rectangle"
+            app:shadowSide="all">
+
+            <ImageButton
+                android:id="@+id/addFriend"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_button_seletor_15"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/addf" />
+        </com.example.friend.utils.ShadowLayoutTwo>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/translucent"
+            android:drawableLeft="@mipmap/icon_search"
+            android:drawableTint="@color/clear_light_gray"
+            android:gravity="center"
+            android:hint="搜索本地好友"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friend_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

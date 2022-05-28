@@ -4,38 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3DA61"
     >
     <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="20dp"/>
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:rowCount="1"
         android:columnCount="2"
-        android:background="@drawable/shape"
+        android:background="#FFFFFF"
         >
 
         <TextView
             android:id="@+id/deletemyself"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/back" />
+            android:background="@drawable/back"  />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="个人中心"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:textColor="#B3DA61"
-            android:textSize="25dp"
+            android:textSize="16dp"
             android:gravity="center"
             android:layout_marginRight="100dp"/>
     </GridLayout>
@@ -71,7 +66,8 @@
             android:textStyle="bold"
             android:textSize="25dp"
             ></TextView>
-            <TextView
+            <ImageView
+                android:id="@+id/heads"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="40dp"
@@ -80,9 +76,14 @@
                 android:textSize="25dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:background="@drawable/mayubin"
-                ></TextView>
+                ></ImageView>
         </GridLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#FFFFFF"
+        >
+    </LinearLayout>
         <GridLayout
             android:id="@+id/turnto2"
             android:layout_width="match_parent"
@@ -124,8 +125,14 @@
             android:layout_marginRight="30dp"
         android:textSize="20dp"
         ></TextView>
-        </GridLayout>
 
+        </GridLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#FFFFFF"
+            >
+        </LinearLayout>
 
         <GridLayout
             android:id="@+id/sign100"
@@ -153,6 +160,12 @@
                 android:textSize="20dp"
                 ></TextView>
         </GridLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#FFFFFF"
+            >
+        </LinearLayout>
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,7 +205,105 @@
                         android:layout_height="20dp"
                         android:src="@drawable/to"/>
                 </GridLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+                    <ImageView
+                        android:id="@+id/friend1"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"/>
+                    <ImageView
+                        android:id="@+id/friend2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/friend3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp">
+                    </ImageView>
+                </LinearLayout>
 
+            </LinearLayout>
+        </GridLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#FFFFFF"
+            ></TextView>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="1"
+            android:columnCount="1"
+            android:background="#FFFFFF"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/shapely">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:rowCount="1"
+                    android:columnCount="3"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:text="动态"
+                        ></TextView>
+                    <ImageButton
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:layout_width="15dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/to"/>
+                </GridLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+                    <ImageView
+                        android:id="@+id/dt1"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"/>
+                    <ImageView
+                        android:id="@+id/dt2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/dt3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp">
+                    </ImageView>
+                </LinearLayout>
 
             </LinearLayout>
         </GridLayout>

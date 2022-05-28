@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="clear_white">#AAFFFFFF</color>
+    <color name="pink">#E91E63</color>
+    <color name="golden">#FABF31</color>
+    <color name="gray">#4C4C4C</color>
+    <color name="light_gray">#A8A7A7</color>
+    <color name="clear_gray">#AA4C4C4C</color>
+    <color name="clear_light_gray">#AAAEACAC</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#23B817</color>
+
+    <!--通用颜色-->
+    <color name="green">#A5D63F</color>
+    <color name="deepGreen">#14AF1B</color>
+    <color name="red">#FA2323</color>
+    <color name="deepRed">#C12525</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="colorPrimaryT">#ff5b2c</color>
+    <color name="font_666666">#666666</color>
+
+    <color name="background_light_gary">#f7f7f7</color>
+
+    <!--IosPopupDialog-->
+    <color name="ios_popup_dialog_line">#c6c6c6</color>
+    <color name="ios_popup_dialog_line_phone">#f0f0f5</color>
+    <color name="ios_popup_dialog_blue">#037BFF</color>
+    <color name="ios_popup_dialog_actionsheet_red">#FD4A2E</color>
+    <color name="ios_popup_dialog_actionsheet_gray">#8F8F8F</color>
+    <color name="ios_popup_dialog_cancel">#FF5B2C</color>
+    <color name="ios_popup_dialog_confirm">#666666</color>
+
+    <color name="tv_gary_normal_666">#666666</color>
+    <color name="tv_gary_press_666">#CD2C2C2C</color>
+
+    <color name="tarch_null">#666666</color>
+
+    <color name="tarch_s">#947973</color>
+    <color name="tarch_g">#72716F</color>
+    <color name="tarch_k">#387EAB</color>
+    <color name="tarch_y">#EA6584</color>
+
+</resources>
