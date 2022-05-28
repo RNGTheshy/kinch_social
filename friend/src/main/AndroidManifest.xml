@@ -12,5 +12,8 @@
         <activity android:name=".FindFriendActivity">
 
         </activity>
+        <activity android:name=".SentActivity">
+
+        </activity>
     </application>
 </manifest>
