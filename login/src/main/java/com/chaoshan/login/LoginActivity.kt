@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity(), ActivityManager.IRecordPage,
     @DelicateCoroutinesApi
     private fun initView() {
         binding.forgetPassword.setOnClickListener {
-            val intent = Intent(this, ForgetPasswordActivity::class.java)
+            val intent = Intent(this, ResetPassword::class.java)
             startActivity(intent)
         }
 
