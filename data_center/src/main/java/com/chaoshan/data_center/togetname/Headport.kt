@@ -86,8 +86,6 @@ public class Headport {
                 t.getString("picture")?.let {
                     saveToImage(t.getString("picture"),imageView.context,imageView);
                 }
-
-
             }
         })
 
