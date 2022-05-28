@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.friend.GetAllDataListener
+import com.chaoshan.data_center.friend.GetAllUer
 import com.example.friend.adapter.MayBeFriend
 import com.example.friend.databinding.AddFriendBinding
 import com.example.friend.viewholder.GridSpaceDecoration
@@ -18,6 +21,19 @@ class AddFriendActivity : AppCompatActivity() {
         setContentView(binding.root)
         initLister()
         initView()
+        initData()
+    }
+
+    private fun initData() {
+        GetAllUer.getAllUerDao(object : GetAllDataListener {
+            override fun success(friendList: List<Friend>) {
+                adapter.setMayBeData(friendList)
+            }
+
+            override fun fail() {
+            }
+
+        })
     }
 
     private fun initView() {

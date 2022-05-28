@@ -130,6 +130,7 @@
         <entry key="friend/src/main/res/layout/find_friend.xml" value="0.23020833333333332" />
         <entry key="friend/src/main/res/layout/friend_main.xml" value="0.2803442028985507" />
         <entry key="friend/src/main/res/layout/item_friend.xml" value="0.1802536231884058" />
+        <entry key="friend/src/main/res/layout/sent_information.xml" value="0.30842391304347827" />
         <entry key="friend/src/main/res/layout/text_view.xml" value="0.28125" />
         <entry key="login/src/main/res/drawable/edit_text_bg.xml" value="0.2921875" />
         <entry key="login/src/main/res/layout/edit_text_bg.xml" value="0.20364583333333333" />
