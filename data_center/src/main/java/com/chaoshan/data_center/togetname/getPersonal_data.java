@@ -52,4 +52,27 @@ public class getPersonal_data {
 
     }
 
+
+    public static  void  geturl(String objectid,Geturl togeturl){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                String url=todo.getString("picture");
+                togeturl.geturl(url);
+            }
+            @Override
+            public void onError(Throwable throwable) {
+            }
+            @Override
+            public void onComplete() {
+            }
+        });
+
+    }
+
 }

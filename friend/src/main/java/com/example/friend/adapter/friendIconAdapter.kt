@@ -1,16 +1,11 @@
 package com.example.friend.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.togetname.center_getname
@@ -18,8 +13,8 @@ import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
 
 
-class friendItemAdapter(var datas: List<Friend>) :
-    RecyclerView.Adapter<friendItemAdapter.ViewHolder>() {
+class friendIconAdapter(var datas: List<Friend>) :
+    RecyclerView.Adapter<friendIconAdapter.ViewHolder>() {
     private var mContext: Context? = null
 
     fun setData(datas: List<Friend>) {
@@ -28,10 +23,7 @@ class friendItemAdapter(var datas: List<Friend>) :
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var headView: ImageView = view.findViewById(R.id.headView) as ImageView
-        val name: TextView = view.findViewById(R.id.name) as TextView
-        val location: TextView = view.findViewById(R.id.location) as TextView
-        var state: ImageView = view.findViewById(R.id.state) as ImageView
+        var head: ImageView = view.findViewById(R.id.head) as ImageView
     }
 
     //事件监听的回调接口
@@ -51,7 +43,7 @@ class friendItemAdapter(var datas: List<Friend>) :
     ): ViewHolder {
         //加载布局创建viewholder
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_friend, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.icon_friend, parent, false)
         mContext = parent.context
         return ViewHolder(view)
     }
@@ -62,24 +54,7 @@ class friendItemAdapter(var datas: List<Friend>) :
 
         //设置头像
         val headport = Headport()
-        friend.id?.let { headport.setImage(it, holder.headView) }
-
-        //设置名字
-        getPersonal_data.center_getname(friend.id, object : center_getname {
-            override fun getname(name: String?) {
-                holder.name.text = name
-            }
-        })
-
-        //设置定位
-        holder.location.text = friend.location
-
-        //设置状态
-        when (friend.state) {
-            "正在睡觉" -> {
-                holder.state.setImageResource(R.mipmap.state_sleep)
-            }
-        }
+        friend.id?.let { headport.setImage(it, holder.head) }
 
         if (mlistener != null) {
             holder.itemView.setOnClickListener {
