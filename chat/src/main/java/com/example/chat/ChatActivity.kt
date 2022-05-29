@@ -48,7 +48,7 @@ class ChatActivity : AppCompatActivity() {
             override fun done(client: LCIMClient, e: LCIMException?) {
                 if (e == null) {
                    ConversationListActivity.goToConList(this@ChatActivity)
-                    finish()
+//                    finish()
                 } else {
 
                 }
@@ -57,7 +57,7 @@ class ChatActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.chat_room)
+        setContentView(R.layout.chat_room)
         initUserChat()
 
 //            val userId = intent.getStringExtra(USER_ID)

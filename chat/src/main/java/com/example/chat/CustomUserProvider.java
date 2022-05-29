@@ -46,13 +46,17 @@ public class CustomUserProvider implements LCChatProfileProvider {
 //    partUsers.add(new LCChatKitUser("626684c2adc5786698ac1efa", "456", "http://www.avatarsdb.com/avatars/bath_bob.jpg"));
 //    partUsers.add(new LCChatKitUser("6265738aadc5786698ab7876", "123", "http://www.avatarsdb.com/avatars/bath_bob.jpg"));
 
-    LCQuery<LCObject> query = new LCQuery<>("_User");
-    query.whereNotEqualTo("objectId", "");
+//    LCQuery<LCObject> query = new LCQuery<>("_User");
+//    query.whereNotEqualTo("objectId", "");
+    LCQuery<LCObject> query = new LCQuery<>("userdata");
+    query.whereNotEqualTo("userid", "");
     query.findInBackground().subscribe(new Observer<List<LCObject>>() {
       public void onSubscribe(Disposable disposable) {}
       public void onNext(List<LCObject> users) {
         for (LCObject user : users){
-          partUsers.add(new LCChatKitUser(user.getObjectId(),user.getString("username"),"http://www.avatarsdb.com/avatars/bath_bob.jpg"));
+          partUsers.add(new LCChatKitUser(user.getString("userid"),user.getString("name"),user.getString("picture")));
+
+//          partUsers.add(new LCChatKitUser(user.getObjectId(),user.getString("username"),"http://www.avatarsdb.com/avatars/bath_bob.jpg"));
         }
       }
       public void onError(Throwable throwable) {}

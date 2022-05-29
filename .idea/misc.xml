@@ -114,6 +114,29 @@
         <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/msg_right_item.xml" value="0.2" />
         <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/layout/user.xml" value="0.1125" />
         <entry key="..\:/practise/positioningsocialsystem-android/chat/src/main/res/xml/net_setting.xml" value="0.12083333333333333" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/bg_avatar_radius_corner.xml" value="0.1495" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/bg_radius_corner.xml" value="0.1495" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/lcim_chat_anim_voice_left.xml" value="0.1015" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/lcim_chat_anim_voice_right.xml" value="0.1015" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/lcim_chat_resend_bg.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/lcim_read_badge.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/drawable/lcim_textview_bg.xml" value="0.1235" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/activity_conversation_detail.xml" value="0.25364583333333335" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/chat_history_item_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/chat_setting_activity_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/chat_setting_fragment_layout.xml" value="0.2" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/contact_fragment.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/conversation_list_activity_layout.xml" value="0.264" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/find_chat_history_activity_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/find_chat_history_fragment_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_chat_image_brower_layout.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_chat_item_left_audio_layout.xml" value="0.1125" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_chat_item_left_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_chat_item_left_text_layout.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_chat_item_right_layout.xml" value="0.10416666666666667" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_conversation_fragment.xml" value="0.12047101449275362" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_conversation_item.xml" value="0.13958333333333334" />
+        <entry key="..\:/practise/positioningsocialsystem-android/leancloudchatkit/src/main/res/layout/lcim_conversation_list_fragment.xml" value="0.12047101449275362" />
         <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/drawable/edit_text_bg.xml" value="0.1" />
         <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/layout/login_come_activity.xml" value="0.1125" />
         <entry key="..\:/practise/positioningsocialsystem-android/login/src/main/res/layout/login_main_activity.xml" value="0.1125" />
