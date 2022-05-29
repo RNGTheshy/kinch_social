@@ -111,6 +111,7 @@ class friendItemAdapter(var datas: List<Friend>) :
             }
         }
     }
+
     override fun getItemCount() = datas.size
 
 }

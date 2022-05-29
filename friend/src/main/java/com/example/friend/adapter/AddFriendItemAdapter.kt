@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.togetname.CallBackListUrl
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
@@ -18,8 +19,19 @@ import com.example.friend.viewholder.MayBeFriendItemViewHolder
 class AddFriendItemAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var data: List<Friend>? = null
+    private var headUrl: List<String>? = null
     fun setData(list: List<Friend>) {
         data = list
+        val list2: MutableList<String> = mutableListOf()
+        list.forEach {
+            list2.add(it.id ?: "")
+        }
+        Headport().getAllUrlByObject(list2, object : CallBackListUrl {
+            override fun success(list: List<String>) {
+                headUrl = list
+                notifyDataSetChanged()
+            }
+        })
         notifyDataSetChanged()
     }
 
@@ -38,8 +50,14 @@ class AddFriendItemAdapter() :
 
         //设置头像
         val headPort = Headport()
-        if (friend != null) {
-            friend.id?.let { headPort.setImage(it, holder.binding.headView) }
+        headUrl?.let {
+            if (it.isNotEmpty()) {
+                headPort.saveToImage(
+                    it.get(position),
+                    holder.binding.headView.context,
+                    holder.binding.headView
+                )
+            }
         }
         setRadius(holder.binding.headView, 20F)
 

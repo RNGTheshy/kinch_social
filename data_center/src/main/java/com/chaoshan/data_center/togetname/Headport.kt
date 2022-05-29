@@ -10,6 +10,7 @@ import cn.leancloud.LCQuery
 import com.bumptech.glide.Glide
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import java.util.*
 
 
 public class Headport {
@@ -70,12 +71,14 @@ public class Headport {
     }
 
     fun saveToImage(url: String, context: Context, imageView: ImageView) {
+        if (url == "") {
+            return
+        }
         Glide.with(context)
             .load(url)
             .centerCrop()
             .into(imageView)
     }
-
 
 
     fun setImage(objectid: String, imageView: ImageView) {
@@ -94,5 +97,28 @@ public class Headport {
         })
 
     }
+
+    fun getAllUrlByObject(objectid: List<String>, callBackListUrl: CallBackListUrl) {
+        val list: MutableList<LCQuery<LCObject>> = mutableListOf()
+        objectid.forEach {
+            val query = LCQuery<LCObject>("userdata")
+            query.whereEqualTo("userid", it)
+            list.add(query)
+        }
+        val query: LCQuery<LCObject> = LCQuery.or(list.toList())
+        query.findInBackground().subscribe(object : Observer<List<LCObject>> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject>) {
+                val list2: MutableList<String> = mutableListOf()
+                t.forEach {
+                    list2.add(it.getString("picture") ?: "")
+                }
+                callBackListUrl.success(list2)
+            }
+        })
+    }
+
 
 }
