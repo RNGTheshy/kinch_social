@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.friend.*
+import com.chaoshan.data_center.togetname.CallBackListUrl
+import com.chaoshan.data_center.togetname.Headport
 import com.example.friend.adapter.MayBeFriend
 import com.example.friend.databinding.AddFriendBinding
 import com.example.friend.viewholder.GridSpaceDecoration
