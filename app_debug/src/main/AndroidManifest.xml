@@ -6,15 +6,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 基本模块 END -->
     <application
-        android:name=".DebugApplication"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:exported="true"
+        android:name=".DebugApplication"
         android:icon="@mipmap/kinch_icon"
         android:label="Kinch"
         android:roundIcon="@mipmap/kinch_icon"
-        android:supportsRtl="true"
         android:theme="@style/Theme.ChaoshanCulture"
-        android:usesCleartextTraffic="true">
+        android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
             android:exported="true">
