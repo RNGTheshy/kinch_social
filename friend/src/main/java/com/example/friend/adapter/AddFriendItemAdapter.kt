@@ -26,12 +26,15 @@ class AddFriendItemAdapter() :
         list.forEach {
             list2.add(it.id ?: "")
         }
-        Headport().getAllUrlByObject(list2, object : CallBackListUrl {
-            override fun success(list: List<String>) {
-                headUrl = list
-                notifyDataSetChanged()
-            }
-        })
+        if (list.isNotEmpty()) {
+            Headport().getAllUrlByObject(list2, object : CallBackListUrl {
+                override fun success(list: List<String>) {
+                    headUrl = list
+                    notifyDataSetChanged()
+                }
+            })
+        }
+
         notifyDataSetChanged()
     }
 

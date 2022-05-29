@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.chaoshan.data_center.friend.Friend
-import com.chaoshan.data_center.friend.SentFriend
+import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.friend.*
 import com.chaoshan.data_center.togetname.CallBackListUrl
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
@@ -34,12 +34,15 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         listdata.forEach {
             list.add(it.mId ?: "")
         }
-        Headport().getAllUrlByObject(list, object : CallBackListUrl {
-            override fun success(list: List<String>) {
-                agreeUrl = list
-                notifyDataSetChanged()
-            }
-        })
+        if (listdata.isNotEmpty()) {
+            Headport().getAllUrlByObject(list, object : CallBackListUrl {
+                override fun success(list: List<String>) {
+                    agreeUrl = list
+                    notifyDataSetChanged()
+                }
+            })
+        }
+
     }
 
     fun setMayBeData(listdata: List<Friend>) {
@@ -142,6 +145,19 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             holder.binding.sent.setOnClickListener {
                 agreeData?.get(position - 1)?.mId?.let {
+                    GetAllUer.addFriend(
+                        SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                        it,
+                        object : DeleteCallback {
+                            override fun success() {
+                                GetAllUer.getSendFriendData(SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                                    object : GetSentFriendCallBack {
+                                        override fun getSuccess(friend: List<SentFriend>) {
+                                            setAgreeData(friend)
+                                        }
+                                    })
+                            }
+                        })
 
                 }
             }
