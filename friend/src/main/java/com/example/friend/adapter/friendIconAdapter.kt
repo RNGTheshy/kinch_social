@@ -1,9 +1,11 @@
 package com.example.friend.adapter
 
 import android.content.Context
+import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.togetname.Headport
@@ -56,6 +58,7 @@ class friendIconAdapter(var datas: List<Friend>) :
         val headport = Headport()
         friend.id?.let { headport.setImage(it, holder.head) }
 
+        setRadius(holder.head, 20F)
         if (mlistener != null) {
             holder.itemView.setOnClickListener {
                 val pos = holder.layoutPosition
@@ -67,6 +70,21 @@ class friendIconAdapter(var datas: List<Friend>) :
                 true
             }
         }
+    }
+
+    /**
+     * 用于设置ImageView的圆角
+     * @param radius: 图片圆角 px
+     */
+    private fun setRadius(view: View, radius: Float) {
+        view.clipToOutline = true
+        view.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, 0, view.width, view.height, radius)
+            }
+        }
+        //设置阴影
+        view.elevation = 20F;
     }
 
     override fun getItemCount() = datas.size

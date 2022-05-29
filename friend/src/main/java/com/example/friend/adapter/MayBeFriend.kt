@@ -1,8 +1,11 @@
 package com.example.friend.adapter
 
 import android.content.Intent
+import android.graphics.Outline
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.friend.SentFriend
@@ -93,6 +96,7 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val headPort = Headport()
             friend?.mId?.let { headPort.setImage(it, holder.binding.headView) }
 
+            setRadius(holder.binding.headView, 20F)
             //设置名字
             if (friend != null) {
                 getPersonal_data.center_getname(friend.mId, object : center_getname {
@@ -125,6 +129,7 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (friend != null) {
                 friend.id?.let { headPort.setImage(it, holder.binding.headView) }
             }
+            setRadius(holder.binding.headView, 20F)
 
 
             //设置名字
@@ -148,6 +153,20 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
         }
+    }
+    /**
+     * 用于设置ImageView的圆角
+     * @param radius: 图片圆角 px
+     */
+    private fun setRadius(view: View, radius: Float) {
+        view.clipToOutline = true
+        view.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, 0, view.width, view.height, radius)
+            }
+        }
+        //设置阴影
+        view.elevation = 20F;
     }
 
     override fun getItemCount(): Int {

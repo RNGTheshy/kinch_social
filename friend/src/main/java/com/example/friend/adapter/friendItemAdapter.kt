@@ -3,9 +3,11 @@ package com.example.friend.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -64,6 +66,7 @@ class friendItemAdapter(var datas: List<Friend>) :
         val headport = Headport()
         friend.id?.let { headport.setImage(it, holder.headView) }
 
+        setRadius(holder.headView, 20F)
         //设置名字
         getPersonal_data.center_getname(friend.id, object : center_getname {
             override fun getname(name: String?) {
@@ -94,6 +97,20 @@ class friendItemAdapter(var datas: List<Friend>) :
         }
     }
 
+    /**
+     * 用于设置ImageView的圆角
+     * @param radius: 图片圆角 px
+     */
+    private fun setRadius(view: View, radius: Float) {
+        view.clipToOutline = true
+        view.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, 0, view.width, view.height, radius)
+            }
+        }
+        //设置阴影
+        view.elevation = 20F;
+    }
     override fun getItemCount() = datas.size
 
 }
