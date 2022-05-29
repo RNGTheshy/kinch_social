@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/search" />
             <option value="$PROJECT_DIR$/setting" />
             <option value="$PROJECT_DIR$/socialforum" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

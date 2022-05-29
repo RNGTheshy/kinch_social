@@ -86,7 +86,8 @@ public class Headport {
         query.whereEqualTo("userid", objectid)
         query.firstInBackground.subscribe(object : Observer<LCObject?> {
             override fun onSubscribe(disposable: Disposable) {}
-            override fun onError(throwable: Throwable) {}
+            override fun onError(throwable: Throwable) {
+            }
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
                 t.getString("picture")?.let {
