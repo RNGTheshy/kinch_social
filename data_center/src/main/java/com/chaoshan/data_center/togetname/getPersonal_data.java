@@ -29,6 +29,8 @@ public class getPersonal_data {
             }
         });
     }
+
+
     public static  void  getplace(String objectid,Getplace togetplace){
         LCQuery<LCObject> query = new LCQuery<>("userdata");
         query.whereEqualTo("userid", objectid);
