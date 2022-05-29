@@ -111,6 +111,7 @@ class friendItemAdapter(var datas: List<Friend>) :
         //设置阴影
         view.elevation = 20F;
     }
+
     override fun getItemCount() = datas.size
 
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.togetname.CallBackListUrl
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
@@ -19,8 +20,19 @@ class friendIconAdapter(var datas: List<Friend>) :
     RecyclerView.Adapter<friendIconAdapter.ViewHolder>() {
     private var mContext: Context? = null
 
+    private var headUrl: List<String>? = null
     fun setData(datas: List<Friend>) {
         this.datas = datas
+        val list: MutableList<String> = mutableListOf()
+        datas.forEach {
+            list.add(it.id ?: "")
+        }
+        Headport().getAllUrlByObject(list, object : CallBackListUrl {
+            override fun success(list: List<String>) {
+                headUrl = list
+                notifyDataSetChanged()
+            }
+        })
         notifyDataSetChanged()
     }
 
@@ -56,7 +68,16 @@ class friendIconAdapter(var datas: List<Friend>) :
 
         //设置头像
         val headport = Headport()
-        friend.id?.let { headport.setImage(it, holder.head) }
+
+        headUrl?.let {
+            if (it.isNotEmpty()) {
+                headport.saveToImage(
+                    it.get(position),
+                    holder.head.context,
+                    holder.head
+                )
+            }
+        }
 
         setRadius(holder.head, 20F)
         if (mlistener != null) {
