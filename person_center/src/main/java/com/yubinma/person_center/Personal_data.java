@@ -14,7 +14,7 @@ import cn.leancloud.LCUser;
 import cn.leancloud.types.LCNull;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-class Personal_data {
+public class Personal_data {
     String[] data = new String[5];
 
 
@@ -415,7 +415,7 @@ class Personal_data {
 
 
     //改经纬度
-    void saveplace(double longitude,double latitude,String objectid) {
+    public void saveplace(double longitude,double latitude,String objectid) {
         LCQuery<LCObject> query = new LCQuery<>("userdata");
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {

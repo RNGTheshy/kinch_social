@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yubinma.person_center">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions"></uses-permission>
+
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,15 +21,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Rename" />
-        <activity android:name=".csign" />
-        <activity android:name=".changestate" />
-        <activity android:name=".Setsex"/>
-        <activity android:name=".Setting"/>
-        <activity android:name=".Cpassword"/>
-        <activity android:name=".plocation"/>
-        <activity android:name=".Ctelephone1"/>
-        <activity android:name=".Ctelephone2"/>
+        <activity android:name=".Rename"
+            android:exported="true"/>
+        <activity android:name=".csign"
+            android:exported="true"/>
+        <activity android:name=".changestate"
+            android:exported="true"/>
+        <activity android:name=".Setsex"
+            android:exported="true"/>
+        <activity android:name=".Setting"
+            android:exported="true"/>
+        <activity android:name=".Cpassword"
+            android:exported="true"/>
+        <activity android:name=".plocation"
+            android:exported="true"/>
+        <activity android:name=".Ctelephone1"
+            android:exported="true"/>
+        <activity android:name=".friendcenter"
+            android:exported="true"/>
+        <activity android:name=".Ctelephone2"
+            android:exported="true"/>
 
 
         <service android:name="cn.leancloud.push.PushService"/>

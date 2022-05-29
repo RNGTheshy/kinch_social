@@ -1,45 +1,46 @@
 package com.example.friend.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.friend.Friend
-import com.chaoshan.data_center.friend.GetAllDataListener
-import com.chaoshan.data_center.friend.GetAllMyFirendCallBack
-import com.chaoshan.data_center.friend.GetAllUer
+import com.chaoshan.data_center.togetname.CallBackListUrl
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
-import kotlin.concurrent.thread
 
 
-class friendItemAdapter(var datas: List<Friend>) :
-    RecyclerView.Adapter<friendItemAdapter.ViewHolder>() {
+class friendIconAdapter(var datas: List<Friend>) :
+    RecyclerView.Adapter<friendIconAdapter.ViewHolder>() {
     private var mContext: Context? = null
 
+    private var headUrl: List<String>? = null
     fun setData(datas: List<Friend>) {
         this.datas = datas
+        val list: MutableList<String> = mutableListOf()
+        datas.forEach {
+            list.add(it.id ?: "")
+        }
+        if (list.isNotEmpty()) {
+            Headport().getAllUrlByObject(list, object : CallBackListUrl {
+                override fun success(list: List<String>) {
+                    headUrl = list
+                    notifyDataSetChanged()
+                }
+            })
+        }
 
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var headView: ImageView = view.findViewById(R.id.headView) as ImageView
-        val name: TextView = view.findViewById(R.id.name) as TextView
-        val location: TextView = view.findViewById(R.id.location) as TextView
-        var state: ImageView = view.findViewById(R.id.state) as ImageView
+        var head: ImageView = view.findViewById(R.id.head) as ImageView
     }
 
     //事件监听的回调接口
@@ -59,7 +60,7 @@ class friendItemAdapter(var datas: List<Friend>) :
     ): ViewHolder {
         //加载布局创建viewholder
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_friend, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.icon_friend, parent, false)
         mContext = parent.context
         return ViewHolder(view)
     }
@@ -70,27 +71,18 @@ class friendItemAdapter(var datas: List<Friend>) :
 
         //设置头像
         val headport = Headport()
-        friend.id?.let { headport.setImage(it, holder.headView) }
-        Thread.sleep(50)
 
-        setRadius(holder.headView, 20F)
-        //设置名字
-        getPersonal_data.center_getname(friend.id, object : center_getname {
-            override fun getname(name: String?) {
-                holder.name.text = name
-            }
-        })
-
-        //设置定位
-        holder.location.text = friend.location
-
-        //设置状态
-        when (friend.state) {
-            "正在睡觉" -> {
-                holder.state.setImageResource(R.mipmap.state_sleep)
+        headUrl?.let {
+            if (it.isNotEmpty()) {
+                headport.saveToImage(
+                    it.get(position),
+                    holder.head.context,
+                    holder.head
+                )
             }
         }
 
+        setRadius(holder.head, 20F)
         if (mlistener != null) {
             holder.itemView.setOnClickListener {
                 val pos = holder.layoutPosition

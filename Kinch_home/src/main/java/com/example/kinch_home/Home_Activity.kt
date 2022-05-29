@@ -1,11 +1,16 @@
 package com.example.kinch_home
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Bitmap
+import android.location.Location
+import android.location.LocationListener
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,16 +22,40 @@ import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.chaoshan.data_center.SettingsPreferencesDataStore.getCurrentUserObjetID
 import com.chaoshan.data_center.activitymanger.ActivityManager
+import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.chat.ChatActivity
 import com.example.chat.ChatActivity.Companion.goToChat
 import com.example.friend.friendMainActivity
 import com.example.setting.SettingMainActivity
 import com.yubinma.person_center.PersonCenter2Activity
+import com.yubinma.person_center.Personal_data
+import com.baidu.platform.comapi.basestruct.GeoPoint
+import android.location.*
+import android.util.Log
 
 
-class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManager.IRecordPage {
+import com.baidu.mapapi.map.MarkerOptions
+import com.bumptech.glide.Glide
+import com.chaoshan.data_center.togetname.Geturl
+import com.chaoshan.data_center.togetname.getPersonal_data
+import com.chaoshan.data_center.togetname.getPersonal_data.geturl
+import com.example.kinch_home.utils.BitmapUtil.getBitmap
+import kotlin.concurrent.thread
+import com.bumptech.glide.request.RequestOptions
+
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+
+
+
+
+
+class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager.IRecordPage {
+    private var mAddress: Address? = null
+    private var flag = 1
+    private var mLocation: BDLocation? = null
     private var mMapView: MapView? = null
     private var mBaiduMap: BaiduMap? = null
     private var mLocationClient: LocationClient? = null
@@ -91,7 +120,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
         val option = LocationClientOption()
         option.isOpenGps = true // 打开gps
         option.setCoorType("bd09ll") // 设置坐标类型
-        option.setScanSpan(1000)
+        option.setScanSpan(100)
         // 可选，设置地址信息
         option.setIsNeedAddress(true)
         //可选，设置是否需要地址描述
@@ -110,11 +139,82 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
 
     }
 
+    //跳转到朋友定位
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            flag = 0
+            Toast.makeText(this@Home_Activity, "朋友定位成功", Toast.LENGTH_SHORT).show()
+            mBaiduMap?.clear()
+            val returnedId = data?.getStringExtra("id")
+            val returnedLongitude = data?.getDoubleExtra("longitude", 115.416827)
+            val returnedLatitude = data?.getDoubleExtra("latitude", 39.442078)
+            val latLng = LatLng(returnedLatitude!!, returnedLongitude!!)
+
+            geturl(returnedId) { url ->
+                thread {
+                    val roundedCorners = RoundedCorners(15)
+                    val option = RequestOptions.bitmapTransform(roundedCorners)
+                    val b = Glide.with(this)
+                        .asBitmap()
+                        .load(url)
+                        .apply(option)
+                        .submit(80,80)
+                        .get()
+                    val bitmap = BitmapDescriptorFactory.fromBitmap(b)
+                    val options = MarkerOptions().position(latLng)
+                        .icon(bitmap)
+                    mBaiduMap!!.addOverlay(options)
+                }
+            }
+
+
+//            // 自定义地图样式
+//            // 更换定位图标，这里的图片是放在 drawble 文件下的
+//            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon)
+//            // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
+//            locationMode = MyLocationConfiguration.LocationMode.NORMAL
+//            // 定位模式、是否开启方向、设置自定义定位图标、精度圈填充颜色以及精度圈边框颜色5个属性（此处只设置了前三个）。
+//            val mLocationConfiguration = MyLocationConfiguration(
+//                locationMode, true, mCurrentMarker,
+//                R.color.teal_700, R.color.teal_700
+//            )
+//            // 使自定义的配置生效
+//            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
+
+
+            val msu = MapStatusUpdateFactory.newLatLng(latLng)
+            mBaiduMap!!.setMapStatus(msu)
+//            val locData = MyLocationData.Builder()
+//                .latitude(returnedLatitude)
+//                .longitude(returnedLongitude).build()
+//            mBaiduMap!!.setMyLocationData(locData)
+            val geocoder = Geocoder(this)
+            val address = geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100)
+            // 设置标题
+            mAddress = address[0]
+            if (mapStatus?.zoom!! < 5)
+                mTextView?.text = mAddress?.countryName
+            else if (mapStatus?.zoom!! < 7)
+                mTextView?.text = mAddress?.adminArea
+            else if (mapStatus?.zoom!! < 10)
+                mTextView?.text = mAddress?.locality
+            else if (mapStatus?.zoom!! < 14)
+                mTextView?.text = mAddress?.featureName
+            else
+                mTextView?.text = mAddress?.featureName
+
+            // 在地图上添加Marker，并显示
+            //mBaiduMap.addOverlay(options);
+
+
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     private fun initClickListener() {
         mSettingButton?.setOnClickListener {
             val intent = Intent(this, SettingMainActivity::class.java)
             startActivity(intent)
-
         }
         mMessageButton?.setOnClickListener {
             goToChat(this, "147", "147")
@@ -129,14 +229,14 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
         }
         mFriendButton?.setOnClickListener {
             val intent = Intent(this, friendMainActivity::class.java)
-            startActivity(intent)
-
+            startActivityForResult(intent, 1)
         }
         mMeButton?.setOnClickListener {
             val intent = Intent(this, PersonCenter2Activity::class.java)
             startActivity(intent)
 
         }
+
     }
 
     // 继承抽象类BDAbstractListener并重写其onReceieveLocation方法来获取定位数据，并将其传给MapView
@@ -146,51 +246,68 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
             if (mMapView == null) {
                 return
             }
-
+            mLocation = location
             // 如果是第一次定位
             val ll = LatLng(location.latitude, location.longitude)
+            mLongitude = location.longitude
+            mLatitude = location.latitude
             if (isFirstLocate) {
                 isFirstLocate = false
                 //给地图设置状态
                 mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
+                //存经纬度
+                val userId = getCurrentUserObjetID()
+                val personal_data = Personal_data()
+                personal_data.saveplace(mLongitude, mLatitude, userId);
             }
-            mLongitude = location.longitude
-            mLatitude = location.latitude
             val locData = MyLocationData.Builder()
                 .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
                 .direction(location.direction).latitude(location.latitude)
                 .longitude(location.longitude).build()
             mBaiduMap!!.setMyLocationData(locData)
-
-            // 自定义地图样式
-            // 更换定位图标，这里的图片是放在 drawble 文件下的
-            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon)
-            // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
-            locationMode = MyLocationConfiguration.LocationMode.NORMAL
-            // 定位模式、是否开启方向、设置自定义定位图标、精度圈填充颜色以及精度圈边框颜色5个属性（此处只设置了前三个）。
-            val mLocationConfiguration = MyLocationConfiguration(
-                locationMode, true, mCurrentMarker,
-                R.color.teal_700, R.color.teal_700
-            )
-            // 使自定义的配置生效
-            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
             mapStatus = mBaiduMap?.mapStatus
-            // 设置标题 动态加载
-            if (mapStatus?.zoom!! < 5)
-                mTextView?.text = location.country
-            else if (mapStatus?.zoom!! < 7)
-                mTextView?.text = location.province
-            else if (mapStatus?.zoom!! < 10)
-                mTextView?.text = location.city
-            else if (mapStatus?.zoom!! < 14)
-                mTextView?.text = location.district
-            else
-                mTextView?.text = location.street
+            if (flag == 1) {
+                if (mapStatus?.zoom!! < 5)
+                    mTextView?.text = mLocation?.country
+                else if (mapStatus?.zoom!! < 7)
+                    mTextView?.text = mLocation?.province
+                else if (mapStatus?.zoom!! < 10)
+                    mTextView?.text = mLocation?.city
+                else if (mapStatus?.zoom!! < 14)
+                    mTextView?.text = mLocation?.district
+                else
+                    mTextView?.text = mLocation?.street
+            }
+//            // 自定义地图样式
+//            // 更换定位图标，这里的图片是放在 drawble 文件下的
+//            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon)
+//            // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
+//            locationMode = MyLocationConfiguration.LocationMode.NORMAL
+//            // 定位模式、是否开启方向、设置自定义定位图标、精度圈填充颜色以及精度圈边框颜色5个属性（此处只设置了前三个）。
+//            val mLocationConfiguration = MyLocationConfiguration(
+//                locationMode, true, mCurrentMarker,
+//                R.color.teal_700, R.color.teal_700
+//            )
+//            // 使自定义的配置生效
+//            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
+
             // 设置定位按钮点击事件
             mLocateButton?.setOnClickListener {
-                getMyLocation()
+                flag = 1
+                mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
+                if (mapStatus?.zoom!! < 5)
+                    mTextView?.text = mLocation?.country
+                else if (mapStatus?.zoom!! < 7)
+                    mTextView?.text = mLocation?.province
+                else if (mapStatus?.zoom!! < 10)
+                    mTextView?.text = mLocation?.city
+                else if (mapStatus?.zoom!! < 14)
+                    mTextView?.text = mLocation?.district
+                else
+                    mTextView?.text = mLocation?.street
                 Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 
@@ -230,11 +347,60 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener , ActivityManage
             mAddButton -> {
                 mapStatus = mBaiduMap?.mapStatus
                 mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.plus(1)))
+                // 设置标题 动态加载
+                if (flag == 1) {
+                    if (mapStatus?.zoom!! < 5)
+                        mTextView?.text = mLocation?.country
+                    else if (mapStatus?.zoom!! < 7)
+                        mTextView?.text = mLocation?.province
+                    else if (mapStatus?.zoom!! < 10)
+                        mTextView?.text = mLocation?.city
+                    else if (mapStatus?.zoom!! < 14)
+                        mTextView?.text = mLocation?.district
+                    else
+                        mTextView?.text = mLocation?.street
+                } else if (flag == 0) {
+                    if (mapStatus?.zoom!! < 5)
+                        mTextView?.text = mAddress?.countryName
+                    else if (mapStatus?.zoom!! < 7)
+                        mTextView?.text = mAddress?.adminArea
+                    else if (mapStatus?.zoom!! < 10)
+                        mTextView?.text = mAddress?.locality
+                    else if (mapStatus?.zoom!! < 14)
+                        mTextView?.text = mAddress?.featureName
+                    else
+                        mTextView?.text = mAddress?.featureName
+                }
+
             }
             //缩小按钮
             mMinusButton -> {
                 mapStatus = mBaiduMap?.mapStatus
                 mBaiduMap?.setMapStatus(MapStatusUpdateFactory.zoomTo(mapStatus?.zoom!!.minus(1)))
+                // 设置标题 动态加载
+                if (flag == 1) {
+                    if (mapStatus?.zoom!! < 5)
+                        mTextView?.text = mLocation?.country
+                    else if (mapStatus?.zoom!! < 7)
+                        mTextView?.text = mLocation?.province
+                    else if (mapStatus?.zoom!! < 10)
+                        mTextView?.text = mLocation?.city
+                    else if (mapStatus?.zoom!! < 14)
+                        mTextView?.text = mLocation?.district
+                    else
+                        mTextView?.text = mLocation?.street
+                } else if (flag == 0) {
+                    if (mapStatus?.zoom!! < 5)
+                        mTextView?.text = mAddress?.countryName
+                    else if (mapStatus?.zoom!! < 7)
+                        mTextView?.text = mAddress?.adminArea
+                    else if (mapStatus?.zoom!! < 10)
+                        mTextView?.text = mAddress?.locality
+                    else if (mapStatus?.zoom!! < 14)
+                        mTextView?.text = mAddress?.featureName
+                    else
+                        mTextView?.text = mAddress?.featureName
+                }
             }
         }
 

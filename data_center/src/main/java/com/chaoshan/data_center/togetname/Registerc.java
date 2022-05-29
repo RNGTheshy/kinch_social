@@ -6,6 +6,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class Registerc {
+
     public void toregister(String login,String email,String password,Failregister failregister)
     {
         //创建用户
