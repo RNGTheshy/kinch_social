@@ -1,5 +1,6 @@
 package cn.leancloud.chatkit.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
@@ -27,14 +28,17 @@ import cn.leancloud.chatkit.utils.LCIMConversationUtils;
 import cn.leancloud.chatkit.utils.LCIMLogUtils;
 
 /**
- * Created by wli on 16/2/29.
  * 会话详情页
  * 包含会话的创建以及拉取，具体的 UI 细节在 LCIMConversationFragment 中
  */
 public class LCIMConversationActivity extends AppCompatActivity {
 
   protected LCIMConversationFragment conversationFragment;
-
+  public static void startChatWithFriend(Context context, String friendObjId){
+    Intent intent = new Intent(context, LCIMConversationActivity.class);
+    intent.putExtra(LCIMConstants.PEER_ID, friendObjId);
+    context.startActivity(intent);
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

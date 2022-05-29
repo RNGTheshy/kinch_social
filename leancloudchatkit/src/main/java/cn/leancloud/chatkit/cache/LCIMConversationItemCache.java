@@ -15,7 +15,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Created by wli on 16/2/26.
  * 缓存未读消息数量
  * <p/>
  * 流程

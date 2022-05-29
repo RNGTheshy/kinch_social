@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cn.leancloud.chatkit.LCChatKit
+import cn.leancloud.chatkit.activity.ConversationListActivity
 import cn.leancloud.chatkit.activity.LCIMConversationActivity
 import cn.leancloud.chatkit.activity.LCIMUserSelectActivity
 import cn.leancloud.chatkit.utils.LCIMConstants
@@ -39,22 +40,26 @@ class ChatActivity : AppCompatActivity() {
                 intent.putExtra("userId",userId);
                 context.startActivity(intent)
             }
+            fun initUserChat(){
+                LCIMOptions.getGlobalOptions().setAutoOpen(true)
+                LCChatKit.getInstance().open(SettingsPreferencesDataStore.getCurrentUserObjetID(),object : LCIMClientCallback() {
+                    override fun done(client: LCIMClient, e: LCIMException?) {
+                        if (e == null) {
+
+                        } else {
+
+                        }
+                    }
+                })
+            }
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_room)
 
-        LCIMOptions.getGlobalOptions().setAutoOpen(true)
-        LCChatKit.getInstance().open(SettingsPreferencesDataStore.getCurrentUserObjetID(),object : LCIMClientCallback() {
-            override fun done(client: LCIMClient, e: LCIMException?) {
-                if (e == null) {
-
-                } else {
-                    Toast.makeText(this@ChatActivity,e.toString(),Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
+        initUserChat()
+        ConversationListActivity.goToConList(this)
 //            val userId = intent.getStringExtra(USER_ID)
 //            if (!TextUtils.isEmpty(userId)){
 //                LCChatKit.getInstance().open(userId , object : LCIMClientCallback() {

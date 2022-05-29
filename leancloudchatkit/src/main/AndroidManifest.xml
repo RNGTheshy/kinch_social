@@ -31,6 +31,7 @@
         <activity android:name=".activity.LCIMConversationSettingActivity"/>
         <activity android:name=".activity.ChatSettingActivity"/>
         <activity android:name=".activity.FindChatHistoryActivity"/>
+        <activity android:name=".activity.ConversationListActivity"/>
 
 
         <receiver android:name="cn.leancloud.push.AVBroadcastReceiver"

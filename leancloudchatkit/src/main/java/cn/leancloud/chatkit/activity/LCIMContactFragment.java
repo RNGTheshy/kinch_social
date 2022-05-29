@@ -33,7 +33,6 @@ import static android.app.Activity.RESULT_OK;
 import static cn.leancloud.chatkit.activity.LCIMUserSelectActivity.KEY_RESULT_DATA;
 
 /**
- * Created by wli on 15/12/4.
  * 联系人页面
  */
 public class LCIMContactFragment extends Fragment {
