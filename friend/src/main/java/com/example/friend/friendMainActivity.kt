@@ -100,15 +100,14 @@ class friendMainActivity : AppCompatActivity() {
                 val friendId = friends[position].id
                 var intent = Intent()
                 intent.putExtra("id", friendId)
-                getPersonal_data.getplace(
+                getplace(
                     friendId
                 ) { longitude, latitude ->
                     intent.putExtra("longitude", longitude)
                     intent.putExtra("latitude", latitude)
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
                 }
-
-                setResult(Activity.RESULT_OK, intent)
-                finish()
             }
 
             override fun onItemLongClick(view: View?, position: Int) {
