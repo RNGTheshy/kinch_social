@@ -13,8 +13,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.friend.GetAllDataListener
+import com.chaoshan.data_center.friend.GetAllMyFirendCallBack
+import com.chaoshan.data_center.friend.GetAllUer
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
@@ -27,6 +31,7 @@ class friendItemAdapter(var datas: List<Friend>) :
 
     fun setData(datas: List<Friend>) {
         this.datas = datas
+
         notifyDataSetChanged()
     }
 

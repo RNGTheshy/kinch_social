@@ -1,5 +1,6 @@
 package com.example.friend.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Outline
 import android.view.LayoutInflater
@@ -7,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.chaoshan.data_center.friend.Friend
-import com.chaoshan.data_center.friend.SentFriend
+import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.friend.*
 import com.chaoshan.data_center.togetname.CallBackListUrl
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
@@ -33,12 +34,15 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         listdata.forEach {
             list.add(it.mId ?: "")
         }
-        Headport().getAllUrlByObject(list, object : CallBackListUrl {
-            override fun success(list: List<String>) {
-                agreeUrl = list
-                notifyDataSetChanged()
-            }
-        })
+        if (listdata.isNotEmpty()) {
+            Headport().getAllUrlByObject(list, object : CallBackListUrl {
+                override fun success(list: List<String>) {
+                    agreeUrl = list
+                    notifyDataSetChanged()
+                }
+            })
+        }
+
     }
 
     fun setMayBeData(listdata: List<Friend>) {
@@ -104,6 +108,7 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position == 0) {
             holder as TitleViewHolder
@@ -112,6 +117,11 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (position > 0 && position <= agreeData?.size ?: 0) {
             holder as AddFriendAgreeItemViewHolder
             val friend = agreeData?.get(position - 1)
+
+            // 设置附加信息
+            if (friend != null) {
+                holder.binding.message.text = "附加信息：" + friend.message
+            }
 
             //设置头像
             val headPort = Headport()
@@ -135,6 +145,19 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             holder.binding.sent.setOnClickListener {
                 agreeData?.get(position - 1)?.mId?.let {
+                    GetAllUer.addFriend(
+                        SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                        it,
+                        object : DeleteCallback {
+                            override fun success() {
+                                GetAllUer.getSendFriendData(SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                                    object : GetSentFriendCallBack {
+                                        override fun getSuccess(friend: List<SentFriend>) {
+                                            setAgreeData(friend)
+                                        }
+                                    })
+                            }
+                        })
 
                 }
             }

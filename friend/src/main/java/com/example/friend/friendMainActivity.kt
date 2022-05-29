@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.friend.GetAllDataListener
+import com.chaoshan.data_center.friend.GetAllMyFirendCallBack
 import com.chaoshan.data_center.friend.GetAllUer
 import com.chaoshan.data_center.togetname.Getplace
 import com.chaoshan.data_center.togetname.center_getname
@@ -59,18 +61,26 @@ class friendMainActivity : AppCompatActivity() {
         iconRecycleView?.layoutManager = linearLayoutManager
         iconRecycleView?.adapter = iconAdapter
 
-        GetAllUer.getAllUerDao(object : GetAllDataListener {
-            override fun success(friendList: List<Friend>) {
-                friends = friendList
-                mAdapter?.setData(friends)
-                iconAdapter?.setData(friends)
-            }
 
-            override fun fail() {
-            }
+        GetAllUer.getAllFriend(
+            SettingsPreferencesDataStore.getCurrentUserObjetID(),
+            object : GetAllMyFirendCallBack {
+                override fun success(list: List<String>) {
 
-        })
+                    GetAllUer.getFriendDao(object : GetAllDataListener {
+                        override fun success(friendList: List<Friend>) {
+                            friends = friendList
+                            mAdapter?.setData(friends)
+                            iconAdapter?.setData(friends)
+                        }
 
+                        override fun fail() {
+
+                        }
+                    }, list)
+                }
+
+            })
     }
 
     private fun initClickListener() {
@@ -86,7 +96,7 @@ class friendMainActivity : AppCompatActivity() {
                 //跳转到主界面，定位到相应的朋友位置
                 val friendId = friends[position].id
                 var intent = Intent()
-                intent.putExtra("id",friendId)
+                intent.putExtra("id", friendId)
                 getPersonal_data.getplace(
                     friendId
                 ) { longitude, latitude ->

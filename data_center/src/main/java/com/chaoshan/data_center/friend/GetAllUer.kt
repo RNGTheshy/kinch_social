@@ -1,20 +1,44 @@
 package com.chaoshan.data_center.friend
 
 import android.util.Log
+import androidx.annotation.NonNull
 import cn.leancloud.LCObject
 import cn.leancloud.LCQuery
-import cn.leancloud.Messages
 import com.chaoshan.data_center.SettingsPreferencesDataStore
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import kotlinx.coroutines.GlobalScope
-import java.util.*
 import kotlin.concurrent.thread
+import cn.leancloud.types.LCNull
+import java.util.*
+
 
 object GetAllUer {
     fun getAllUerDao(callBack: GetAllDataListener) {
         val query = LCQuery<LCObject>("_User")
         query.whereNotEqualTo("objectId", SettingsPreferencesDataStore.getCurrentUserObjetID());
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                val f: MutableList<Friend> = mutableListOf()
+                t.forEach {
+                    f.add(Friend("null", null, "null", it?.getString("objectId").toString()))
+                }
+                callBack.success(f)
+            }
+        })
+
+    }
+
+    fun getFriendDao(callBack: GetAllDataListener, list: List<String>) {
+        val qList = mutableListOf<LCQuery<LCObject>>()
+        list.forEach {
+            val query = LCQuery<LCObject>("_User")
+            query.whereEqualTo("objectId", it);
+            qList.add(query)
+        }
+        val query: LCQuery<LCObject> = LCQuery.or(qList.toList())
         query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
             override fun onSubscribe(disposable: Disposable) {}
             override fun onError(throwable: Throwable) {}
@@ -67,69 +91,54 @@ object GetAllUer {
         })
     }
 
-    fun addFriend(mId: String, fId: String) {
+    fun addFriend(mId: String, fId: String, deleteCallback: DeleteCallback) {
+        val todoCreateObject: LCObject = LCObject(FriendList::class.java.simpleName)
+        todoCreateObject.put("mId", mId)
+        todoCreateObject.put("fId", fId)
+        val todoCreateObject2: LCObject = LCObject(FriendList::class.java.simpleName)
+        todoCreateObject2.put("mId", fId)
+        todoCreateObject2.put("fId", mId)
+        pushObject(todoCreateObject)
+        pushObject(todoCreateObject, deleteCallback)
+
+    }
+
+    // push对象
+    private fun pushObject(todoCreateObject: LCObject) {
+        todoCreateObject.saveInBackground().subscribe(object : Observer<LCObject?> {
+            override fun onSubscribe(d: Disposable) {}
+            override fun onError(e: Throwable) {
+                Log.e("addFriend", "saveError")
+
+            }
+
+            override fun onComplete() {}
+            override fun onNext(t: LCObject) {
+                Log.e("addFriend", "saveSuccess" + t.objectId)
+            }
+        })
+    }
+
+    fun getAllFriend(mId: String, getAllFriendCallBack: GetAllMyFirendCallBack) {
         val query = LCQuery<LCObject>(FriendList::class.java.simpleName)
         query.whereEqualTo("mId", mId);
+
         query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
             override fun onSubscribe(disposable: Disposable) {}
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: List<LCObject?>) {
-                if (t.isEmpty()) {
-                    val todoCreateObject =
-                        LCObject.createWithoutData(FriendList::class.java.simpleName, mId)
-                    todoCreateObject.put("mId", mId)
-                    val friendList = emptyList<String>().toMutableList()
-                    friendList.add(fId)
-                    todoCreateObject.put("fId", friendList.toList())
-                } else {
-                    t.forEach {
-                        val todo = LCObject.createWithoutData(
-                            FriendList::class.java.simpleName,
-                            it?.objectId
-                        )
-                        val friendList = todo.getList("fId")
-                        friendList.add(fId)
-                        todo.put("fId", fId)
-                        todo.saveInBackground().subscribe(object : Observer<LCObject?> {
-                            override fun onSubscribe(disposable: Disposable) {}
-                            override fun onError(throwable: Throwable) {
-                                println("保存失败！")
-                            }
-
-                            override fun onComplete() {}
-                            override fun onNext(t: LCObject) {
-
-                            }
-                        })
+                val outString: MutableList<String> = mutableListOf()
+                t.forEach {
+                    if (it != null) {
+                        outString.add(it.getString("fId"))
                     }
-
                 }
-            }
-        })
-
-    }
-
-    fun getAllFriend(mId: String, getAllFriendCallBack: GetAllFriendCallBack) {
-        val query = LCQuery<LCObject>(FriendList::class.java.simpleName)
-        query.whereNotEqualTo("mId", mId);
-        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
-            override fun onSubscribe(disposable: Disposable) {}
-            override fun onError(throwable: Throwable) {}
-            override fun onComplete() {}
-            override fun onNext(t: List<LCObject?>) {
-                t[0]?.let {
-                    getAllFriendCallBack.getSuccess(
-                        FriendList(
-                            mId,
-                            it.getList("fId") as List<String>
-                        )
-                    )
-                }
-
+                getAllFriendCallBack.success(outString)
             }
         })
     }
+
 
     fun getSendFriendData(mId: String, getSentFriendCallBack: GetSentFriendCallBack) {
         val query = LCQuery<LCObject>(SentFriend::class.java.simpleName)
@@ -155,6 +164,84 @@ object GetAllUer {
                 getSentFriendCallBack.getSuccess(
                     list.toList()
                 )
+
+            }
+        })
+    }
+
+    // push对象
+    private fun pushObject(todoCreateObject: LCObject, deleteCallback: DeleteCallback) {
+        todoCreateObject.saveInBackground().subscribe(object : Observer<LCObject?> {
+            override fun onSubscribe(d: Disposable) {}
+            override fun onError(e: Throwable) {
+            }
+
+            override fun onComplete() {}
+            override fun onNext(t: LCObject) {
+
+                //delete
+                var query = LCQuery<LCObject>(SentFriend::class.java.simpleName)
+                query.whereEqualTo("fId", todoCreateObject.getString("fId"))
+                query.whereEqualTo("mId", todoCreateObject.getString("mId"))
+                query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+                    override fun onSubscribe(disposable: Disposable) {}
+                    override fun onError(throwable: Throwable) {}
+                    override fun onComplete() {}
+                    override fun onNext(t: List<LCObject?>) {
+                        t.forEach {
+                            val todo =
+                                LCObject.createWithoutData(
+                                    SentFriend::class.java.simpleName,
+                                    it?.objectId
+                                )
+                            todo.deleteInBackground().subscribe(object : Observer<LCNull?> {
+                                override fun onSubscribe(@NonNull d: Disposable) {}
+                                override fun onNext(response: LCNull) {
+                                    deleteCallback.success()
+                                }
+
+                                override fun onError(@NonNull e: Throwable) {
+                                    println("failed to delete a todo: " + e.message)
+                                }
+
+                                override fun onComplete() {}
+                            })
+                        }
+
+                    }
+                })
+
+                //delete
+                query = LCQuery<LCObject>(SentFriend::class.java.simpleName)
+                query.whereEqualTo("fId", todoCreateObject.getString("mId"))
+                query.whereEqualTo("mId", todoCreateObject.getString("fId"))
+                query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+                    override fun onSubscribe(disposable: Disposable) {}
+                    override fun onError(throwable: Throwable) {}
+                    override fun onComplete() {}
+                    override fun onNext(t: List<LCObject?>) {
+                        t.forEach {
+                            val todo =
+                                LCObject.createWithoutData(
+                                    SentFriend::class.java.simpleName,
+                                    it?.objectId
+                                )
+                            todo.deleteInBackground().subscribe(object : Observer<LCNull?> {
+                                override fun onSubscribe(@NonNull d: Disposable) {}
+                                override fun onNext(response: LCNull) {
+                                    deleteCallback.success()
+                                }
+
+                                override fun onError(@NonNull e: Throwable) {
+                                    println("failed to delete a todo: " + e.message)
+                                }
+
+                                override fun onComplete() {}
+                            })
+                        }
+
+                    }
+                })
 
             }
         })
