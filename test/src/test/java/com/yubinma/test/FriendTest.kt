@@ -41,9 +41,20 @@ class FriendTest {
                 print(friend.toString())
             }
         })
-
-
-
     }
+
+    @Test
+    fun getUerDaoByNameOrId() {
+        GetAllUer.getUerDaoByNameOrId(object : GetAllDataListener {
+            override fun success(friendList: List<Friend>) {
+                print(friendList.toString())
+            }
+
+            override fun fail() {
+
+            }
+        }, "13048806641", " ")
+    }
+    
 
 }
