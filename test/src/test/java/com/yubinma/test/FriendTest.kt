@@ -3,6 +3,7 @@ package com.yubinma.test
 import cn.leancloud.LCLogger
 import cn.leancloud.LCObject
 import cn.leancloud.core.LeanCloud
+import com.chaoshan.data_center.friend.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -19,15 +20,30 @@ class FriendTest {
             "9uuBkty0jB2T7HXyqDWmLOVj",
             "https://wfb1urkd.lc-cn-n1-shared.com"
         )
-        LeanCloud.setLogLevel(LCLogger.Level.DEBUG);
     }
 
     @Test
-    fun addition_isCorrect() {
+    fun getAllUerDao() {
+        GetAllUer.getAllUerDao(object : GetAllDataListener {
+            override fun success(friendList: List<Friend>) {
+                print(friendList.toString())
+            }
 
-        val testObject = LCObject("TestObject")
-        testObject.put("words", "Hello world!")
-        testObject.saveInBackground().blockingSubscribe()
+            override fun fail() {
+            }
+        })
+    }
+
+    @Test
+    fun getAllSentData() {
+        GetAllUer.getSendFriendData("627f824e7a6d3118ac0c015f", object : GetSentFriendCallBack {
+            override fun getSuccess(friend: List<SentFriend>) {
+                print(friend.toString())
+            }
+        })
+
+
+
     }
 
 }
