@@ -1,5 +1,6 @@
 package com.example.friend.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Outline
 import android.view.LayoutInflater
@@ -104,6 +105,7 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position == 0) {
             holder as TitleViewHolder
@@ -112,6 +114,11 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (position > 0 && position <= agreeData?.size ?: 0) {
             holder as AddFriendAgreeItemViewHolder
             val friend = agreeData?.get(position - 1)
+
+            // 设置附加信息
+            if (friend != null) {
+                holder.binding.message.text = "附加信息：" + friend.message
+            }
 
             //设置头像
             val headPort = Headport()
