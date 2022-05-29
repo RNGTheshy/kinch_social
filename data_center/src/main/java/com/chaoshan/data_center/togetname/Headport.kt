@@ -14,20 +14,15 @@ import java.util.*
 
 
 public class Headport {
-
-
     // push对象
     private fun pushObject(todoCreateObject: LCObject) {
         todoCreateObject.saveInBackground().subscribe(object : Observer<LCObject?> {
             override fun onSubscribe(d: Disposable) {}
             override fun onError(e: Throwable) {
                 Log.e("DynamicCreate", "saveError")
-
             }
-
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
-
                 Log.e("DynamicCreate", "saveSuccess" + t.objectId)
             }
         })
