@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaoshan.data_center.SettingsPreferencesDataStore;
 import com.chaoshan.data_center.togetname.Headport;
+import com.example.friend.adapter.friendIconAdapter;
 
 import cn.leancloud.LeanCloud;
 
@@ -35,16 +36,20 @@ public class PersonCenter2Activity extends AppCompatActivity {
         Headport headport = new Headport();
         ImageView img=findViewById(R.id.heads);
         headport.setImage(objectid, img);
-
+        friendto friendto=new friendto();
+        friendto.setRadius(img,15);
 
 
         //暂时设置的好友框
         ImageView friend1=findViewById(R.id.friend1);
         headport.setImage("6280f0b74fb5b8572d28e623",friend1);
+        friendto.setRadius(friend1,15);
         ImageView friend2=findViewById(R.id.friend2);
         headport.setImage("6280ee567a6d3118ac0d0352",friend2);
+        friendto.setRadius(friend2,15);
         ImageView friend3=findViewById(R.id.friend3);
         headport.setImage("626684f51c11246b6f372cd2",friend3);
+        friendto.setRadius(friend3,15);
         ImageView dt1=findViewById(R.id.dt1);
         headport.saveToImage("http://lc-WFB1URKd.cn-n1.lcfile.com/yIE0P8Nil2VQ7JCbHzmGyQM4oAhTzIXy/test", dt1.getContext(), dt1);
         ImageView dt2=findViewById(R.id.dt2);
@@ -54,11 +59,16 @@ public class PersonCenter2Activity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
         GridLayout tosetting1 = findViewById(R.id.turnto1);
         tosetting1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(PersonCenter2Activity.this, Setting.class);
                 intent.putExtra("objectid", objectid);
                 startActivity(intent);

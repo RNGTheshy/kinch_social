@@ -28,6 +28,7 @@
         <activity android:name=".Cpassword"/>
         <activity android:name=".plocation"/>
         <activity android:name=".Ctelephone1"/>
+        <activity android:name=".friendcenter"/>
         <activity android:name=".Ctelephone2"/>
 
 
