@@ -23,6 +23,7 @@ public class Headport {
                 Log.e("DynamicCreate", "saveError")
 
             }
+
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
 
@@ -32,7 +33,7 @@ public class Headport {
     }
 
     //查找objectid对应位置
-    private fun pushpicutre(objectid: String,theurl: String){
+    private fun pushpicutre(objectid: String, theurl: String) {
         val query = LCQuery<LCObject>("userdata")
         query.whereEqualTo("userid", objectid)
         query.firstInBackground.subscribe(object : Observer<LCObject?> {
@@ -40,7 +41,7 @@ public class Headport {
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
-                t.put("picture",theurl);
+                t.put("picture", theurl);
                 pushObject(t);
 
             }
@@ -49,12 +50,12 @@ public class Headport {
 
 
     //保存图片
-     fun savepicture(objectid: String, bitmap: ByteArray) {
+    fun savepicture(objectid: String, bitmap: ByteArray) {
         val file = LCFile("test", bitmap)
         file.saveInBackground().subscribe(object : Observer<LCFile> {
             override fun onSubscribe(disposable: Disposable) {}
             override fun onNext(file: LCFile) {
-                pushpicutre(objectid,file.url)
+                pushpicutre(objectid, file.url)
                 Log.e("文件保存完成。", "URL：" + file.url)
             }
 
@@ -67,7 +68,8 @@ public class Headport {
         })
 
     }
-     fun saveToImage(url: String, context: Context, imageView: ImageView) {
+
+    fun saveToImage(url: String, context: Context, imageView: ImageView) {
         Glide.with(context)
             .load(url)
             .centerCrop()
@@ -75,16 +77,18 @@ public class Headport {
     }
 
 
-    fun setImage(objectid: String,imageView: ImageView){
+
+    fun setImage(objectid: String, imageView: ImageView) {
         val query = LCQuery<LCObject>("userdata")
         query.whereEqualTo("userid", objectid)
         query.firstInBackground.subscribe(object : Observer<LCObject?> {
             override fun onSubscribe(disposable: Disposable) {}
-            override fun onError(throwable: Throwable) {}
+            override fun onError(throwable: Throwable) {
+            }
             override fun onComplete() {}
             override fun onNext(t: LCObject) {
                 t.getString("picture")?.let {
-                    saveToImage(t.getString("picture"),imageView.context,imageView);
+                    saveToImage(t.getString("picture"), imageView.context, imageView);
                 }
             }
         })

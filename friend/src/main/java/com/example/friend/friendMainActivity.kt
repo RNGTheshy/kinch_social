@@ -50,7 +50,7 @@ class friendMainActivity : AppCompatActivity() {
     private fun initData() {
 
         mAdapter = friendItemAdapter(friends)
-        mRecycleView?.layoutManager = GridLayoutManager(this, 1)
+        mRecycleView?.layoutManager = LinearLayoutManager(this)
         mRecycleView?.adapter = mAdapter
 
         iconAdapter = friendIconAdapter(friends)
@@ -86,12 +86,12 @@ class friendMainActivity : AppCompatActivity() {
                 //跳转到主界面，定位到相应的朋友位置
                 val friendId = friends[position].id
                 var intent = Intent()
+                intent.putExtra("id",friendId)
                 getPersonal_data.getplace(
                     friendId
                 ) { longitude, latitude ->
                     intent.putExtra("longitude", longitude)
                     intent.putExtra("latitude", latitude)
-                    intent.putExtra("id",friendId)
                 }
 
                 setResult(Activity.RESULT_OK, intent)

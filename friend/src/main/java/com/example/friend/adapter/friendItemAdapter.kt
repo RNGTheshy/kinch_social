@@ -18,6 +18,7 @@ import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
+import kotlin.concurrent.thread
 
 
 class friendItemAdapter(var datas: List<Friend>) :
@@ -65,6 +66,7 @@ class friendItemAdapter(var datas: List<Friend>) :
         //设置头像
         val headport = Headport()
         friend.id?.let { headport.setImage(it, holder.headView) }
+        Thread.sleep(50)
 
         setRadius(holder.headView, 20F)
         //设置名字
@@ -108,8 +110,6 @@ class friendItemAdapter(var datas: List<Friend>) :
                 outline.setRoundRect(0, 0, view.width, view.height, radius)
             }
         }
-        //设置阴影
-        view.elevation = 20F;
     }
     override fun getItemCount() = datas.size
 

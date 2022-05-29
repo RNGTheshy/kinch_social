@@ -83,8 +83,6 @@ class friendIconAdapter(var datas: List<Friend>) :
                 outline.setRoundRect(0, 0, view.width, view.height, radius)
             }
         }
-        //设置阴影
-        view.elevation = 20F;
     }
 
     override fun getItemCount() = datas.size

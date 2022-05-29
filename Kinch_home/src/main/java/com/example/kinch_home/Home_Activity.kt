@@ -34,9 +34,22 @@ import com.yubinma.person_center.PersonCenter2Activity
 import com.yubinma.person_center.Personal_data
 import com.baidu.platform.comapi.basestruct.GeoPoint
 import android.location.*
+import android.util.Log
 
 
 import com.baidu.mapapi.map.MarkerOptions
+import com.bumptech.glide.Glide
+import com.chaoshan.data_center.togetname.Geturl
+import com.chaoshan.data_center.togetname.getPersonal_data
+import com.chaoshan.data_center.togetname.getPersonal_data.geturl
+import com.example.kinch_home.utils.BitmapUtil.getBitmap
+import kotlin.concurrent.thread
+import com.bumptech.glide.request.RequestOptions
+
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+
+
+
 
 
 class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager.IRecordPage {
@@ -126,46 +139,49 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 
     }
 
-    //    fun getLocationInfo(longitude: String, latitude: String): MutableMap<*, *>? {
-//        val ak ="Aq3e7gMjuyBfnc4no0N0vTtRmHYXyBVo"
-//        val urlString =
-//            "http://api.map.baidu.com/reverse_geocoding/v3/?ak=" + ak + "&output=json&coordtype=wgs84ll&location=" + latitude + "," + longitude
-//        val res = StringBuilder()
-//        var `in`: BufferedReader? = null
-//        try {
-//            val url = URL(urlString)
-//            val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
-//            conn.setDoOutput(true)
-//            conn.setRequestMethod("GET")
-//            `in` = BufferedReader(InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))
-//            var line: String?
-//            while (`in`.readLine().also { line = it } != null) {
-//                res.append(line).append("\n")
-//            }
-//        } catch (e: Exception) {
-//            throw RuntimeException(e)
-//        } finally {
-//            if (`in` != null) {
-//                try {
-//                    `in`.close()
-//                } catch (e: IOException) {
-//                    throw RuntimeException(e)
-//                }
-//            }
-//        }
-//        return JSON.parseObject(res.toString(), MutableMap::class.java)
-//    }
     //跳转到朋友定位
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             flag = 0
             Toast.makeText(this@Home_Activity, "朋友定位成功", Toast.LENGTH_SHORT).show()
             mBaiduMap?.clear()
-            val bitmap = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon);
+            val returnedId = data?.getStringExtra("id")
             val returnedLongitude = data?.getDoubleExtra("longitude", 115.416827)
             val returnedLatitude = data?.getDoubleExtra("latitude", 39.442078)
-            val returnedId = data?.getStringExtra("id")
             val latLng = LatLng(returnedLatitude!!, returnedLongitude!!)
+
+            geturl(returnedId) { url ->
+                thread {
+                    val roundedCorners = RoundedCorners(15)
+                    val option = RequestOptions.bitmapTransform(roundedCorners)
+                    val b = Glide.with(this)
+                        .asBitmap()
+                        .load(url)
+                        .apply(option)
+                        .submit(80,80)
+                        .get()
+                    val bitmap = BitmapDescriptorFactory.fromBitmap(b)
+                    val options = MarkerOptions().position(latLng)
+                        .icon(bitmap)
+                    mBaiduMap!!.addOverlay(options)
+                }
+            }
+
+
+//            // 自定义地图样式
+//            // 更换定位图标，这里的图片是放在 drawble 文件下的
+//            val mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.locate_icon)
+//            // 定位模式 地图SDK支持三种定位模式：NORMAL（普通态）, FOLLOWING（跟随态）, COMPASS（罗盘态）
+//            locationMode = MyLocationConfiguration.LocationMode.NORMAL
+//            // 定位模式、是否开启方向、设置自定义定位图标、精度圈填充颜色以及精度圈边框颜色5个属性（此处只设置了前三个）。
+//            val mLocationConfiguration = MyLocationConfiguration(
+//                locationMode, true, mCurrentMarker,
+//                R.color.teal_700, R.color.teal_700
+//            )
+//            // 使自定义的配置生效
+//            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
+
+
             val msu = MapStatusUpdateFactory.newLatLng(latLng)
             mBaiduMap!!.setMapStatus(msu)
 //            val locData = MyLocationData.Builder()
@@ -186,12 +202,11 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 mTextView?.text = mAddress?.featureName
             else
                 mTextView?.text = mAddress?.featureName
-            val options = MarkerOptions().position(latLng)
-                .icon(bitmap)
+
             // 在地图上添加Marker，并显示
             //mBaiduMap.addOverlay(options);
 
-            mBaiduMap!!.addOverlay(options)
+
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -200,7 +215,6 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         mSettingButton?.setOnClickListener {
             val intent = Intent(this, SettingMainActivity::class.java)
             startActivity(intent)
-
         }
         mMessageButton?.setOnClickListener {
             goToChat(this, "147", "147")
@@ -252,7 +266,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 .longitude(location.longitude).build()
             mBaiduMap!!.setMyLocationData(locData)
             mapStatus = mBaiduMap?.mapStatus
-            if(flag == 1){
+            if (flag == 1) {
                 if (mapStatus?.zoom!! < 5)
                     mTextView?.text = mLocation?.country
                 else if (mapStatus?.zoom!! < 7)
