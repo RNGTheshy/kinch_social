@@ -67,17 +67,20 @@ class friendMainActivity : AppCompatActivity() {
             object : GetAllMyFirendCallBack {
                 override fun success(list: List<String>) {
 
-                    GetAllUer.getFriendDao(object : GetAllDataListener {
-                        override fun success(friendList: List<Friend>) {
-                            friends = friendList
-                            mAdapter?.setData(friends)
-                            iconAdapter?.setData(friends)
-                        }
+                    if (list.isNotEmpty()) {
+                        GetAllUer.getFriendDao(object : GetAllDataListener {
+                            override fun success(friendList: List<Friend>) {
+                                friends = friendList
+                                mAdapter?.setData(friends)
+                                iconAdapter?.setData(friends)
+                            }
 
-                        override fun fail() {
+                            override fun fail() {
 
-                        }
-                    }, list)
+                            }
+                        }, list)
+                    }
+
                 }
 
             })

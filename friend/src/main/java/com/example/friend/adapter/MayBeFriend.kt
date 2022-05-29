@@ -144,22 +144,27 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 })
             }
             holder.binding.sent.setOnClickListener {
-                agreeData?.get(position - 1)?.mId?.let {
-                    GetAllUer.addFriend(
-                        SettingsPreferencesDataStore.getCurrentUserObjetID(),
-                        it,
-                        object : DeleteCallback {
-                            override fun success() {
-                                GetAllUer.getSendFriendData(SettingsPreferencesDataStore.getCurrentUserObjetID(),
-                                    object : GetSentFriendCallBack {
-                                        override fun getSuccess(friend: List<SentFriend>) {
-                                            setAgreeData(friend)
-                                        }
-                                    })
-                            }
-                        })
+                agreeData?.let {
+                    if (it.isNotEmpty()) {
+                        agreeData?.get(position - 1)?.mId?.let {
+                            GetAllUer.addFriend(
+                                SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                                it,
+                                object : DeleteCallback {
+                                    override fun success() {
+                                        GetAllUer.getSendFriendData(SettingsPreferencesDataStore.getCurrentUserObjetID(),
+                                            object : GetSentFriendCallBack {
+                                                override fun getSuccess(friend: List<SentFriend>) {
+                                                    setAgreeData(friend)
+                                                }
+                                            })
+                                    }
+                                })
 
+                        }
+                    }
                 }
+
             }
         }
         if (position == (agreeData?.size ?: 0) + 1) {
