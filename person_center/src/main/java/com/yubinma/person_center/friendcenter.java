@@ -22,11 +22,11 @@ public class friendcenter extends AppCompatActivity {
 
 
 
-
+        //获取从上个页面传送来的用户id
         Intent intent=getIntent();
         String objectid=intent.getStringExtra("objectid");
 
-
+        //设置用户页
         Personal_data personal_data = new Personal_data();
         TextView textView1 = findViewById(R.id.name99);
         TextView textView2 = findViewById(R.id.gender99);
