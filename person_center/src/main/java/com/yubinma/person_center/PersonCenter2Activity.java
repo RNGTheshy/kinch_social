@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaoshan.data_center.SettingsPreferencesDataStore;
 import com.chaoshan.data_center.togetname.Headport;
-import com.example.friend.adapter.friendIconAdapter;
 
 import cn.leancloud.LeanCloud;
 
