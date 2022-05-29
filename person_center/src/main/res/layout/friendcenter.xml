@@ -18,7 +18,7 @@
             >
 
             <TextView
-                android:id="@+id/deletemyself"
+                android:id="@+id/tttfini"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="30dp"

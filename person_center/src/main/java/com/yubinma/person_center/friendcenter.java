@@ -57,7 +57,13 @@ public class friendcenter extends AppCompatActivity {
                 LCIMConversationActivity.startChatWithFriend(tochat.getContext(), objectid);
             }
         });
-
+        TextView tofinish=findViewById(R.id.tttfini);
+        tofinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }
