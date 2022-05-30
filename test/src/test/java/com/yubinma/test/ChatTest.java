@@ -17,7 +17,10 @@ import cn.leancloud.im.v2.LCIMException;
 import cn.leancloud.im.v2.callback.LCIMClientCallback;
 
 public class ChatTest {
-
+    /**
+     * 初始化类
+     * 初始化网络请求
+     */
     public  ChatTest(){
 
         LCChatKit.getInstance().init(
@@ -32,6 +35,7 @@ public class ChatTest {
      */
     @Test
     public void constantsPeerIdTest(){
+        //判断表名是否正确
         Assert.assertEquals("cn.leancloud.chatkit.peer_id",LCIMConstants.PEER_ID);
     }
     /**
@@ -39,6 +43,7 @@ public class ChatTest {
      */
     @Test
     public void constantsConversationIdTest(){
+        //判断表名是否正确
         Assert.assertEquals("cn.leancloud.chatkit.conversation_id",LCIMConstants.CONVERSATION_ID);
     }
     /**
@@ -46,6 +51,7 @@ public class ChatTest {
      */
     @Test
     public void constantsConversationItemActionIdTest(){
+        //判断表名是否正确
         Assert.assertEquals("cn.leancloud.chatkit.conversation_item_click_action",LCIMConstants.CONVERSATION_ITEM_CLICK_ACTION);
     }
 
@@ -58,6 +64,7 @@ public class ChatTest {
         LCChatKit.getInstance().open("627f824e7a6d3118ac0c015f", new LCIMClientCallback() {
             @Override
             public void done(LCIMClient client, LCIMException e) {
+                //判断是否正确
                 Assert.assertEquals(null, LCChatKit.getInstance().getCurrentUserId());
             }
         });
