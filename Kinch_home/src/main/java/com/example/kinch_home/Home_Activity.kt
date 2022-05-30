@@ -152,24 +152,30 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                         override fun success(friendList: List<Friend>) {
                             friends = friendList //朋友列表
                             for (friend in friends) {
-                                getplace(friend.id) { longitude, latitude -> //朋友的经纬度
-                                    geturl(friend.id) { url -> // 朋友头像的URL
+                                //朋友的经纬度
+                                getplace(friend.id) { longitude, latitude ->
+                                    // 朋友头像的URL
+                                    geturl(friend.id) { url ->
                                         thread {
-                                            val ll = LatLng(latitude, longitude) // 获得定位
-                                            val roundedCorners = RoundedCorners(15) //设置圆角
+                                            // 获得定位
+                                            val ll = LatLng(latitude, longitude)
+                                            //设置圆角
+                                            val roundedCorners = RoundedCorners(15)
                                             val option =
                                                 RequestOptions.bitmapTransform(roundedCorners)
-
+                                            //获得头像的bitmap
                                             val b = Glide.with(this@Home_Activity)
                                                 .asBitmap()
                                                 .load(url)
                                                 .apply(option)
                                                 .submit(80, 80)
-                                                .get() //获得头像的bitmap
+                                                .get()
                                             val bitmap = BitmapDescriptorFactory.fromBitmap(b)
+                                            //在定位处画上头像
                                             val options = MarkerOptions().position(ll)
-                                                .icon(bitmap) //在定位处画上头像
-                                            mBaiduMap!!.addOverlay(options) //在地图上添加标记
+                                                .icon(bitmap)
+                                            //在地图上添加标记
+                                            mBaiduMap!!.addOverlay(options)
                                         }
                                     }
 
@@ -197,9 +203,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             val returnedLongitude = data?.getDoubleExtra("longitude", 115.416827)
             val returnedLatitude = data?.getDoubleExtra("latitude", 39.442078)
             val latLng = LatLng(returnedLatitude!!, returnedLongitude!!)
-
-            val msu = MapStatusUpdateFactory.newLatLng(latLng) //获得定位
-            mBaiduMap!!.setMapStatus(msu) //地图跳转到指定定位
+            //获得定位
+            val msu = MapStatusUpdateFactory.newLatLng(latLng)
+            //地图跳转到指定定位
+            mBaiduMap!!.setMapStatus(msu)
 
 
 //            // 自定义地图样式
@@ -247,9 +254,6 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         }
         mMessageButton?.setOnClickListener {
             goToChat(this, "147", "147")
-//            val intent = Intent(this, ChatActivity::class.java)
-//            startActivity(intent)
-
         }
         mTrendsButton?.setOnClickListener {
             val intent = Intent(this, SocialForumActivity::class.java)
