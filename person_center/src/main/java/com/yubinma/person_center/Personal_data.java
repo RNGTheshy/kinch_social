@@ -150,7 +150,7 @@ public class Personal_data {
     }
 
     //改电话号
-    void saveTelephone(String classname, String objectid, final String telephone) {
+    public void saveTelephone(String classname, String objectid, final String telephone) {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -163,17 +163,17 @@ public class Personal_data {
                 todo.put("mobilePhoneNumber", telephone);
                 todo.saveInBackground().subscribe(new Observer<LCObject>() {
                     @Override
-                    public void onSubscribe(Disposable disposable) {
+                    public void onSubscribe(Disposable disposable) {System.out.println("测试成功");
                     }
 
                     @Override
                     public void onNext(LCObject savedTodo) {
-                        Log.e("修改完成。", "succeed");
+                        System.out.println("修改成功2");
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.e("修改失败。", throwable.toString());
+                        System.out.println("修改失败");
                     }
 
                     @Override

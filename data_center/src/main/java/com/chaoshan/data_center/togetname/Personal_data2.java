@@ -20,7 +20,7 @@ public class Personal_data2 {
 
 
     //改id
-    void saveId(String classname, String objectid, final String name) {
+    public void saveId(String classname, String objectid, final String name) throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -37,7 +37,7 @@ public class Personal_data2 {
 
                     @Override
                     public void onNext(LCObject savedTodo) {
-                        Log.e("修改完成。", "succeed");
+                        System.out.println("测试成功");
                     }
 
                     @Override
@@ -59,7 +59,7 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
-
+        Thread.sleep(2000);
     }
 
     //改密码
@@ -82,7 +82,8 @@ public class Personal_data2 {
 //    }
 
     //改生日
-    public void saveBirth(String classname, String objectid, final String birthday) {
+    public void saveBirth(String classname, String objectid, final String birthday) throws InterruptedException {
+
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -92,23 +93,23 @@ public class Personal_data2 {
 
             @Override
             public void onNext(LCObject todo) {
+                System.out.println(todo.getString("birthday"));
                 todo.put("birthday", birthday);
                 todo.saveInBackground().subscribe(new Observer<LCObject>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
+
                     }
 
                     @Override
                     public void onNext(LCObject savedTodo) {
 
-                        System.out.println("修改完成");
-                        Log.e("修改完成。", "succeed");
+                        System.out.println("测试成功");
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.e("修改失败。", throwable.toString());
-                        System.out.println("修改失败2");
+
                     }
 
                     @Override
@@ -119,14 +120,14 @@ public class Personal_data2 {
 
             @Override
             public void onError(Throwable throwable) {
-                System.out.println("修改失败1");
+
             }
 
             @Override
             public void onComplete() {
             }
         });
-
+        Thread.sleep(2000);
     }
 
     //改邮箱
@@ -154,7 +155,7 @@ public class Personal_data2 {
     }
 
     //改电话号
-    void saveTelephone(String classname, String objectid, final String telephone) {
+    public void saveTelephone(String classname, String objectid, final String telephone)throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -172,12 +173,12 @@ public class Personal_data2 {
 
                     @Override
                     public void onNext(LCObject savedTodo) {
-                        Log.e("修改完成。", "succeed");
+                        System.out.println("测试成功");
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.e("修改失败。", throwable.toString());
+                        System.out.println("修改失败");
                     }
 
                     @Override
@@ -194,11 +195,11 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
-
+        Thread.sleep(2000);
     }
 
     //改状态
-    void saveState(String classname, String objectid, final String state) {
+    public void saveState(String classname, String objectid, final String state) throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -239,12 +240,11 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
-
-
+        Thread.sleep(2000);
     }
 
     //改状态
-    void savesign(String classname, String objectid, final String sign) {
+    public void savesign(String classname, String objectid, final String sign) throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -278,9 +278,10 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
+        Thread.sleep(2000);
     }
     //改性别
-    void saveGender(String classname, String objectid, final String gender) {
+    public void saveGender(String classname, String objectid, final String gender) throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>(classname);
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -322,7 +323,7 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
-
+        Thread.sleep(2000);
 
     }
 
@@ -419,7 +420,7 @@ public class Personal_data2 {
 
 
     //改经纬度
-    public void saveplace(double longitude,double latitude,String objectid) {
+    public void saveplace(double longitude,double latitude,String objectid) throws InterruptedException {
         LCQuery<LCObject> query = new LCQuery<>("userdata");
         query.whereEqualTo("userid", objectid);
         query.getFirstInBackground().subscribe(new Observer<LCObject>() {
@@ -457,7 +458,7 @@ public class Personal_data2 {
             public void onComplete() {
             }
         });
-
+        Thread.sleep(2000);
     }
 
 

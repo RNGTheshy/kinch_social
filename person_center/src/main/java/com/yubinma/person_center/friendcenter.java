@@ -1,5 +1,6 @@
 package com.yubinma.person_center;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.chaoshan.data_center.togetname.Headport;
 
 import cn.leancloud.chatkit.activity.LCIMConversationActivity;
+import cn.leancloud.chatkit.utils.LCIMConstants;
 
 
 public class friendcenter extends AppCompatActivity {
     final String classname = "userdata";
 
+    //从其他页面跳转至该好友中心界面
+    public static void startFriendcenter(Context context, String friendObjId){
+        Intent intent = new Intent(context, friendcenter.class);
+        intent.putExtra("objectid", friendObjId);
+        context.startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friendcenter);
-
-
-
         //获取从上个页面传送来的用户id
         Intent intent=getIntent();
         String objectid=intent.getStringExtra("objectid");
