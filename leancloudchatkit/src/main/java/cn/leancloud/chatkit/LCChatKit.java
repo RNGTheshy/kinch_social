@@ -27,7 +27,6 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Created by wli on 16/2/2.
  * LeanCloudChatKit 的管理类
  */
 public final class LCChatKit {
