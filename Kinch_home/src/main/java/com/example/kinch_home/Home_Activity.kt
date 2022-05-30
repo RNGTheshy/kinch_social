@@ -148,6 +148,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             getCurrentUserObjetID(),
             object : GetAllMyFirendCallBack {
                 override fun success(list: List<String>) {
+                    if(list.isNotEmpty())
                     GetAllUer.getFriendDao(object : GetAllDataListener {
                         override fun success(friendList: List<Friend>) {
                             friends = friendList //朋友列表
@@ -182,6 +183,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 
                                 }
                             }
+
                         }
 
                         override fun fail() {
@@ -223,9 +225,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 //            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
 
 
-
             val geocoder = Geocoder(this)
-            val address = geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100) //通过经纬度反编码，获得地址
+            val address =
+                geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100) //通过经纬度反编码，获得地址
             mAddress = address[0]
             //动态加载标题
             if (mapStatus?.zoom!! < 5)
