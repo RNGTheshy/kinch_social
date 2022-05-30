@@ -103,7 +103,7 @@ android:padding="10dp" >
 
     <TextView
         android:id="@+id/chat_right_tv_name"
-        android:layout_width="@dimen/icon_width"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:ellipsize="end"

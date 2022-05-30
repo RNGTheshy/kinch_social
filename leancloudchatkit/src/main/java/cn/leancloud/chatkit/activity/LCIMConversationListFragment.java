@@ -132,12 +132,13 @@ public class LCIMConversationListFragment extends Fragment {
    * 刷新页面
    */
   private void updateConversationList() {
+    //获取数据
     List<String> convIdList = LCIMConversationItemCache.getInstance().getSortedConversationList();
     List<LCIMConversation> conversationList = new ArrayList<>();
     for (String convId : convIdList) {
       conversationList.add(LCChatKit.getInstance().getClient().getConversation(convId));
     }
-
+    //设置数据集
     itemAdapter.setDataList(conversationList);
     itemAdapter.notifyDataSetChanged();
   }

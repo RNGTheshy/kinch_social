@@ -150,15 +150,20 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 override fun success(list: List<String>) {
                     GetAllUer.getFriendDao(object : GetAllDataListener {
                         override fun success(friendList: List<Friend>) {
-                            friends = friendList
+                            friends = friendList //朋友列表
                             for (friend in friends) {
+                                //朋友的经纬度
                                 getplace(friend.id) { longitude, latitude ->
+                                    // 朋友头像的URL
                                     geturl(friend.id) { url ->
                                         thread {
+                                            // 获得定位
                                             val ll = LatLng(latitude, longitude)
+                                            //设置圆角
                                             val roundedCorners = RoundedCorners(15)
                                             val option =
                                                 RequestOptions.bitmapTransform(roundedCorners)
+                                            //获得头像的bitmap
                                             val b = Glide.with(this@Home_Activity)
                                                 .asBitmap()
                                                 .load(url)
@@ -166,8 +171,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                                                 .submit(80, 80)
                                                 .get()
                                             val bitmap = BitmapDescriptorFactory.fromBitmap(b)
+                                            //在定位处画上头像
                                             val options = MarkerOptions().position(ll)
                                                 .icon(bitmap)
+                                            //在地图上添加标记
                                             mBaiduMap!!.addOverlay(options)
                                         }
                                     }
@@ -196,9 +203,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             val returnedLongitude = data?.getDoubleExtra("longitude", 115.416827)
             val returnedLatitude = data?.getDoubleExtra("latitude", 39.442078)
             val latLng = LatLng(returnedLatitude!!, returnedLongitude!!)
-
-            val msuu = MapStatusUpdateFactory.newLatLng(latLng)
-            mBaiduMap!!.setMapStatus(msuu)
+            //获得定位
+            val msu = MapStatusUpdateFactory.newLatLng(latLng)
+            //地图跳转到指定定位
+            mBaiduMap!!.setMapStatus(msu)
 
 
 //            // 自定义地图样式
@@ -215,16 +223,11 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 //            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
 
 
-            val msu = MapStatusUpdateFactory.newLatLng(latLng)
-            mBaiduMap!!.setMapStatus(msu)
-//            val locData = MyLocationData.Builder()
-//                .latitude(returnedLatitude)
-//                .longitude(returnedLongitude).build()
-//            mBaiduMap!!.setMyLocationData(locData)
+
             val geocoder = Geocoder(this)
-            val address = geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100)
-            // 设置标题
+            val address = geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100) //通过经纬度反编码，获得地址
             mAddress = address[0]
+            //动态加载标题
             if (mapStatus?.zoom!! < 5)
                 mTextView?.text = mAddress?.countryName
             else if (mapStatus?.zoom!! < 7)
@@ -251,9 +254,6 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         }
         mMessageButton?.setOnClickListener {
             goToChat(this, "147", "147")
-//            val intent = Intent(this, ChatActivity::class.java)
-//            startActivity(intent)
-
         }
         mTrendsButton?.setOnClickListener {
             val intent = Intent(this, SocialForumActivity::class.java)
@@ -438,7 +438,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
     companion object {
         fun goTo(context: Context) {
             val intent = Intent(context, Home_Activity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK //获得返回参数的启动方式
             context.startActivity(intent)
         }
 
