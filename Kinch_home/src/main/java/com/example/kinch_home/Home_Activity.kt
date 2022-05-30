@@ -144,6 +144,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
     }
 
     private fun setFriendLocation() {
+        mBaiduMap?.clear()
         GetAllUer.getAllFriend(
             getCurrentUserObjetID(),
             object : GetAllMyFirendCallBack {
