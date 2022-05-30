@@ -9,10 +9,12 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import kotlin.concurrent.thread
 import cn.leancloud.types.LCNull
+import org.junit.Test
 import java.util.*
 
 
 object GetAllUer {
+
     fun getAllUerDao(callBack: GetAllDataListener) {
         val query = LCQuery<LCObject>("_User")
         query.whereNotEqualTo("objectId", SettingsPreferencesDataStore.getCurrentUserObjetID());
@@ -121,10 +123,12 @@ object GetAllUer {
 
     fun getAllFriend(mId: String, getAllFriendCallBack: GetAllMyFirendCallBack) {
         val query = LCQuery<LCObject>(FriendList::class.java.simpleName)
-        query.whereEqualTo("mId", mId);
-
+        query.whereEqualTo("mId", mId)
         query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
-            override fun onSubscribe(disposable: Disposable) {}
+            override fun onSubscribe(disposable: Disposable) {
+                print(disposable.toString())
+            }
+
             override fun onError(throwable: Throwable) {}
             override fun onComplete() {}
             override fun onNext(t: List<LCObject?>) {
