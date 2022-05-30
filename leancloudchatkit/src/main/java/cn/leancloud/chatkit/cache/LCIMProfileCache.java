@@ -20,7 +20,6 @@ import cn.leancloud.chatkit.LCChatProfilesCallBack;
 
 
 /**
- * Created by wli on 16/2/25.
  * 用户信息缓存
  * 流程：
  * 1、如果内存中有则从内存中获取
