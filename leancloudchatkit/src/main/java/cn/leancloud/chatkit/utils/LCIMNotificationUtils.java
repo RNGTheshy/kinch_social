@@ -14,7 +14,6 @@ import java.util.List;
 import androidx.core.app.NotificationCompat;
 
 /**
- * Created by wli on 15/8/26.
  * Notification 相关的 Util
  */
 public class LCIMNotificationUtils {
