@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/setting_title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/setting_title"
-            tools:layout_editor_absoluteX="30dp" />
+             />
 
         <TextView
             android:id="@+id/setting_title"

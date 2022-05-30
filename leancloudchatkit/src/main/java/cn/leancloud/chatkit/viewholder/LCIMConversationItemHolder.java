@@ -66,7 +66,7 @@ public class LCIMConversationItemHolder extends LCIMCommonViewHolder {
    * 获取组件
    */
   public void initView() {
-    avatarView = (ImageView) itemView.findViewById(R.id.conversation_item_iv_avatar);
+    avatarView = (ImageView) itemView.findViewById(R.id.conversation_item_avatar);
     nameView = (TextView) itemView.findViewById(R.id.conversation_item_tv_name);
     timeView = (TextView) itemView.findViewById(R.id.conversation_item_tv_time);
     unreadView = (TextView) itemView.findViewById(R.id.conversation_item_tv_unread);

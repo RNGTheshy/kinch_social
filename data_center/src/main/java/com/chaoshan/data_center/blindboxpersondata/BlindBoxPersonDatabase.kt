@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [BlindBoxPerson::class], version = 1)
 abstract class BlindBoxPersonDatabase : RoomDatabase() {
 
+
     abstract fun blindBoxPersonDao(): BlindBoxPersonDao
 
     companion object {
