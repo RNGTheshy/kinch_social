@@ -47,12 +47,16 @@ import kotlin.concurrent.thread
 import com.bumptech.glide.request.RequestOptions
 
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-
-
-
+import com.chaoshan.data_center.SettingsPreferencesDataStore
+import com.chaoshan.data_center.friend.Friend
+import com.chaoshan.data_center.friend.GetAllDataListener
+import com.chaoshan.data_center.friend.GetAllMyFirendCallBack
+import com.chaoshan.data_center.friend.GetAllUer
+import com.chaoshan.data_center.togetname.getPersonal_data.getplace
 
 
 class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager.IRecordPage {
+    private var friends = listOf<Friend>()
     private var mAddress: Address? = null
     private var flag = 1
     private var mLocation: BDLocation? = null
@@ -133,9 +137,53 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         mLocationClient!!.registerLocationListener(myLocationListener)
         //开启地图定位图层
         mLocationClient!!.start()
-
+        setFriendLocation()
         hideAddMinusBtn()
         initClickListener()
+
+    }
+
+    private fun setFriendLocation() {
+        GetAllUer.getAllFriend(
+            getCurrentUserObjetID(),
+            object : GetAllMyFirendCallBack {
+                override fun success(list: List<String>) {
+                    GetAllUer.getFriendDao(object : GetAllDataListener {
+                        override fun success(friendList: List<Friend>) {
+                            friends = friendList
+                            for (friend in friends) {
+                                getplace(friend.id) { longitude, latitude ->
+                                    geturl(friend.id) { url ->
+                                        thread {
+                                            val ll = LatLng(latitude, longitude)
+                                            val roundedCorners = RoundedCorners(15)
+                                            val option =
+                                                RequestOptions.bitmapTransform(roundedCorners)
+                                            val b = Glide.with(this@Home_Activity)
+                                                .asBitmap()
+                                                .load(url)
+                                                .apply(option)
+                                                .submit(80, 80)
+                                                .get()
+                                            val bitmap = BitmapDescriptorFactory.fromBitmap(b)
+                                            val options = MarkerOptions().position(ll)
+                                                .icon(bitmap)
+                                            mBaiduMap!!.addOverlay(options)
+                                        }
+                                    }
+
+
+                                }
+                            }
+                        }
+
+                        override fun fail() {
+
+                        }
+                    }, list)
+                }
+
+            })
 
     }
 
@@ -144,28 +192,13 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         if (resultCode == Activity.RESULT_OK) {
             flag = 0
             Toast.makeText(this@Home_Activity, "朋友定位成功", Toast.LENGTH_SHORT).show()
-            mBaiduMap?.clear()
             val returnedId = data?.getStringExtra("id")
             val returnedLongitude = data?.getDoubleExtra("longitude", 115.416827)
             val returnedLatitude = data?.getDoubleExtra("latitude", 39.442078)
             val latLng = LatLng(returnedLatitude!!, returnedLongitude!!)
 
-            geturl(returnedId) { url ->
-                thread {
-                    val roundedCorners = RoundedCorners(15)
-                    val option = RequestOptions.bitmapTransform(roundedCorners)
-                    val b = Glide.with(this)
-                        .asBitmap()
-                        .load(url)
-                        .apply(option)
-                        .submit(80,80)
-                        .get()
-                    val bitmap = BitmapDescriptorFactory.fromBitmap(b)
-                    val options = MarkerOptions().position(latLng)
-                        .icon(bitmap)
-                    mBaiduMap!!.addOverlay(options)
-                }
-            }
+            val msuu = MapStatusUpdateFactory.newLatLng(latLng)
+            mBaiduMap!!.setMapStatus(msuu)
 
 
 //            // 自定义地图样式
@@ -255,10 +288,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 isFirstLocate = false
                 //给地图设置状态
                 mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
-                //存经纬度
-                val userId = getCurrentUserObjetID()
-                val personal_data = Personal_data()
-                personal_data.saveplace(mLongitude, mLatitude, userId);
+
             }
             val locData = MyLocationData.Builder()
                 .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
@@ -294,6 +324,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             // 设置定位按钮点击事件
             mLocateButton?.setOnClickListener {
                 flag = 1
+                //存经纬度
+                val userId = getCurrentUserObjetID()
+                val personal_data = Personal_data()
+                personal_data.saveplace(mLongitude, mLatitude, userId)
                 mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
                 if (mapStatus?.zoom!! < 5)
                     mTextView?.text = mLocation?.country
@@ -306,8 +340,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 else
                     mTextView?.text = mLocation?.street
                 Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
-            }
 
+
+            }
         }
     }
 
@@ -329,12 +364,6 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         super.onDestroy()
     }
 
-    // get My Location
-    fun getMyLocation() {
-        val latLng = LatLng(mLatitude, mLongitude)
-        val msu = MapStatusUpdateFactory.newLatLng(latLng)
-        mBaiduMap!!.setMapStatus(msu)
-    }
 
     fun hideAddMinusBtn() {
         mMapView?.showZoomControls(false) //隐藏原有UI
