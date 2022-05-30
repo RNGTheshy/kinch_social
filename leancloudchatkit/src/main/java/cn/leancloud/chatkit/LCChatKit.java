@@ -76,7 +76,22 @@ public final class LCChatKit {
     // 默认设置为离线消息仅推送数量
     LCIMOptions.getGlobalOptions().setUnreadNotificationEnabled(true);
   }
+  /**
+   * 初始化 LeanCloudChatKit，此函数要在 Application 的 onCreate 中调用
+   *
+   * @param appId
+   * @param appKey
+   */
+  public void init( String appId, String appKey, String serverUrl) {
+    if (TextUtils.isEmpty(appId)) {
+      throw new IllegalArgumentException("appId can not be empty!");
+    }
+    if (TextUtils.isEmpty(appKey)) {
+      throw new IllegalArgumentException("appKey can not be empty!");
+    }
 
+    LeanCloud.initialize(appId, appKey, serverUrl);
+  }
   /**
    * 设置用户体系
    *
