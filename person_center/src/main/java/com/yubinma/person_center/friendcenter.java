@@ -39,7 +39,7 @@ public class friendcenter extends AppCompatActivity {
         TextView textView2 = findViewById(R.id.gender99);
         TextView textView3 = findViewById(R.id.birth99);
         TextView textView4 = findViewById(R.id.state99);
-        TextView textView5 = findViewById(R.id.sign99);
+        TextView textView5 = findViewById(R.id.sign1111);
 
         //调用设置方法
         personal_data.setcenter(classname, objectid, textView1, textView3, textView2, textView4, textView5);
