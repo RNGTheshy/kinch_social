@@ -41,7 +41,6 @@ public class getPersonal_data {
                 double longitude=todo.getDouble("longitude");
                 double latitude=todo.getDouble("latitude");
                 togetplace.getplace(longitude,latitude);
-
             }
             @Override
             public void onError(Throwable throwable) {
