@@ -29,6 +29,8 @@ public class getPersonal_data {
             }
         });
     }
+
+
     public static  void  getplace(String objectid,Getplace togetplace){
         LCQuery<LCObject> query = new LCQuery<>("userdata");
         query.whereEqualTo("userid", objectid);
@@ -41,7 +43,6 @@ public class getPersonal_data {
                 double longitude=todo.getDouble("longitude");
                 double latitude=todo.getDouble("latitude");
                 togetplace.getplace(longitude,latitude);
-
             }
             @Override
             public void onError(Throwable throwable) {
