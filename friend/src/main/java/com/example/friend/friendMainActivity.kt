@@ -105,7 +105,7 @@ class friendMainActivity : AppCompatActivity() {
                 ) { longitude, latitude ->
                     intent.putExtra("longitude", longitude)
                     intent.putExtra("latitude", latitude)
-                    setResult(Activity.RESULT_OK, intent)
+                    setResult(Activity.RESULT_OK, intent) //将经纬度传回去
                     finish()
                 }
             }
