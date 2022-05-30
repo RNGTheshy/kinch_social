@@ -72,7 +72,7 @@ public class LCIMConversationUtils {
    * @param conversation
    * @param callback
    */
-  public static void getConversationPeerIcon(final LCIMConversation conversation, LCCallback<String> callback) {
+  public static void  getConversationPeerIcon(final LCIMConversation conversation, LCCallback<String> callback) {
     if (null != conversation && !conversation.isTransient() && !conversation.getMembers().isEmpty()) {
       String peerId = getConversationPeerId(conversation);
       if (1 == conversation.getMembers().size()) {
