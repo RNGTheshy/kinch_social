@@ -22,6 +22,7 @@ import com.chaoshan.data_center.friend.GetAllUer
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
 import com.example.friend.R
+import com.yubinma.person_center.friendcenter
 import kotlin.concurrent.thread
 
 
@@ -91,6 +92,10 @@ class friendItemAdapter(var datas: List<Friend>) :
             }
         }
 
+        //
+        holder.headView.setOnClickListener {
+            friendcenter.startFriendcenter(it.context, friend.id!!)
+        }
         if (mlistener != null) {
             holder.itemView.setOnClickListener {
                 val pos = holder.layoutPosition

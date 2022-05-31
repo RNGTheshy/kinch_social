@@ -100,7 +100,7 @@ object GetAllUer {
         val todoCreateObject2: LCObject = LCObject(FriendList::class.java.simpleName)
         todoCreateObject2.put("mId", fId)
         todoCreateObject2.put("fId", mId)
-        pushObject(todoCreateObject)
+        pushObject(todoCreateObject2)
         pushObject(todoCreateObject, deleteCallback)
 
     }
