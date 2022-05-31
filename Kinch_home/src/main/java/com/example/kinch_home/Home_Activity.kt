@@ -124,7 +124,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         val option = LocationClientOption()
         option.isOpenGps = true // 打开gps
         option.setCoorType("bd09ll") // 设置坐标类型
-        option.setScanSpan(100)
+        option.setScanSpan(2000)
         // 可选，设置地址信息
         option.setIsNeedAddress(true)
         //可选，设置是否需要地址描述
@@ -137,10 +137,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         mLocationClient!!.registerLocationListener(myLocationListener)
         //开启地图定位图层
         mLocationClient!!.start()
-        setFriendLocation()
+
         hideAddMinusBtn()
         initClickListener()
-
+        setFriendLocation()
     }
 
     private fun setFriendLocation() {
@@ -291,8 +291,8 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                 isFirstLocate = false
                 //给地图设置状态
                 mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
-
             }
+
             val locData = MyLocationData.Builder()
                 .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
                 .direction(location.direction).latitude(location.latitude)
@@ -342,9 +342,10 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                     mTextView?.text = mLocation?.district
                 else
                     mTextView?.text = mLocation?.street
+
                 Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
 
-
+                setFriendLocation()
             }
         }
     }
