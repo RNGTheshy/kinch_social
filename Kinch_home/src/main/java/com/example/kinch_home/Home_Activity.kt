@@ -317,11 +317,11 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             val ll = LatLng(location.latitude, location.longitude)
             mLongitude = location.longitude
             mLatitude = location.latitude
-//            if (isFirstLocate) {
-//                isFirstLocate = false
-//                //给地图设置状态
-//                mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
-//            }
+            if (isFirstLocate) {
+                val userId = getCurrentUserObjetID()
+                val personal_data = Personal_data()
+                personal_data.saveplace(mLongitude, mLatitude, userId)
+            }
 
 //            val locData = MyLocationData.Builder()
 //                .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
