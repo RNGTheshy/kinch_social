@@ -40,13 +40,14 @@ class WelcomeActivity : AppCompatActivity() {
             }
             startActivity(intent)
             finish()
+            handler.removeCallbacksAndMessages(null)
         }
 
         animation = AnimationUtils.loadAnimation(this, R.anim.animation_text)
         handler.sendEmptyMessageDelayed(0, 1000)
     }
 
-    //咱在写一个计算Welcome界面的广告时间结束后进入主界面的方法
+    //Welcome界面的广告时间结束后进入主界面的方法
     private fun getCount(): Int {
         count--
         if (count == 0) {
@@ -66,7 +67,7 @@ class WelcomeActivity : AppCompatActivity() {
     private val handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             if (msg.what == 0) {
-                textView?.setText(getCount().toString() + "")
+                textView?.text = getCount().toString() + ""
                 this.sendEmptyMessageDelayed(0, 1000)
                 animation?.reset()
                 textView?.startAnimation(animation)
