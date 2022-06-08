@@ -23,7 +23,6 @@ import cn.leancloud.chatkit.utils.LCIMNotificationUtils;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by zhangxiaobo on 15/4/20.
  * LCIMTypedMessage 的 handler，socket 过来的 LCIMTypedMessage 都会通过此 handler 与应用交互
  * 需要应用主动调用 AVIMMessageManager.registerMessageHandler 来注册
  * 当然，自定义的消息也可以通过这种方式来处理

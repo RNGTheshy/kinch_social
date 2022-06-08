@@ -5,7 +5,6 @@ import android.media.MediaPlayer;
 import java.io.IOException;
 
 /**
- * Created by lzw on 14/12/19.
  * 语音播放相关的 helper 类
  */
 public class LCIMAudioHelper {

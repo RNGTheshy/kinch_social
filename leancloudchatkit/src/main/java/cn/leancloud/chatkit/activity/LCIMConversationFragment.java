@@ -68,14 +68,13 @@ import cn.leancloud.chatkit.view.LCIMInputBottomBar;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by wli on 15/8/27.
  * 将聊天相关的封装到此 Fragment 里边，只需要通过 setConversation 传入 Conversation 即可
  */
 public class LCIMConversationFragment extends Fragment {
 
   private static final int REQUEST_IMAGE_CAPTURE = 1;
   private static final int REQUEST_IMAGE_PICK = 2;
-
+  private static final int REQUEST_CLEANING_CHAT = 3;
   protected LCIMConversation imConversation;
 
   /**
@@ -161,7 +160,7 @@ public class LCIMConversationFragment extends Fragment {
         //跳转聊天设置页面
         Intent intent = new Intent(getContext(),ChatSettingActivity.class);
         intent.putExtra(ChatSettingActivity.CONVERSATION_ID,imConversation.getConversationId());
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_CLEANING_CHAT);
       }
     });
   }
@@ -176,21 +175,21 @@ public class LCIMConversationFragment extends Fragment {
     if (null != imConversation) {
       LCIMNotificationUtils.addTag(imConversation.getConversationId());
       //重新刷新数据
-      LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
-        @Override
-        public void done(List<LCIMMessage> messageList, LCIMException e) {
-          if (filterException(e)) {
-            itemAdapter.setMessageList(messageList);
-            recyclerView.setAdapter(itemAdapter);
-            itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
-                    imConversation.getLastReadAt());
-            itemAdapter.notifyDataSetChanged();
-            scrollToBottom();
-            clearUnreadConut();
-          }
-        }
-      };
-      imConversation.queryMessagesFromCache( 20, callback);
+//      LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
+//        @Override
+//        public void done(List<LCIMMessage> messageList, LCIMException e) {
+//          if (filterException(e)) {
+//            itemAdapter.setMessageList(messageList);
+//            recyclerView.setAdapter(itemAdapter);
+//            itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
+//                    imConversation.getLastReadAt());
+//            itemAdapter.notifyDataSetChanged();
+//            scrollToBottom();
+//            clearUnreadConut();
+//          }
+//        }
+//      };
+//      imConversation.queryMessagesFromCache( 20, callback);
     }
   }
 
@@ -326,6 +325,7 @@ public class LCIMConversationFragment extends Fragment {
   /**
    * 重新发送已经发送失败的消息
    */
+
   public void onEvent(LCIMMessageResendEvent resendEvent) {
     if (null != imConversation && null != resendEvent &&
       null != resendEvent.message && imConversation.getConversationId().equals(resendEvent.message.getConversationId())) {
@@ -423,7 +423,7 @@ public class LCIMConversationFragment extends Fragment {
   }
 
   private void paddingNewMessage(LCIMConversation currentConversation) {
-    Log.e("testRead",String.valueOf(itemAdapter.getItemCount()));
+//    Log.e("testRead",String.valueOf(itemAdapter.getItemCount()));
     if (null == currentConversation || currentConversation.getUnreadMessagesCount() < 1) {
       return;
     }
@@ -538,8 +538,11 @@ public class LCIMConversationFragment extends Fragment {
         case REQUEST_IMAGE_CAPTURE:
           sendImage(localCameraPath);
           break;
-        case REQUEST_IMAGE_PICK:
+        case REQUEST_IMAGE_PICK:  //获取图片数据
           sendImage(getRealPathFromURI(getActivity(), data.getData()));
+          break;
+        case REQUEST_CLEANING_CHAT:   //从缓存中刷新聊天
+          fetchMessages();
           break;
         default:
           break;
@@ -591,6 +594,7 @@ public class LCIMConversationFragment extends Fragment {
    * @param content
    */
   protected void sendText(String content) {
+
     LCIMTextMessage message = new LCIMTextMessage();
     message.setText(content);
     sendMessage(message);

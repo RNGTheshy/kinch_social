@@ -20,7 +20,6 @@ import cn.leancloud.chatkit.R;
 import cn.leancloud.chatkit.utils.LCIMConstants;
 
 /**
- * Created by wli on 15/9/17.
  * 聊天页面中的图片 item 对应的 holder
  */
 public class LCIMChatItemImageHolder extends LCIMChatItemHolder {

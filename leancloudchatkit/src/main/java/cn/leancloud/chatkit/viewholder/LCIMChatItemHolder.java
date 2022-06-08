@@ -93,30 +93,30 @@ public class LCIMChatItemHolder extends LCIMCommonViewHolder {
     nameView.setText("");
     avatarView.setImageResource(R.drawable.lcim_default_avatar_icon);
     //TODO 头像设置
-    Headport  headPort = new Headport();
-    headPort.setImage(message.getFrom(),avatarView);
-    getPersonal_data.center_getname(message.getFrom(), new center_getname() {
-      @Override
-      public void getname(String name) {
-        nameView.setText(name);
-      }
-    });
-
-//    LCIMProfileCache.getInstance().getCachedUser(message.getFrom(), new LCCallback<LCChatKitUser>() {
+//    Headport  headPort = new Headport();
+//    headPort.setImage(message.getFrom(),avatarView);
+//    getPersonal_data.center_getname(message.getFrom(), new center_getname() {
 //      @Override
-//      protected void internalDone0(LCChatKitUser userProfile, LCException e) {
-//        if (null != e) {
-//          LCIMLogUtils.logException(e);
-//        } else if (null != userProfile) {
-//          nameView.setText(userProfile.getName());
-//          final String avatarUrl = userProfile.getAvatarUrl();
-//          if (!TextUtils.isEmpty(avatarUrl)) {
-//            Picasso.with(getContext()).load(avatarUrl)
-//              .placeholder(R.drawable.lcim_default_avatar_icon).into(avatarView);
-//          }
-//        }
+//      public void getname(String name) {
+//        nameView.setText(name);
 //      }
 //    });
+
+    LCIMProfileCache.getInstance().getCachedUser(message.getFrom(), new LCCallback<LCChatKitUser>() {
+      @Override
+      protected void internalDone0(LCChatKitUser userProfile, LCException e) {
+        if (null != e) {
+          LCIMLogUtils.logException(e);
+        } else if (null != userProfile) {
+          nameView.setText(userProfile.getName());
+          final String avatarUrl = userProfile.getAvatarUrl();
+          if (!TextUtils.isEmpty(avatarUrl)) {
+            Picasso.with(getContext()).load(avatarUrl)
+              .placeholder(R.drawable.lcim_default_avatar_icon).into(avatarView);
+          }
+        }
+      }
+    });
 
     switch (message.getMessageStatus()) {
       case StatusFailed:
