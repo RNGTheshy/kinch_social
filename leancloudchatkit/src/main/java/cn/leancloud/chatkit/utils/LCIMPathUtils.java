@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import java.io.File;
 
 /**
- * Created by lzw on 15/4/26.
+ *
  */
 public class LCIMPathUtils {
 
