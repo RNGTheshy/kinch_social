@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -42,6 +45,7 @@ dependencies {
     testImplementation project(path: ':chat')
     testImplementation project(path: ':leancloudchatkit')
     testImplementation project(path: ':leancloudchatkit')
+    testImplementation project(path: ':Kinch_home')
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'cn.leancloud:storage-core:8.2.5'
