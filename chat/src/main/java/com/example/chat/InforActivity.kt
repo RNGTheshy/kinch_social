@@ -14,7 +14,7 @@ class InforActivity: AppCompatActivity() {
         btn.setOnClickListener{
             val use = user.text.toString()
             val pass = pass.text.toString()
-            ChatActivity.goToChat(this,use,pass)
+//            ChatActivity.goToChat(this,use,pass)
         }
     }
 }
