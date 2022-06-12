@@ -8,10 +8,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="30dp" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:background="@drawable/shape_title"
         android:gravity="center_vertical">
 
@@ -34,18 +34,19 @@
 
         <com.example.friend.utils.ShadowLayoutTwo
             android:id="@+id/addFriend_sha"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
             app:shadowColor="#1A333333"
+            app:shadowDx="0dp"
+            app:shadowDy="0dp"
+            app:shadowRadius="10dp"
             app:shadowRadiusButtom="5dp"
             app:shadowRadiusLeft="5dp"
             app:shadowRadiusRight="5dp"
             app:shadowRadiusTop="5dp"
-            app:shadowDx="0dp"
-            app:shadowDy="0dp"
-            app:shadowRadius="10dp"
             app:shadowShape="rectangle"
             app:shadowSide="all">
 
@@ -70,6 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="定位"
             android:textSize="20sp"
             android:layout_marginStart="20dp"
@@ -79,6 +81,9 @@
             android:id="@+id/friend_icon_recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"
             android:orientation="horizontal"/>
         <EditText
             android:layout_width="290dp"
@@ -89,11 +94,13 @@
             android:drawableTint="@color/clear_light_gray"
             android:gravity="center"
             android:hint="搜索本地好友"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/friend_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 </LinearLayout>

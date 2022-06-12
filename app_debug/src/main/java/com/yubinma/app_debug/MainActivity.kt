@@ -20,6 +20,7 @@ import com.example.chat.InforActivity
 import com.chaoshan.socialforum.activity.SocialForumActivity
 import com.example.friend.friendMainActivity
 import com.example.kinch_home.Home_Activity
+import com.example.kinch_home.WelcomeActivity
 import com.example.setting.SettingMainActivity
 import com.yubinma.app_debug.databinding.ActivityMainBinding
 import com.yubinma.person_center.PersonCenter2Activity
@@ -80,13 +81,20 @@ class MainActivity : AppCompatActivity(), ActivityManager.IRecordPage {
         },
         DebugItem("sss") {
             openLogin2()
-        }, DebugItem("friend") {
+        }
+        , DebugItem("friend") {
             openFirend();
+        }
+        , DebugItem("welcome") {
+            openWelcome();
         }
 
 
     )
-
+    private fun openWelcome() {
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+    }
     private fun openSetting() {
         val intent = Intent(this, SettingMainActivity::class.java)
         startActivity(intent)

@@ -27,14 +27,6 @@ class friendIconAdapter(var datas: List<Friend>) :
         datas.forEach {
             list.add(it.id ?: "")
         }
-        if (list.isNotEmpty()) {
-            Headport().getAllUrlByObject(list, object : CallBackListUrl {
-                override fun success(list: List<String>) {
-                    headUrl = list
-                    notifyDataSetChanged()
-                }
-            })
-        }
 
         notifyDataSetChanged()
     }
@@ -75,7 +67,7 @@ class friendIconAdapter(var datas: List<Friend>) :
         headUrl?.let {
             if (it.isNotEmpty()) {
                 headport.saveToImage(
-                    it.get(position),
+                    it[position],
                     holder.head.context,
                     holder.head
                 )
@@ -110,5 +102,4 @@ class friendIconAdapter(var datas: List<Friend>) :
     }
 
     override fun getItemCount() = datas.size
-
 }

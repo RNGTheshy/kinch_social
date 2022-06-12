@@ -1,16 +1,14 @@
 package com.example.kinch_home
 
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
-import android.location.Location
-import android.location.LocationListener
+import android.location.*
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,39 +18,27 @@ import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
 import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
+import com.baidu.mapapi.map.MyLocationConfiguration
 import com.baidu.mapapi.model.LatLng
-import com.baidu.mapapi.map.MapStatusUpdateFactory
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.chaoshan.data_center.SettingsPreferencesDataStore.getCurrentUserObjetID
 import com.chaoshan.data_center.activitymanger.ActivityManager
-import com.chaoshan.data_center.togetname.Headport
-import com.chaoshan.socialforum.activity.SocialForumActivity
-import com.example.chat.ChatActivity
-import com.example.chat.ChatActivity.Companion.goToChat
-import com.example.friend.friendMainActivity
-import com.example.setting.SettingMainActivity
-import com.yubinma.person_center.PersonCenter2Activity
-import com.yubinma.person_center.Personal_data
-import com.baidu.platform.comapi.basestruct.GeoPoint
-import android.location.*
-import android.util.Log
-
-
-import com.baidu.mapapi.map.MarkerOptions
-import com.bumptech.glide.Glide
-import com.chaoshan.data_center.togetname.Geturl
-import com.chaoshan.data_center.togetname.getPersonal_data
-import com.chaoshan.data_center.togetname.getPersonal_data.geturl
-import com.example.kinch_home.utils.BitmapUtil.getBitmap
-import kotlin.concurrent.thread
-import com.bumptech.glide.request.RequestOptions
-
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.friend.GetAllDataListener
 import com.chaoshan.data_center.friend.GetAllMyFirendCallBack
 import com.chaoshan.data_center.friend.GetAllUer
 import com.chaoshan.data_center.togetname.getPersonal_data.getplace
+import com.chaoshan.data_center.togetname.getPersonal_data.geturl
+import com.chaoshan.socialforum.activity.SocialForumActivity
+import com.example.chat.ChatActivity.Companion.goToChat
+import com.example.friend.friendMainActivity
+import com.example.kinch_home.instance.SensorInstance
+import com.example.setting.SettingMainActivity
+import com.yubinma.person_center.PersonCenter2Activity
+import com.yubinma.person_center.Personal_data
+import kotlin.concurrent.thread
 
 
 class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager.IRecordPage {
@@ -81,6 +67,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 
     // 当前定位模式
     private var locationMode: MyLocationConfiguration.LocationMode? = null
+
+    // 方向传感器
+    private var mSensorInstance : SensorInstance ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,7 +113,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         val option = LocationClientOption()
         option.isOpenGps = true // 打开gps
         option.setCoorType("bd09ll") // 设置坐标类型
-        option.setScanSpan(100)
+        option.setScanSpan(2000)
         // 可选，设置地址信息
         option.setIsNeedAddress(true)
         //可选，设置是否需要地址描述
@@ -135,19 +124,62 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         //注册LocationListener监听器
         val myLocationListener: MyLocationListener = MyLocationListener()
         mLocationClient!!.registerLocationListener(myLocationListener)
-        //开启地图定位图层
-        mLocationClient!!.start()
-        setFriendLocation()
+
+
+        initSensorInstance()
         hideAddMinusBtn()
         initClickListener()
+        setFriendLocation()
+    }
 
+    private fun initSensorInstance() {
+        mSensorInstance = SensorInstance(applicationContext)
+        mSensorInstance!!.setOnOrientationChangedListener(object :
+            SensorInstance.OnOrientationChangedListener {
+            override fun onOrientation(x: Float) {
+                //设置定位图标
+                if (mLocation == null) { //如果上次没有定位，则不需要改变
+                    return
+                }
+                //实现定位功能
+                // 构造定位数据
+                val locData = MyLocationData.Builder()
+                    .accuracy(mLocation!!.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(x).latitude(mLocation!!.latitude)
+                    .longitude(mLocation!!.longitude).build()
+
+                // 设置定位数据
+                mBaiduMap!!.setMyLocationData(locData)
+
+                // 设置自定义定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+//                BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+//                        .fromResource(R.drawable.navi_map_gps_locked);
+                //不需要自定义图标
+                val config = MyLocationConfiguration(
+                    MyLocationConfiguration.LocationMode.NORMAL,
+                    true, null
+                )
+                mBaiduMap!!.setMyLocationConfiguration(config)
+                /**
+                 * 实现以进入地图就定位到我们的位置
+                 */
+                if (isFirstLocate) {
+                    isFirstLocate = false
+                    //拿到位置
+                    val point = LatLng(mLocation!!.latitude, mLocation!!.longitude)
+                    mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(point))
+                }
+            }
+        })
     }
 
     private fun setFriendLocation() {
+        mBaiduMap?.clear()
         GetAllUer.getAllFriend(
             getCurrentUserObjetID(),
             object : GetAllMyFirendCallBack {
                 override fun success(list: List<String>) {
+                    if(list.isNotEmpty())
                     GetAllUer.getFriendDao(object : GetAllDataListener {
                         override fun success(friendList: List<Friend>) {
                             friends = friendList //朋友列表
@@ -182,6 +214,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 
                                 }
                             }
+
                         }
 
                         override fun fail() {
@@ -223,9 +256,9 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
 //            mBaiduMap!!.setMyLocationConfiguration(mLocationConfiguration)
 
 
-
             val geocoder = Geocoder(this)
-            val address = geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100) //通过经纬度反编码，获得地址
+            val address =
+                geocoder.getFromLocation(returnedLatitude, returnedLongitude, 100) //通过经纬度反编码，获得地址
             mAddress = address[0]
             //动态加载标题
             if (mapStatus?.zoom!! < 5)
@@ -285,16 +318,16 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             mLongitude = location.longitude
             mLatitude = location.latitude
             if (isFirstLocate) {
-                isFirstLocate = false
-                //给地图设置状态
-                mBaiduMap!!.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll))
-
+                val userId = getCurrentUserObjetID()
+                val personal_data = Personal_data()
+                personal_data.saveplace(mLongitude, mLatitude, userId)
             }
-            val locData = MyLocationData.Builder()
-                .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(location.direction).latitude(location.latitude)
-                .longitude(location.longitude).build()
-            mBaiduMap!!.setMyLocationData(locData)
+
+//            val locData = MyLocationData.Builder()
+//                .accuracy(location.radius) // 此处设置开发者获取到的方向信息，顺时针0-360
+//                .direction(location.direction).latitude(location.latitude)
+//                .longitude(location.longitude).build()
+//            mBaiduMap!!.setMyLocationData(locData)
             mapStatus = mBaiduMap?.mapStatus
             if (flag == 1) {
                 if (mapStatus?.zoom!! < 5)
@@ -339,13 +372,26 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
                     mTextView?.text = mLocation?.district
                 else
                     mTextView?.text = mLocation?.street
+
                 Toast.makeText(this@Home_Activity, location.addrStr, Toast.LENGTH_SHORT).show()
 
-
+                setFriendLocation()
             }
         }
     }
 
+    override fun onStart() {
+        //开启地图定位图层
+        mLocationClient!!.start()
+        mSensorInstance!!.start()
+        super.onStart()
+    }
+
+    override fun onStop() {
+        mLocationClient!!.stop()
+        mSensorInstance!!.stop()
+        super.onStop()
+    }
     override fun onResume() {
         mMapView!!.onResume()
         super.onResume()

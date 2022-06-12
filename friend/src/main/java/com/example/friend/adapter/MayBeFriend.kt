@@ -42,6 +42,7 @@ class MayBeFriend : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             })
         }
+        notifyDataSetChanged()
 
     }
 

@@ -1,6 +1,5 @@
 package com.example.kinch_home
 
-import android.content.Context
 import cn.leancloud.core.LeanCloud
 import com.chaoshan.data_center.friend.Friend
 import com.chaoshan.data_center.friend.GetAllDataListener
