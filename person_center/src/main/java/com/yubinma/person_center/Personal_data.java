@@ -161,6 +161,7 @@ public class Personal_data {
             @Override
             public void onNext(LCObject todo) {
                 todo.put("mobilePhoneNumber", telephone);
+                todo.put("phone_number", telephone);
                 todo.saveInBackground().subscribe(new Observer<LCObject>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {System.out.println("测试成功");
