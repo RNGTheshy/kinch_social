@@ -2,13 +2,16 @@ package com.yubinma.person_center;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chaoshan.data_center.SettingsPreferencesDataStore;
 import com.chaoshan.data_center.togetname.Headport;
 
 import cn.leancloud.chatkit.activity.LCIMConversationActivity;
@@ -17,7 +20,9 @@ import cn.leancloud.chatkit.utils.LCIMConstants;
 
 public class friendcenter extends AppCompatActivity {
     final String classname = "userdata";
-
+    final String myobjectid = SettingsPreferencesDataStore.INSTANCE.getCurrentUserObjetID();
+    static String ifs="";
+    static int dzan=0;
     //从其他页面跳转至该好友中心界面
     public static void startFriendcenter(Context context, String friendObjId){
         Intent intent = new Intent(context, friendcenter.class);
@@ -51,6 +56,37 @@ public class friendcenter extends AppCompatActivity {
         friendto friendto=new friendto();
         friendto.setRadius(img,15);
 
+        //显示点赞和浏览
+        personal_data.getbrowse(objectid, new Getbrowse() {
+            @Override
+            public void getbandt(int browse, int thumbsup) {
+                TextView browse1=findViewById(R.id.fbrowse);
+                dzan=thumbsup;
+                int brow1=browse+1;
+                browse1.setText(brow1+"");
+                TextView thumpsup1=findViewById(R.id.fthumbsup);
+
+                thumpsup1.setText(thumbsup+"");
+                personal_data.setbrowse(objectid);
+            }
+        });
+
+        //获取是否点赞
+        personal_data.getthumbsup(myobjectid, objectid, new Getthumbsup() {
+            @Override
+            public void getthumbsup(String thumbsup) {
+                Toast.makeText(friendcenter.this,thumbsup,Toast.LENGTH_LONG).show();
+                TextView zan=findViewById(R.id.zan);
+                if (thumbsup.equals("no")){
+                    zan.setBackgroundResource(R.drawable.bzan);
+                }
+                else{
+                    zan.setBackgroundResource(R.drawable.zan);
+                }
+                ifs=thumbsup;
+            }
+        });
+
 
 
         //设置朋友圈界面图片
@@ -76,6 +112,34 @@ public class friendcenter extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+
+
+        //点赞按钮的点击事件
+        TextView zan=findViewById(R.id.zan);
+        zan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView zan=findViewById(R.id.zan);
+                TextView thumpsup1=findViewById(R.id.fthumbsup);
+                if(ifs.equals("no")){
+                    ifs="yes";
+                    zan.setBackgroundResource(R.drawable.zan);
+                    dzan++;
+                    thumpsup1.setText(dzan+"");
+                    personal_data.thumbsup(objectid);
+                }
+                else
+                {
+                    ifs="no";
+                    zan.setBackgroundResource(R.drawable.bzan);
+                    dzan--;
+                    thumpsup1.setText(dzan+"");
+                    personal_data.cancel(objectid);
+                }
+                personal_data.setno(myobjectid, objectid,ifs);
             }
         });
 
