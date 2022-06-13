@@ -20,7 +20,6 @@ import cn.leancloud.chatkit.R;
 import cn.leancloud.chatkit.utils.LCIMConstants;
 
 /**
- * Created by wli on 15/9/17.
  * 聊天页面中的图片 item 对应的 holder
  */
 public class LCIMChatItemImageHolder extends LCIMChatItemHolder {
@@ -33,21 +32,26 @@ public class LCIMChatItemImageHolder extends LCIMChatItemHolder {
     super(context, root, isLeft);
   }
 
+  /**
+   * 初始化组件
+   */
   @Override
   public void initView() {
     super.initView();
     conventLayout.addView(View.inflate(getContext(), R.layout.lcim_chat_item_image_layout, null));
     contentView = (ImageView) itemView.findViewById(R.id.chat_item_image_view);
+    //设置消息背景框
     if (isLeft) {
       contentView.setBackgroundResource(R.drawable.lcim_chat_item_left_bg);
     } else {
       contentView.setBackgroundResource(R.drawable.lcim_chat_item_right_bg);
     }
-
+    //图片点击事件
     contentView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         try {
+          //跳转到详情页面
           Intent intent = new Intent(getContext(), LCIMImageActivity.class);
           intent.setPackage(getContext().getPackageName());
           intent.putExtra(LCIMConstants.IMAGE_LOCAL_PATH, ((LCIMImageMessage) message).getLocalFilePath());
@@ -60,6 +64,10 @@ public class LCIMChatItemImageHolder extends LCIMChatItemHolder {
     });
   }
 
+  /**
+   * 绑定数据到组件
+   * @param o
+   */
   @Override
   public void bindData(Object o) {
     super.bindData(o);
@@ -72,13 +80,14 @@ public class LCIMChatItemImageHolder extends LCIMChatItemHolder {
       // 图片的真实高度与宽度
       double actualHight = imageMsg.getHeight();
       double actualWidth = imageMsg.getWidth();
-
+      //图片最大尺寸
       double viewHeight = MAX_DEFAULT_HEIGHT;
       double viewWidth = MAX_DEFAULT_WIDTH;
 
       if (0 != actualHight && 0 != actualWidth) {
         // 要保证图片的长宽比不变
         double ratio = actualHight / actualWidth;
+        // 图片不能超过最大尺寸
         if (ratio > viewHeight / viewWidth) {
           viewHeight = (actualHight > viewHeight ? viewHeight : actualHight);
           viewWidth = viewHeight / ratio;
@@ -87,10 +96,10 @@ public class LCIMChatItemImageHolder extends LCIMChatItemHolder {
           viewHeight = viewWidth * ratio;
         }
       }
-
+      //设置尺寸
       contentView.getLayoutParams().height = (int) viewHeight;
       contentView.getLayoutParams().width = (int) viewWidth;
-
+      //加载图片
       if (!TextUtils.isEmpty(localFilePath)) {
         Picasso.with(getContext().getApplicationContext()).load(new File(localFilePath)).
           resize((int) viewWidth, (int) viewHeight).centerCrop().into(contentView);

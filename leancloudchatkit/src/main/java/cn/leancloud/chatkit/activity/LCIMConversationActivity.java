@@ -3,8 +3,11 @@ package cn.leancloud.chatkit.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import cn.leancloud.im.v2.LCIMTemporaryConversation;
 import cn.leancloud.im.v2.callback.LCIMConversationCreatedCallback;
 
 import java.util.Arrays;
+import java.util.List;
 
 import cn.leancloud.chatkit.LCChatKit;
 import cn.leancloud.chatkit.R;
@@ -164,4 +168,23 @@ public class LCIMConversationActivity extends AppCompatActivity {
   private void showToast(String content) {
     Toast.makeText(LCIMConversationActivity.this, content, Toast.LENGTH_SHORT).show();
   }
+
+//  @Override
+//  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    List<Fragment> fragments = getSupportFragmentManager().getFragments();
+//    if (fragments == null)
+//    {
+//      return;
+//    }
+//    // 查找在Fragment中onRequestPermissionsResult方法并调用
+//    for (Fragment fragment : fragments)
+//    {
+//      if (fragment != null)
+//      {
+//        // 这里就会调用我们Fragment中的onRequestPermissionsResult方法
+//        fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//      }
+//    }
+//  }
 }

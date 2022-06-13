@@ -22,7 +22,6 @@ import de.greenrobot.event.EventBus;
 
 
 /**
- * Created by wli on 15/7/24.
  * 专门负责输入的底部操作栏，与 activity 解耦
  * 当点击相关按钮时发送 InputBottomBarEvent，需要的 View 可以自己去订阅相关消息
  */
@@ -93,7 +92,10 @@ public class LCIMInputBottomBar extends LinearLayout {
     moreLayout.setVisibility(View.GONE);
   }
 
-
+  /**
+   * 初始化页面和组件
+   * @param context
+   */
   private void initView(Context context) {
     View.inflate(context, R.layout.lcim_chat_input_bottom_bar_layout, this);
     actionBtn = findViewById(R.id.input_bar_btn_action);

@@ -32,7 +32,7 @@ import com.chaoshan.data_center.friend.GetAllUer
 import com.chaoshan.data_center.togetname.getPersonal_data.getplace
 import com.chaoshan.data_center.togetname.getPersonal_data.geturl
 import com.chaoshan.socialforum.activity.SocialForumActivity
-import com.example.chat.ChatActivity.Companion.goToChat
+import com.example.chat.ChatActivity
 import com.example.friend.friendMainActivity
 import com.example.kinch_home.instance.SensorInstance
 import com.example.setting.SettingMainActivity
@@ -125,6 +125,8 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
         val myLocationListener: MyLocationListener = MyLocationListener()
         mLocationClient!!.registerLocationListener(myLocationListener)
 
+        //登录聊天服务器
+        ChatActivity.initUserChat(this@Home_Activity)
 
         initSensorInstance()
         hideAddMinusBtn()
@@ -286,7 +288,7 @@ class Home_Activity : AppCompatActivity(), View.OnClickListener, ActivityManager
             startActivity(intent)
         }
         mMessageButton?.setOnClickListener {
-            goToChat(this, "147", "147")
+            ChatActivity.goToChat(this@Home_Activity)
         }
         mTrendsButton?.setOnClickListener {
             val intent = Intent(this, SocialForumActivity::class.java)

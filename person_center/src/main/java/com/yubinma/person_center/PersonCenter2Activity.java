@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,18 @@ public class PersonCenter2Activity extends AppCompatActivity {
 
 
 
+
+
+        personal_data.getbrowse(objectid, new Getbrowse() {
+            @Override
+            public void getbandt(int browse, int thumbsup) {
+                TextView browse1=findViewById(R.id.mybrowse);
+                browse1.setText(browse+"");
+                TextView thumpsup1=findViewById(R.id.mythumbsup);
+                thumpsup1.setText(thumbsup+"");
+
+            }
+        });
 
 
 

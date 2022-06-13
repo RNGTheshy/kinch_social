@@ -14,7 +14,6 @@ import cn.leancloud.chatkit.LCChatKitUser;
 import cn.leancloud.chatkit.cache.LCIMProfileCache;
 
 /**
- * Created by wli on 16/3/2.
  * 和 Conversation 相关的 Util 类
  */
 public class LCIMConversationUtils {

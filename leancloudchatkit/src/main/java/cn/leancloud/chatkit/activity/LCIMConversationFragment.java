@@ -1,16 +1,23 @@
 package cn.leancloud.chatkit.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PackageManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -68,14 +75,13 @@ import cn.leancloud.chatkit.view.LCIMInputBottomBar;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by wli on 15/8/27.
  * 将聊天相关的封装到此 Fragment 里边，只需要通过 setConversation 传入 Conversation 即可
  */
 public class LCIMConversationFragment extends Fragment {
 
   private static final int REQUEST_IMAGE_CAPTURE = 1;
   private static final int REQUEST_IMAGE_PICK = 2;
-
+  private static final int REQUEST_CLEANING_CHAT = 3;
   protected LCIMConversation imConversation;
 
   /**
@@ -161,7 +167,7 @@ public class LCIMConversationFragment extends Fragment {
         //跳转聊天设置页面
         Intent intent = new Intent(getContext(),ChatSettingActivity.class);
         intent.putExtra(ChatSettingActivity.CONVERSATION_ID,imConversation.getConversationId());
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_CLEANING_CHAT);
       }
     });
   }
@@ -176,21 +182,21 @@ public class LCIMConversationFragment extends Fragment {
     if (null != imConversation) {
       LCIMNotificationUtils.addTag(imConversation.getConversationId());
       //重新刷新数据
-      LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
-        @Override
-        public void done(List<LCIMMessage> messageList, LCIMException e) {
-          if (filterException(e)) {
-            itemAdapter.setMessageList(messageList);
-            recyclerView.setAdapter(itemAdapter);
-            itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
-                    imConversation.getLastReadAt());
-            itemAdapter.notifyDataSetChanged();
-            scrollToBottom();
-            clearUnreadConut();
-          }
-        }
-      };
-      imConversation.queryMessagesFromCache( 20, callback);
+//      LCIMMessagesQueryCallback callback = new LCIMMessagesQueryCallback() {
+//        @Override
+//        public void done(List<LCIMMessage> messageList, LCIMException e) {
+//          if (filterException(e)) {
+//            itemAdapter.setMessageList(messageList);
+//            recyclerView.setAdapter(itemAdapter);
+//            itemAdapter.setDeliveredAndReadMark(imConversation.getLastDeliveredAt(),
+//                    imConversation.getLastReadAt());
+//            itemAdapter.notifyDataSetChanged();
+//            scrollToBottom();
+//            clearUnreadConut();
+//          }
+//        }
+//      };
+//      imConversation.queryMessagesFromCache( 20, callback);
     }
   }
 
@@ -326,6 +332,7 @@ public class LCIMConversationFragment extends Fragment {
   /**
    * 重新发送已经发送失败的消息
    */
+
   public void onEvent(LCIMMessageResendEvent resendEvent) {
     if (null != imConversation && null != resendEvent &&
       null != resendEvent.message && imConversation.getConversationId().equals(resendEvent.message.getConversationId())) {
@@ -423,7 +430,7 @@ public class LCIMConversationFragment extends Fragment {
   }
 
   private void paddingNewMessage(LCIMConversation currentConversation) {
-    Log.e("testRead",String.valueOf(itemAdapter.getItemCount()));
+//    Log.e("testRead",String.valueOf(itemAdapter.getItemCount()));
     if (null == currentConversation || currentConversation.getUnreadMessagesCount() < 1) {
       return;
     }
@@ -499,26 +506,58 @@ public class LCIMConversationFragment extends Fragment {
    * 发送 Intent 跳转到系统拍照页面
    */
   private void dispatchTakePictureIntent() {
+//    if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
 
-    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+      Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-      localCameraPath = LCIMPathUtils.getPicturePathByCurrentTime(getContext());
-      Uri imageUri = Uri.fromFile(new File(localCameraPath));
-      takePictureIntent.putExtra("return-data", false);
-      takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
-    } else {
-      localCameraPath = Environment.getExternalStorageDirectory() + "/images/" + System.currentTimeMillis()+".jpg";
-      File photoFile = new File(localCameraPath);
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        localCameraPath = LCIMPathUtils.getPicturePathByCurrentTime(getContext());
+        Uri imageUri = Uri.fromFile(new File(localCameraPath));
+        takePictureIntent.putExtra("return-data", false);
+        takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
+      } else {
+        localCameraPath = Environment.getExternalStorageDirectory() + "/images/" + System.currentTimeMillis() + ".jpg";
+        File photoFile = new File(localCameraPath);
+        if(!photoFile.exists()){
+          photoFile.getParentFile().mkdirs();
+        }
+        Uri photoURI = FileProvider.getUriForFile(this.getContext(),
+                this.getContext().getPackageName() + ".provider", photoFile);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                photoURI);
+      }
+      if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+      }
+//    }else {
+//      this.requestPermissions(new String[]{Manifest.permission.WRITE_SETTINGS},1);
+//    }
+  }
 
-      Uri photoURI = FileProvider.getUriForFile(this.getContext(),
-          this.getContext().getPackageName()+ ".provider", photoFile);
-      takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-          photoURI);
+  /**
+   *  根据权限请求状况处理
+   * @param requestCode 请求码
+   * @param permissions 权限
+   * @param grantResults 获取情况
+   */
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    switch (requestCode){
+      //获取相机权限
+      case 1 :
+        //成功
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+          //拍照
+          dispatchTakePictureIntent();
+        }else {
+          //失败提示
+          Toast.makeText(getContext(),"无法使用摄像机",Toast.LENGTH_SHORT).show();
+        }
+        break;
+      default:
+        break;
     }
-    if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-      startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-    }
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   /**
@@ -532,14 +571,22 @@ public class LCIMConversationFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    System.out.println("requestCode=" + requestCode + ", resultCode=" + resultCode);
     if (Activity.RESULT_OK == resultCode) {
       switch (requestCode) {
+        //获取相机数据
         case REQUEST_IMAGE_CAPTURE:
+          //发送图片消息
           sendImage(localCameraPath);
           break;
+        //获取图片数据
         case REQUEST_IMAGE_PICK:
+          //发送图片消息
           sendImage(getRealPathFromURI(getActivity(), data.getData()));
+          break;
+        //从缓存中刷新聊天
+        case REQUEST_CLEANING_CHAT:
+          //拉取信息刷新页面
+          fetchMessages();
           break;
         default:
           break;
@@ -591,6 +638,7 @@ public class LCIMConversationFragment extends Fragment {
    * @param content
    */
   protected void sendText(String content) {
+
     LCIMTextMessage message = new LCIMTextMessage();
     message.setText(content);
     sendMessage(message);
@@ -661,6 +709,11 @@ public class LCIMConversationFragment extends Fragment {
     });
   }
 
+  /**
+   * 处理错误
+   * @param e
+   * @return
+   */
   private boolean filterException(Exception e) {
     if (null != e) {
       LCIMLogUtils.logException(e);
@@ -669,6 +722,9 @@ public class LCIMConversationFragment extends Fragment {
     return (null == e);
   }
 
+  /**
+   * 清理未读消息
+   */
   private void clearUnreadConut() {
     if (imConversation.getUnreadMessagesCount() > 0) {
       imConversation.read();

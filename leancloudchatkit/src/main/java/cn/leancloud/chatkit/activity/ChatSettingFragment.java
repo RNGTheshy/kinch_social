@@ -1,5 +1,6 @@
 package cn.leancloud.chatkit.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -79,6 +80,7 @@ public class ChatSettingFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 lcimMessageStorage.deleteConversationData(imConversation.getConversationId());
                                 dialog.dismiss();
+                                getActivity().setResult(Activity.RESULT_OK);
                                 Toast.makeText(getContext(),"该聊天记录本地缓存已经清理完成",Toast.LENGTH_SHORT).show();
                             }
                         }).create();

@@ -40,25 +40,28 @@ class ChatActivity : AppCompatActivity() {
                 intent.putExtra("userId",userId);
                 context.startActivity(intent)
             }
+            fun goToChat(context: Context){
+                ConversationListActivity.goToConList(context)
+            }
+            fun initUserChat(context: Context){
+                LCIMOptions.getGlobalOptions().setAutoOpen(true)
+                LCChatKit.getInstance().open(SettingsPreferencesDataStore.getCurrentUserObjetID(),object : LCIMClientCallback() {
+                    override fun done(client: LCIMClient, e: LCIMException?) {
+                        if (e == null) {
+
+                        } else {
+
+                        }
+                    }
+                })
 
         }
-    fun initUserChat(){
-        LCIMOptions.getGlobalOptions().setAutoOpen(true)
-        LCChatKit.getInstance().open(SettingsPreferencesDataStore.getCurrentUserObjetID(),object : LCIMClientCallback() {
-            override fun done(client: LCIMClient, e: LCIMException?) {
-                if (e == null) {
-                   ConversationListActivity.goToConList(this@ChatActivity)
-//                    finish()
-                } else {
 
-                }
-            }
-        })
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.chat_room)
-        initUserChat()
+//        setContentView(R.layout.chat_room)
+//        initUserChat()
 
 //            val userId = intent.getStringExtra(USER_ID)
 //            if (!TextUtils.isEmpty(userId)){
