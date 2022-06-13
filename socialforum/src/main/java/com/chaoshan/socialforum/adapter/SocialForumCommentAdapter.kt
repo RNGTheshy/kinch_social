@@ -1,24 +1,35 @@
 package com.chaoshan.socialforum.adapter
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.graphics.Outline
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaoshan.data_center.GetApplicationContext
+import com.chaoshan.data_center.SettingsPreferencesDataStore
 import com.chaoshan.data_center.dynamic.comment.Comment
 import com.chaoshan.data_center.dynamic.comment.CommentClient
 import com.chaoshan.data_center.dynamic.comment.GetCommentCountListener
+import com.chaoshan.data_center.dynamic.comment.GetCommentDataListener
 import com.chaoshan.data_center.dynamic.dynamic.Dynamic
+import com.chaoshan.data_center.dynamic.dynamic.DynamicClient
 import com.chaoshan.data_center.dynamic.like.GetLikeCountCallBack
 import com.chaoshan.data_center.dynamic.like.GetLikePersonList
 import com.chaoshan.data_center.dynamic.like.Like
 import com.chaoshan.data_center.dynamic.like.LikeClient
+import com.chaoshan.data_center.friend.DeleteCallback
 import com.chaoshan.data_center.togetname.Headport
 import com.chaoshan.data_center.togetname.center_getname
 import com.chaoshan.data_center.togetname.getPersonal_data
+import com.chaoshan.socialforum.activity.SocialForumMoreActivity
 import com.chaoshan.socialforum.databinding.SocialForumItemViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumLikeViewBinding
 import com.chaoshan.socialforum.databinding.SocialForumMoreCommentViewholderBinding
@@ -27,6 +38,10 @@ import com.chaoshan.socialforum.viewholder.SocialForumItemViewHolder
 import com.chaoshan.socialforum.viewholder.SocialForumLikeItemViewHolder
 import com.chaoshan.socialforum.viewmodel.SocialForumActivityViewModel
 import com.chaoshan.socialforum.viewmodel.SocialForumMoreActivityViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var currentCYID: String
@@ -37,9 +52,11 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         this.currentCYID = currentCYID
     }
 
+
     fun setCurrentCY(currentCY: Dynamic) {
         this.currentCY = currentCY
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun reFresh() {
@@ -77,7 +94,10 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         if (position == 0) {
             holder as SocialForumItemViewHolder
             LikeClient.getLikeCount(currentCYID, object :
@@ -143,6 +163,46 @@ class SocialForumCommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                             holder.binding.commentName.text = name
                         }
                     })
+                holder.binding.root.setOnLongClickListener { view ->
+                    val alertDialog2: AlertDialog = AlertDialog.Builder(view.context)
+                        .setTitle("确定删除这个评论吗？")
+                        .setMessage(it[position - 2].comment)
+                        .setPositiveButton("确定", object : DialogInterface.OnClickListener {
+                            //添加"Yes"按钮
+                            @RequiresApi(Build.VERSION_CODES.N)
+                            override fun onClick(dialogInterface: DialogInterface?, i: Int) {
+                                //todo删除评论。
+                                DynamicClient.deleteComment(
+                                    it[position - 2].comment,
+                                    object : DeleteCallback {
+                                        override fun success() {
+                                            GetApplicationContext.context?.let {
+                                                GlobalScope.launch(Dispatchers.Main) {
+                                                    CommentClient.getData(
+                                                        currentCYID,
+                                                        object : GetCommentDataListener {
+                                                            override fun getData(comment: List<Comment>) {
+                                                                setData(comment)
+                                                            }
+
+                                                        })
+                                                }
+                                            }
+                                        }
+                                    })
+                            }
+                        })
+                        .setNegativeButton("取消", object : DialogInterface.OnClickListener {
+                            //添加取消
+                            override fun onClick(dialogInterface: DialogInterface?, i: Int) {
+
+                            }
+                        })
+                        .create()
+                    alertDialog2.show()
+                    return@setOnLongClickListener true
+                }
+
             }
 
         }

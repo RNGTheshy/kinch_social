@@ -1,12 +1,17 @@
 package com.chaoshan.data_center.dynamic.dynamic
 
 import android.util.Log
+import androidx.annotation.NonNull
 import cn.leancloud.LCFile
 import cn.leancloud.LCObject
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import cn.leancloud.LCQuery
+import cn.leancloud.types.LCNull
 import com.chaoshan.data_center.dynamic.GetDateCallBack
+import com.chaoshan.data_center.dynamic.comment.Comment
+import com.chaoshan.data_center.friend.DeleteCallback
+import com.chaoshan.data_center.friend.SentFriend
 
 
 class DynamicDao {
@@ -112,4 +117,45 @@ class DynamicDao {
             lCObject.getString("comment_num"),
         )
     }
+
+
+    // push对象
+    fun deleteComment(string: String, deleteCallback: DeleteCallback) {
+
+        //delete
+        val query = LCQuery<LCObject>(Comment::class.java.simpleName)
+        query.whereEqualTo("comment", string)
+        query.findInBackground().subscribe(object : Observer<List<LCObject?>?> {
+            override fun onSubscribe(disposable: Disposable) {}
+            override fun onError(throwable: Throwable) {}
+            override fun onComplete() {}
+            override fun onNext(t: List<LCObject?>) {
+                t.forEach {
+                    val todo =
+                        LCObject.createWithoutData(
+                            Comment::class.java.simpleName,
+                            it?.objectId
+                        )
+                    todo.deleteInBackground().subscribe(object : Observer<LCNull?> {
+                        override fun onSubscribe(@NonNull d: Disposable) {}
+                        override fun onNext(response: LCNull) {
+                            deleteCallback.success()
+                        }
+
+                        override fun onError(@NonNull e: Throwable) {
+                            println("failed to delete a todo: " + e.message)
+                        }
+
+                        override fun onComplete() {}
+                    })
+                }
+
+            }
+        })
+
+        //delete
+
+
+    }
+
 }
