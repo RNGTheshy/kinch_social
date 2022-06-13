@@ -1,5 +1,7 @@
 package cn.leancloud.chatkit.adapter;
 
+import static cn.leancloud.LeanCloud.getContext;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,30 +67,33 @@ public class ChatHistoryAdapter extends RecyclerView.Adapter<ChatHistoryHolder>{
             holder.content.setText(textMessage.getText());
         }
         holder.time.setText(millisecsToDateString(message.getTimestamp()));
-        getPersonal_data.center_getname(message.getFrom(), new center_getname() {
-            @Override
-            public void getname(String name) {
-                holder.name.setText(name);
-            }
-        });
-//        LCIMProfileCache.getInstance().getCachedUser(message.getFrom(), new LCCallback<LCChatKitUser>() {
+
+//        getPersonal_data.center_getname(message.getFrom(), new center_getname() {
 //            @Override
-//            protected void internalDone0(LCChatKitUser userProfile, LCException e) {
-//                if (null != e) {
-//                    LCIMLogUtils.logException(e);
-//                } else if (null != userProfile) {
-//                    holder.name.setText(userProfile.getName());
-////                    final String avatarUrl = userProfile.getAvatarUrl();
-////                    if (!TextUtils.isEmpty(avatarUrl)) {
-////                        Picasso.with(getContext()).load(avatarUrl)
-////                                .placeholder(R.drawable.lcim_default_avatar_icon).into(avatarView);
-////                    }
-//                }
+//            public void getname(String name) {
+//                holder.name.setText(name);
 //            }
 //        });
-        //TODO 头像更新
-        Headport headPort = new Headport();
-        headPort.setImage(message.getFrom(),holder.avatar);
+//        //TODO 头像更新
+//        Headport headPort = new Headport();
+//        headPort.setImage(message.getFrom(),holder.avatar);
+
+        LCIMProfileCache.getInstance().getCachedUser(message.getFrom(), new LCCallback<LCChatKitUser>() {
+            @Override
+            protected void internalDone0(LCChatKitUser userProfile, LCException e) {
+                if (null != e) {
+                    LCIMLogUtils.logException(e);
+                } else if (null != userProfile) {
+                    holder.name.setText(userProfile.getName());
+                    final String avatarUrl = userProfile.getAvatarUrl();
+                    if (!TextUtils.isEmpty(avatarUrl)) {
+                        Picasso.with(getContext()).load(avatarUrl)
+                                .placeholder(R.drawable.lcim_default_avatar_icon).into(holder.avatar);
+                    }
+                }
+            }
+        });
+
     }
     private static String millisecsToDateString(long timestamp) {
         SimpleDateFormat format = new SimpleDateFormat("M-dd HH:mm");

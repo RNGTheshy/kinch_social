@@ -24,7 +24,6 @@ import cn.leancloud.chatkit.viewholder.LCIMChatItemTextHolder;
 import cn.leancloud.chatkit.viewholder.LCIMCommonViewHolder;
 
 /**
- * Created by wli on 15/8/13.
  * 聊天的 Adapter，此处还有可优化的地方，稍后考虑一下提取出公共的 adapter
  */
 public class LCIMChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
