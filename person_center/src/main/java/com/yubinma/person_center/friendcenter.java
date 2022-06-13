@@ -75,7 +75,6 @@ public class friendcenter extends AppCompatActivity {
         personal_data.getthumbsup(myobjectid, objectid, new Getthumbsup() {
             @Override
             public void getthumbsup(String thumbsup) {
-                Toast.makeText(friendcenter.this,thumbsup,Toast.LENGTH_LONG).show();
                 TextView zan=findViewById(R.id.zan);
                 if (thumbsup.equals("no")){
                     zan.setBackgroundResource(R.drawable.bzan);
