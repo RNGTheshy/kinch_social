@@ -93,4 +93,39 @@ public class CenterTest {
         test.saveplace(longitude,latitude,objectid);
     }
 
+    @Test
+    //测试浏览
+    public void testsetbrowse() throws InterruptedException {
+        Personal_data2 test= new Personal_data2();
+        String objectid="629373a90534fd5ba0adbc78";
+        test.setbrowse(objectid);
+    }
+
+    @Test
+    //测试点赞修改
+    public void testsetno() throws InterruptedException {
+        Personal_data2 test= new Personal_data2();
+        String objectid="629373a90534fd5ba0adbc78";
+        String objectid1="test1";
+        String objectid2="test2";
+        test.setno(objectid1,objectid2,"yes");
+    }
+
+    @Test
+    //测试取消点赞后总数修改
+    public void testcancel() throws InterruptedException {
+        Personal_data2 test= new Personal_data2();
+        String objectid="629373a90534fd5ba0adbc78";
+        test.cancel(objectid);
+    }
+
+    @Test
+    //测试点赞后总数修改
+    public void testthumbsup() throws InterruptedException {
+        Personal_data2 test= new Personal_data2();
+        String objectid="629373a90534fd5ba0adbc78";
+        test.thumbsup(objectid);
+    }
+
+
 }

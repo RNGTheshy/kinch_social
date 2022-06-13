@@ -161,6 +161,7 @@ public class Personal_data {
             @Override
             public void onNext(LCObject todo) {
                 todo.put("mobilePhoneNumber", telephone);
+                todo.put("phone_number", telephone);
                 todo.saveInBackground().subscribe(new Observer<LCObject>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {System.out.println("测试成功");
@@ -482,6 +483,225 @@ public class Personal_data {
 
 
     }
+
+
+
+
+
+
+
+    //浏览
+    public void setbrowse(String objectid){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                int browse=todo.getInt("browse")+1;
+                todo.put("browse", browse);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
+
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+
+    }
+
+    //获取浏览次数与点赞次数
+    public void getbrowse(String objectid,Getbrowse getbrowse){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                int browse=todo.getInt("browse");
+                int thumbsup=todo.getInt("thumbsup");
+                getbrowse.getbandt(browse,thumbsup);
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+    }
+
+
+
+
+
+
+    //点赞
+    public void thumbsup(String objectid){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                int thumbsup=todo.getInt("thumbsup")+1;
+                todo.put("thumbsup", thumbsup);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
+
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+
+    }
+
+    //取消点赞
+    public void cancel(String objectid){
+        LCQuery<LCObject> query = new LCQuery<>("userdata");
+        query.whereEqualTo("userid", objectid);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                int thumbsup=todo.getInt("thumbsup")-1;
+                todo.put("thumbsup", thumbsup);
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
+
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+    }
+
+
+    //好友点赞获取
+    public void getthumbsup(String objectid1,String objectid2,Getthumbsup getthumbsup){
+        LCQuery<LCObject> query = new LCQuery<>("FriendList");
+        query.whereEqualTo("fId", objectid1);
+        query.whereEqualTo("mId", objectid2);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                String ifthumbsup=todo.getString("ifthumbsup");
+                getthumbsup.getthumbsup(ifthumbsup);
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+    }
+
+    //好友点赞修改
+    public void setno(String objectid1,String objectid2,String ifs){
+        LCQuery<LCObject> query = new LCQuery<>("FriendList");
+        query.whereEqualTo("fId", objectid1);
+        query.whereEqualTo("mId", objectid2);
+        query.getFirstInBackground().subscribe(new Observer<LCObject>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+            }
+            @Override
+            public void onNext(LCObject todo) {
+                if (ifs.equals("yes")){
+                    todo.put("ifthumbsup","yes");
+                }
+                else{
+                    todo.put("ifthumbsup","no");
+                }
+                todo.saveInBackground().subscribe(new Observer<LCObject>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                    }
+
+                    @Override
+                    public void onNext(LCObject savedTodo) {
+                        Log.e("修改完成。", "succeed");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("修改失败。", throwable.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable throwable) {}
+            @Override
+            public void onComplete() {}
+        });
+    }
+
+
 
 
 }
